@@ -1,0 +1,149 @@
+header {
+  padding: 20px 0;
+  background: $inputBg;
+  nav {
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    .logo {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      a {
+        color: $main;
+        h1 {
+          font-size: 22px;
+          margin: 0;
+        }
+      }
+    }
+    .nav_links {
+      flex: 2;
+      @include centerFlex();
+      gap: 42px;
+      .nav_link {
+        color: $dark;
+        font-size: 14px;
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "";
+          height: 1.5px;
+          width: 0;
+          background: $main;
+          bottom: -6px;
+          left: 50%;
+          transform: translateX(-50%);
+          transition: 0.3s ease-in-out;
+        }
+        &.active,
+        &:hover {
+          color: $main;
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .more_actions {
+      flex: 1;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      gap: 24px;
+      .dropdown-toggle {
+        background: $white;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-color: $main;
+        i {
+          color: $main;
+        }
+      }
+      .drop_Message_Menu {
+        min-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        .scroll_menu {
+          overflow-y: scroll;
+          flex: 1 1 auto;
+          .drop_Message {
+            width: 100%;
+            .image-wrapper {
+              align-items: center;
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              overflow: hidden;
+              position: relative;
+              width: 32px;
+              aspect-ratio: 1;
+              background-color: #4381f81a;
+              i {
+                font-size: 16px;
+                color: $main;
+              }
+            }
+            p {
+              margin: 0;
+              text-align: start;
+            }
+          }
+        }
+        .showall {
+          width: 100%;
+          text-align: center;
+          color: $main;
+          font-size: 14px;
+          padding: 12px;
+          border-radius: 4px;
+          background: $inputBg;
+        }
+        &.show {
+          display: flex;
+          transform: translate(0, 0) !important;
+          inset: unset !important;
+          border: none !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          top: 64px !important;
+          padding: 16px !important;
+          border-radius: 16px !important;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+      }
+      .auth_menu {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        a {
+          display: flex;
+          font-size: 12px;
+          align-items: center;
+          gap: 8px;
+          color: $dark;
+          i {
+            width: 16px;
+            height: 16px;
+          }
+        }
+        &.show {
+          display: flex;
+          transform: translate(0, 0) !important;
+          inset: unset !important;
+          border: none !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          top: 64px !important;
+          padding: 16px !important;
+          border-radius: 16px !important;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+      }
+    }
+  }
+}
