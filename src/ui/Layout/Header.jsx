@@ -1,16 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
 
 function Header() {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <header>
+      <div className={`layer ${showMenu ? "show" : ""}`}></div>
       <nav className="container">
         <div className="logo">
           <Link to="/">
             <h1>عمارة ماركت</h1>
           </Link>
         </div>
-        <div className="nav_links">
+        <div className={`nav_links ${showMenu ? "show" : ""}`}>
           <NavLink className="nav_link" to="/">
             الرئيسية
           </NavLink>
@@ -80,6 +83,18 @@ function Header() {
                 <i className="fa-regular fa-user-plus"></i> انشاء حساب
               </Link>
             </Dropdown.Menu>
+          </Dropdown>
+
+          {/* toggler */}
+          <Dropdown className="toggler">
+            <Dropdown.Toggle id="dropdown-basic">
+              <div
+                className="user_wrapper"
+                onClick={() => setShowMenu(!showMenu)}
+              >
+                <i className="fa-solid fa-bars"></i>
+              </div>
+            </Dropdown.Toggle>
           </Dropdown>
         </div>
       </nav>

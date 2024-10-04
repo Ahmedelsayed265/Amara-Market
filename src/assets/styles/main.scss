@@ -7,9 +7,11 @@ body {
   font-family: "montserrat", sans-serif;
 
   @import "./header";
+  @import "./form-ui";
 
   main {
     min-height: calc(100vh - 100px);
+    @import "./auth";
 
     .error-section {
       padding: 60px 16px;

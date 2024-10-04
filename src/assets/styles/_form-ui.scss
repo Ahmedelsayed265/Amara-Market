@@ -1,0 +1,232 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  .resend-code {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 0;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    .resend_link {
+      color: $main;
+      cursor: pointer;
+      &.disabled {
+        pointer-events: none;
+      }
+    }
+    .timer {
+      flex: 1 0;
+      display: flex;
+      justify-content: end !important;
+      span {
+        color: $text;
+      }
+    }
+  }
+
+  .input-field {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+    label {
+      color: $dark;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      gap: 6px;
+      i {
+        color: $main;
+        font-size: 16px;
+      }
+      img {
+        height: 24px;
+      }
+      span {
+        font-size: 12px;
+        color: $inputHint;
+      }
+    }
+    input,
+    textarea,
+    select {
+      color: $dark;
+      direction: rtl;
+      height: 56px;
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: #fefefe;
+      border: 1px solid $inputStroke;
+      font-size: 14px;
+      box-shadow: none !important;
+    }
+    textarea {
+      height: 140px;
+      padding: 16px 12px;
+    }
+    .input-span {
+      position: absolute;
+      color: $main;
+      left: 12px;
+      top: 46px;
+    }
+  }
+
+  .location_icon {
+    min-width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .pass-group {
+    display: flex;
+    .show-pass {
+      @include centerFlex();
+      width: 60px;
+      height: 56px;
+      border: 1px solid $inputStroke;
+      background: $inputBg;
+      border-right: 0;
+      cursor: pointer;
+      border-radius: 12px 0 0 12px !important;
+      color: $text;
+    }
+    input {
+      border-left: 0 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+  }
+
+  .phone-field {
+    input {
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .phone-key {
+      color: $dark;
+      direction: rtl;
+      height: 56px;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      border-radius: 12px 0 0 12px;
+      background: $inputBg;
+      border: 1px solid $inputStroke;
+      font-size: 14px;
+      box-shadow: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      line-height: 24px;
+      cursor: not-allowed;
+      img {
+        width: 24px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .form_group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+    @media screen and (max-width: 576px) {
+      flex-direction: column;
+    }
+  }
+
+  .forgetpass {
+    align-self: flex-end;
+    color: $main;
+    font-size: 14px;
+  }
+
+  .noAccount {
+    align-self: flex-start;
+    font-size: 14px;
+    margin: 0;
+    color: $text;
+    a {
+      color: $main;
+    }
+  }
+
+  button {
+    width: 100%;
+    height: 56px;
+    gap: 6px;
+    border-radius: 12px;
+    @include centerFlex();
+    @include clearInput();
+    color: #fff;
+    background: $main;
+    font-size: 14px;
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  .image_wrapper {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 62px;
+    position: relative;
+    img {
+      border-radius: 12px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .upload_iamge {
+      position: absolute;
+      top: 12px;
+      width: 32px;
+      height: 32px;
+      left: 12px;
+      border-radius: 50%;
+      background-color: $white;
+      border: 1px solid $inputHint;
+      @include centerFlex();
+      cursor: pointer;
+      input {
+        display: none;
+      }
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+    .logo_wrap {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      right: 24px;
+      bottom: -60px;
+      img {
+        border-radius: 50%;
+      }
+      .upload_iamge {
+        top: initial;
+        bottom: -6px;
+        left: 6px;
+      }
+    }
+  }
+}

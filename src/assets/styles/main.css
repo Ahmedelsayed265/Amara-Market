@@ -58,13 +58,18 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .modal-header .btn-close {
   box-shadow: none !important;
-  background-image: url("/images/icons/close.svg");
+  background-image: url("/images/close.svg");
   margin-inline-start: auto !important;
   margin-inline-end: 0 !important;
 }
 .modal-header h6 {
   color: #222020;
   margin-bottom: 0;
+}
+
+.dropdown-toggle:active {
+  background: #fff !important;
+  border-color: #fd6b22 !important;
 }
 
 .Toastify__toast-body {
@@ -83,6 +88,39 @@ input[type=number]::-webkit-inner-spin-button {
     left: initial;
   }
 }
+.css-t3ipsp-control {
+  border-color: #eeeeee !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+}
+.css-t3ipsp-control:hover {
+  background-color: #fff !important;
+}
+
+.css-13cymwt-control {
+  border-color: #eeeeee !important;
+}
+
+.select__input {
+  height: 43px !important;
+}
+
+.css-hlgwow {
+  padding: 2px 8px;
+}
+
+.css-13cymwt-control {
+  border-radius: 12px !important;
+}
+
+.select__indicator-separator {
+  display: none !important;
+}
+
+.select__menu {
+  z-index: 999999 !important;
+}
+
 :root {
   --bs-border-radius-lg: 24px;
 }
@@ -166,6 +204,36 @@ button {
   stroke: #fd6b22;
 }
 
+.mapSearchInput {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  height: 54px !important;
+  width: auto !important;
+  border: 1px solid #f2f2f2;
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  outline: none;
+  color: #222020;
+  font-size: 14px;
+}
+.mapSearchInput::-moz-placeholder {
+  color: #666b88;
+}
+.mapSearchInput::placeholder {
+  color: #666b88;
+}
+
+.pac-container {
+  z-index: 99999;
+}
+
+.modal-title {
+  font-size: 14px;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -173,8 +241,28 @@ body {
   font-family: "montserrat", sans-serif;
 }
 body header {
-  padding: 20px 0;
+  padding: 16px 0;
+  z-index: 999;
   background: #f8f8f8;
+  position: sticky;
+  top: 0;
+}
+body header .layer {
+  position: absolute;
+  top: 74px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 74px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  display: none;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  transition-behavior: allow-discrete;
+}
+body header .layer.show {
+  display: block;
+  opacity: 1;
 }
 body header nav {
   border-radius: 8px;
@@ -199,6 +287,26 @@ body header nav .nav_links {
   align-items: center;
   justify-content: center;
   gap: 42px;
+}
+@media screen and (max-width: 768px) {
+  body header nav .nav_links {
+    position: fixed;
+    right: -50%;
+    top: 74px;
+    height: calc(100vh - 74px);
+    width: 50%;
+    justify-content: flex-start;
+    background: #fff;
+    flex-direction: column;
+    align-items: self-start;
+    padding: 32px 24px;
+    gap: 32px;
+    z-index: 1;
+    transition: 0.3s ease-in-out;
+  }
+  body header nav .nav_links.show {
+    right: 0;
+  }
 }
 body header nav .nav_links .nav_link {
   color: #222020;
@@ -227,7 +335,7 @@ body header nav .more_actions {
   display: flex;
   justify-content: end;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 body header nav .more_actions .dropdown-toggle {
   background: #fff;
@@ -243,6 +351,7 @@ body header nav .more_actions .dropdown-toggle i {
   color: #fd6b22;
 }
 body header nav .more_actions .drop_Message_Menu {
+  z-index: 999;
   min-width: 350px;
   height: 300px;
   flex-direction: column;
@@ -287,12 +396,19 @@ body header nav .more_actions .drop_Message_Menu.show {
   transform: translate(0, 0) !important;
   inset: unset !important;
   border: none !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  left: 0% !important;
   top: 64px !important;
   padding: 16px !important;
   border-radius: 16px !important;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+body header nav .more_actions .toggler {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  body header nav .more_actions .toggler {
+    display: block;
+  }
 }
 body header nav .more_actions .auth_menu {
   display: none;
@@ -315,15 +431,294 @@ body header nav .more_actions .auth_menu.show {
   transform: translate(0, 0) !important;
   inset: unset !important;
   border: none !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  left: 0% !important;
   top: 64px !important;
   padding: 16px !important;
   border-radius: 16px !important;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+body .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+body .form .resend-code {
+  width: 100%;
+  display: flex;
+  padding: 10px 0 0;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+body .form .resend-code .resend_link {
+  color: #fd6b22;
+  cursor: pointer;
+}
+body .form .resend-code .resend_link.disabled {
+  pointer-events: none;
+}
+body .form .resend-code .timer {
+  flex: 1 0;
+  display: flex;
+  justify-content: end !important;
+}
+body .form .resend-code .timer span {
+  color: #666b88;
+}
+body .form .input-field {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+}
+body .form .input-field label {
+  color: #222020;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 6px;
+}
+body .form .input-field label i {
+  color: #fd6b22;
+  font-size: 16px;
+}
+body .form .input-field label img {
+  height: 24px;
+}
+body .form .input-field label span {
+  font-size: 12px;
+  color: #aaaaaa;
+}
+body .form .input-field input,
+body .form .input-field textarea,
+body .form .input-field select {
+  color: #222020;
+  direction: rtl;
+  height: 56px;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #fefefe;
+  border: 1px solid #f2f2f2;
+  font-size: 14px;
+  box-shadow: none !important;
+}
+body .form .input-field textarea {
+  height: 140px;
+  padding: 16px 12px;
+}
+body .form .input-field .input-span {
+  position: absolute;
+  color: #fd6b22;
+  left: 12px;
+  top: 46px;
+}
+body .form .location_icon {
+  min-width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+body .form .location_icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .form .pass-group {
+  display: flex;
+}
+body .form .pass-group .show-pass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 56px;
+  border: 1px solid #f2f2f2;
+  background: #f8f8f8;
+  border-right: 0;
+  cursor: pointer;
+  border-radius: 12px 0 0 12px !important;
+  color: #666b88;
+}
+body .form .pass-group input {
+  border-left: 0 !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+body .form .phone-field input {
+  border-radius: 0 12px 12px 0 !important;
+}
+body .form .phone-field .phone-key {
+  color: #222020;
+  direction: rtl;
+  height: 56px;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 12px 0 0 12px;
+  background: #f8f8f8;
+  border: 1px solid #f2f2f2;
+  font-size: 14px;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 24px;
+  cursor: not-allowed;
+}
+body .form .phone-field .phone-key img {
+  width: 24px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .form .form_group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+@media screen and (max-width: 576px) {
+  body .form .form_group {
+    flex-direction: column;
+  }
+}
+body .form .forgetpass {
+  align-self: flex-end;
+  color: #fd6b22;
+  font-size: 14px;
+}
+body .form .noAccount {
+  align-self: flex-start;
+  font-size: 14px;
+  margin: 0;
+  color: #666b88;
+}
+body .form .noAccount a {
+  color: #fd6b22;
+}
+body .form button {
+  width: 100%;
+  height: 56px;
+  gap: 6px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  outline: none;
+  color: #fff;
+  background: #fd6b22;
+  font-size: 14px;
+}
+body .form button.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+body .form .image_wrapper {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 62px;
+  position: relative;
+}
+body .form .image_wrapper img {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .form .image_wrapper .upload_iamge {
+  position: absolute;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  left: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #aaaaaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body .form .image_wrapper .upload_iamge input {
+  display: none;
+}
+body .form .image_wrapper .upload_iamge img {
+  height: 20px;
+  width: 20px;
+}
+body .form .image_wrapper .logo_wrap {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  right: 24px;
+  bottom: -60px;
+}
+body .form .image_wrapper .logo_wrap img {
+  border-radius: 50%;
+}
+body .form .image_wrapper .logo_wrap .upload_iamge {
+  top: initial;
+  bottom: -6px;
+  left: 6px;
+}
 body main {
   min-height: calc(100vh - 100px);
+}
+body main .auth {
+  padding: 42px 0;
+}
+body main .auth .auth-head {
+  text-align: center;
+  font-size: 18px;
+  color: #fd6b22;
+  font-weight: 600;
+}
+body main .auth .auth-subhead {
+  text-align: center;
+  font-size: 14px;
+  color: #666b88;
+}
+body main .auth .market_types {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body main .auth .market_types .market_type_radio {
+  width: 100%;
+  height: 56px;
+}
+body main .auth .market_types .market_type_radio input {
+  display: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+body main .auth .market_types .market_type_radio input:checked + span {
+  background: #fd6b22;
+  color: #fff;
+}
+body main .auth .market_types .market_type_radio span {
+  transition: 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+  color: #666b88;
+  font-size: 14px;
+  cursor: pointer;
 }
 body main .error-section {
   padding: 60px 16px;

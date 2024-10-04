@@ -1,4 +1,5 @@
 import Login from "./routes/Login";
+import Register from "./routes/Register";
 
 const router = [
   {
@@ -8,6 +9,10 @@ const router = [
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/register",
+    element: <Register />
   }
 ];
 
