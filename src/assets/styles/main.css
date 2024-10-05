@@ -5,7 +5,7 @@
 * {
   padding: 0;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "montserrat", sans-serif;
@@ -415,11 +415,24 @@ body header nav .more_actions .auth_menu {
   flex-direction: column;
   gap: 12px;
 }
+body header nav .more_actions .auth_menu .balance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fd6b22;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+body header nav .more_actions .auth_menu .balance h6 {
+  font-size: 14px;
+  margin: 0;
+}
 body header nav .more_actions .auth_menu .profile {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
 }
 body header nav .more_actions .auth_menu .profile .img {
   width: 48px;
@@ -1030,6 +1043,9 @@ body main .products_section .section_header h6 {
   font-size: 14px;
   margin: 0;
 }
+body main .products_section .section_header h6 span {
+  color: #fd6b22;
+}
 body main .products_section .section_header button {
   background: #fd6b22;
   color: #fff;
@@ -1053,11 +1069,62 @@ body main .products_section .section_btn .img img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 12px;
 }
 body main .products_section .section_btn .title {
   padding: 12px 8px;
   color: #222020;
   font-size: 14px;
+}
+body main .products_section .section_btn.active {
+  border: 2px solid #fd6b22;
+}
+body main .products_section .section_btn.active .title {
+  color: #fd6b22;
+}
+body main .products_section .product_card {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .products_section .product_card .img {
+  width: 100%;
+}
+body main .products_section .product_card .img img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 12px;
+  background: #f8f8f8;
+  mix-blend-mode: multiply;
+}
+body main .products_section .product_card .content {
+  padding: 12px;
+  flex: 1;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+body main .products_section .product_card .content h6 {
+  color: #222020;
+  margin: 0;
+  font-size: 14px;
+}
+body main .products_section .product_card .content p {
+  color: #fd6b22;
+  font-size: 18px;
+  margin: 0;
+}
+body main .products_section .product_card .content p span {
+  font-size: 12px;
+  color: #666b88;
+  text-decoration: line-through;
 }
 body main .error-section {
   padding: 60px 16px;

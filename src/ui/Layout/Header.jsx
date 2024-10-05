@@ -113,6 +113,11 @@ function Header() {
                     <span>{user?.email}</span>
                   </div>
                 </div>
+
+                <div className="balance">
+                  <h6> الرصيد: {user?.wallet} ر.س</h6>
+                </div>
+
                 <Link to="/edit-profile">
                   <i className="fa-solid fa-user-pen"></i>
                   تعديل الحساب

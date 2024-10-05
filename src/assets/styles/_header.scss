@@ -164,11 +164,22 @@ header {
         display: none;
         flex-direction: column;
         gap: 12px;
+        .balance {
+          @include centerFlex();
+          background: $main;
+          color: $white;
+          border-radius: 8px;
+          padding: 8px;
+          margin-bottom: 12px;
+          h6 {
+            font-size: 14px;
+            margin: 0;
+          }
+        }
         .profile {
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-bottom: 12px;
           .img {
             width: 48px;
             height: 48px;

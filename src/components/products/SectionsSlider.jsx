@@ -1,7 +1,9 @@
+import { useSearchParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
-export default function SectionsSlider({ sections }) {
+export default function SectionsSlider({ sections, sectionId }) {
+  const [, setSearchParams] = useSearchParams();
   return (
     <Swiper
       spaceBetween={16}
@@ -22,7 +24,12 @@ export default function SectionsSlider({ sections }) {
     >
       {sections?.map((section) => (
         <SwiperSlide key={section.id}>
-          <button className="section_btn">
+          <button
+            onClick={() => setSearchParams({ id: section.id })}
+            className={`section_btn ${
+              Number(sectionId) === section.id ? "active" : ""
+            }`}
+          >
             <div className="img">
               <img src={section?.image} alt={section?.title} />
             </div>
