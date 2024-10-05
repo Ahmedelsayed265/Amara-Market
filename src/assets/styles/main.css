@@ -1052,6 +1052,11 @@ body main .products_section .section_header button {
   border-radius: 8px;
   font-size: 14px;
   padding: 10px 16px;
+  border: 1px solid #fd6b22;
+}
+body main .products_section .section_header button.outline {
+  background: #fff;
+  color: #fd6b22;
 }
 body main .products_section .section_btn {
   width: 100%;

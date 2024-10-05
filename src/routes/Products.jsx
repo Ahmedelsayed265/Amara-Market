@@ -9,10 +9,11 @@ import AddProductModal from "../ui/modals/AddProductModal";
 
 export default function Products() {
   const [searchParams] = useSearchParams();
+  const [targetSection, setTargetSection] = useState(null);
   const [sectionId, setSectionId] = useState(null);
-  const { data: sections, isLoading } = useGetSections();
   const [showModal, setShowModal] = useState(false);
   const [showAddProductModal, setShowAddProductModal] = useState(false);
+  const { data: sections, isLoading } = useGetSections();
 
   useEffect(() => {
     const id = searchParams.get("id");
@@ -49,9 +50,22 @@ export default function Products() {
                       {sections?.find((s) => s.id === Number(sectionId))?.title}
                     </span>
                   </h6>
-                  <button onClick={() => setShowAddProductModal(true)}>
-                    <i className="fa-regular fa-plus"></i> اضافة منتج
-                  </button>
+                  <div className="d-flex align-items-center gap-2">
+                    <button
+                      className="outline"
+                      onClick={() => {
+                        setShowModal(true);
+                        setTargetSection(
+                          sections?.find((s) => s.id === Number(sectionId))
+                        );
+                      }}
+                    >
+                      تعديل القسم
+                    </button>
+                    <button onClick={() => setShowAddProductModal(true)}>
+                      <i className="fa-regular fa-plus"></i> اضافة منتج
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -79,7 +93,11 @@ export default function Products() {
             </div>
           </div>
         )}
-        <AddSectionModal showModal={showModal} setShowModal={setShowModal} />
+        <AddSectionModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          targetSection={targetSection}
+        />
         <AddProductModal
           showModal={showAddProductModal}
           setShowModal={setShowAddProductModal}
