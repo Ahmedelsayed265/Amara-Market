@@ -12,6 +12,7 @@ body {
     min-height: calc(100vh - 100px);
     @import "./auth";
     @import "./contact";
+    @import "./products";
 
     .error-section {
       padding: 60px 16px;

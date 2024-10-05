@@ -48,9 +48,9 @@ function Header() {
           <NavLink className="nav_link" to="/products">
             المنتجات
           </NavLink>
-          <NavLink className="nav_link" to="/categories">
+          {/* <NavLink className="nav_link" to="/categories">
             الاقسام
-          </NavLink>
+          </NavLink> */}
           <NavLink className="nav_link" to="/about">
             من نحن
           </NavLink>

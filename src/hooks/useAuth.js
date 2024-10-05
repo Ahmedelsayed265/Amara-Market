@@ -9,7 +9,7 @@ import useGetAuthedUser from "./profile/useGetAuthedUser";
 const useAuth = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [cookies, , removeCookie] = useCookies(["token", "id"]);
+  const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
   const id = cookies?.id;
 
@@ -19,8 +19,6 @@ const useAuth = () => {
   const handleLogout = () => {
     dispatch(setUser({}));
     dispatch(setIsLogged(false));
-    removeCookie("token");
-    removeCookie("id");
     setLoading(false);
   };
 
