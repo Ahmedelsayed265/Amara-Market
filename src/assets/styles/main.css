@@ -810,6 +810,187 @@ body main .otp-container .otp-input::-webkit-inner-spin-button {
     height: 60px !important;
   }
 }
+body main .contact_section {
+  padding: 32px 0;
+}
+body main .contact_section .contact_info {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 12px;
+}
+body main .contact_section .contact_info h3 {
+  font-size: 22px;
+  color: #222020;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+body main .contact_section .contact_info ul {
+  padding: 0;
+  margin: 0;
+}
+body main .contact_section .contact_info h5 {
+  font-size: 22px;
+  color: #fd6b22;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+body main .contact_section .contact_info p {
+  color: #aaaaaa;
+  font-size: 15px;
+}
+body main .contact_section .contact_info .field {
+  width: 100%;
+  display: flex;
+  margin-bottom: 32px;
+  gap: 16px;
+  align-items: center;
+}
+body main .contact_section .contact_info .field .icon {
+  min-width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #fd6b22;
+  overflow: hidden;
+  isolation: isolate;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main .contact_section .contact_info .field .icon::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: 0.3s ease-in-out;
+  background: #fd6b22;
+}
+body main .contact_section .contact_info .field .icon path,
+body main .contact_section .contact_info .field .icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #fd6b22;
+}
+body main .contact_section .contact_info .field .text {
+  display: flex;
+  flex-direction: column;
+}
+body main .contact_section .contact_info .field .text h4 {
+  margin-bottom: 4px;
+  color: #fd6b22;
+  font-size: 13px;
+  font-weight: bold;
+}
+body main .contact_section .contact_info .field .text a {
+  color: #aaaaaa;
+}
+body main .contact_section .contact_info .field:hover .text a {
+  color: #fd6b22;
+}
+body main .contact_section .contact_info .field:hover .icon {
+  border-color: transparent;
+}
+body main .contact_section .contact_info .field:hover .icon img {
+  filter: brightness(0) invert(1);
+  z-index: 4;
+}
+body main .contact_section .contact_info .field:hover .icon::after {
+  opacity: 1;
+}
+body main .contact_section .title {
+  font-size: 22px;
+  color: #222020;
+  text-align: center;
+  margin-bottom: 32px;
+}
+body main .contact_section form {
+  background: #fff;
+  border: 1px solid #f2f2f2;
+  padding: 42px 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+@media (max-width: 576px) {
+  body main .contact_section form {
+    padding: 32px 0;
+  }
+}
+body main .contact_section form .form-group {
+  display: flex;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  body main .contact_section form .form-group {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+body main .contact_section form .form-group .inputfield {
+  width: 100%;
+  padding: 0 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+body main .contact_section form .form-group .inputfield label {
+  position: absolute;
+  font-size: 14px;
+  color: #aaaaaa;
+  right: 16px;
+  transform: translateY(-50%);
+  top: 50%;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  cursor: auto;
+}
+body main .contact_section form .form-group .inputfield label i {
+  margin-right: 4px;
+}
+body main .contact_section form .form-group .inputfield label.message-label {
+  top: 20%;
+}
+body main .contact_section form .form-group .inputfield label.h {
+  top: -4px;
+  color: #fd6b22;
+}
+body main .contact_section form .form-group .inputfield input,
+body main .contact_section form .form-group .inputfield textarea {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  background: none;
+}
+body main .contact_section form .form-group .inputfield input:focus + span::after,
+body main .contact_section form .form-group .inputfield textarea:focus + span::after {
+  width: calc(100% - 32px);
+}
+body main .contact_section form .form-group .inputfield textarea {
+  padding: 16px 0;
+  height: 130px;
+}
+body main .contact_section form .form-group .inputfield .highlight {
+  width: 100%;
+  height: 1px;
+  background: #f2f2f2;
+}
+body main .contact_section form .form-group .inputfield .highlight::after {
+  content: "";
+  width: 0;
+  transition: 0.3s ease-in-out;
+  left: 50%;
+  height: 2px;
+  background: #fd6b22;
+  position: absolute;
+  transform: translate(-50%);
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;
@@ -888,6 +1069,24 @@ body main .page_header h6 a {
 }
 body main .page_header h6 a:hover {
   color: #fd6b22;
+}
+body main .tableLoader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body main .tableLoader .loader--style8 {
+  width: 80px;
+  height: 80px;
+}
+body main .tableLoader svg path,
+body main .tableLoader svg rect {
+  fill: #fd6b22;
+}
+body main .page_content {
+  padding: 32px 0;
 }
 body.en {
   direction: ltr;
