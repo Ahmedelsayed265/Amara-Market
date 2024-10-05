@@ -754,6 +754,62 @@ body main .auth .market_types .market_type_radio span {
   font-size: 14px;
   cursor: pointer;
 }
+body main .auth .otp_form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+body main .auth .otp_form_container .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+body main .auth .otp_form_container .header img {
+  height: 200px;
+}
+body main .auth .otp_form_container .header h4 {
+  font-size: 16px;
+  color: #222020;
+  text-align: center;
+}
+body main .auth .otp_form_container .header h4 span {
+  color: #fd6b22;
+}
+body main .otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+}
+@media (max-width: 576px) {
+  body main .otp-container {
+    gap: 8px;
+  }
+}
+body main .otp-container .otp-input {
+  border-radius: 12px;
+  flex: 1;
+  width: inherit;
+  height: 80px !important;
+  text-align: center;
+  border: 1px solid #f2f2f2;
+  background: #f8f8f8;
+  font-size: 28px !important;
+  font-weight: 600;
+  color: #fd6b22 !important;
+  outline: none;
+}
+body main .otp-container .otp-input::-webkit-inner-spin-button {
+  display: none;
+}
+@media (max-width: 576px) {
+  body main .otp-container .otp-input {
+    height: 60px !important;
+  }
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;

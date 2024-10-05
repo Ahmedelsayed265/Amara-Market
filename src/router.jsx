@@ -1,19 +1,24 @@
+import ForgetPassword from "./routes/ForgetPassword";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 
 const router = [
   {
     path: "/",
-    element: <></>
+    element: <></>,
   },
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
   },
   {
     path: "/register",
-    element: <Register />
-  }
+    element: <Register />,
+  },
+  {
+    path: "/forget-password",
+    element: <ForgetPassword />,
+  },
 ];
 
 export default router;

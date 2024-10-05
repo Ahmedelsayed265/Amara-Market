@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import InterceptorProvider from "./InterceptorProvider";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +21,9 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <App />
+        <InterceptorProvider>
+          <App />
+        </InterceptorProvider>
       </Provider>
       <ToastContainer />
       <ReactQueryDevtools />

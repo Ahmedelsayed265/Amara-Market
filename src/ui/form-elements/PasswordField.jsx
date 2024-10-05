@@ -13,7 +13,11 @@ export default function PasswordField({ label, icon, ...props }) {
         {icon} {label}
       </label>
       <div className="pass-group">
-        <Form.Control {...props} type={showPass ? "text" : "password"} />
+        <Form.Control
+          minLength={6}
+          {...props}
+          type={showPass ? "text" : "password"}
+        />
         <div className="show-pass" onClick={handleInputType}>
           <i
             className={`fa-regular ${!showPass ? "fa-eye-slash" : "fa-eye"}`}

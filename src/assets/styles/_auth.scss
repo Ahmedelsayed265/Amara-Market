@@ -40,4 +40,57 @@
       }
     }
   }
+  .otp_form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      img {
+        height: 200px;
+      }
+      h4 {
+        font-size: 16px;
+        color: $dark;
+        text-align: center;
+        span {
+          color: $main;
+        }
+      }
+    }
+  }
+}
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+  @media (max-width: 576px) {
+    gap: 8px;
+  }
+  .otp-input {
+    border-radius: 12px;
+    flex: 1;
+    width: inherit;
+    height: 80px !important;
+    text-align: center;
+    border: 1px solid $inputStroke;
+    background: $inputBg;
+    font-size: 28px !important;
+    font-weight: 600;
+    color: $main !important;
+    outline: none;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+    @media (max-width: 576px) {
+      height: 60px !important;
+    }
+  }
 }
