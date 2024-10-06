@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute({ children, profile }) {
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const navigate = useNavigate();
 
@@ -11,10 +11,10 @@ function ProtectedRoute({ children }) {
   const token = cookies?.token;
 
   useEffect(() => {
-    if (!token && !isLogged) {
+    if ((!token && !isLogged) || !profile) {
       navigate("/login", { replace: false });
     }
-  }, [token, isLogged, navigate]);
+  }, [token, isLogged, navigate, profile]);
 
   return children;
 }

@@ -6,7 +6,7 @@ import useAuth from "./hooks/useAuth";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
-  const { loading } = useAuth();
+  const { loading, profile } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
               path={path}
               element={
                 isProtected ? (
-                  <ProtectedRoute>{element}</ProtectedRoute>
+                  <ProtectedRoute profile={profile}>{element}</ProtectedRoute>
                 ) : (
                   element
                 )

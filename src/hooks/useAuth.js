@@ -66,7 +66,7 @@ const useAuth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [decodedToken?.sub, dispatch, id, isExpired, isFetched, profile, refetch]);
 
-  return { loading, handleLogout };
+  return { loading, profile };
 };
 
 export default useAuth;
