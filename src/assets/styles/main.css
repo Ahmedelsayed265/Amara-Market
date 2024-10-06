@@ -1283,6 +1283,59 @@ body main .tableLoader svg rect {
 body main .page_content {
   padding: 32px 0;
 }
+body main .page_content .order_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 24px;
+  background: #f8f8f8;
+  padding: 16px;
+}
+body main .page_content .order_item .image_info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+body main .page_content .order_item .image_info .img {
+  min-width: 62px;
+  height: 62px;
+}
+body main .page_content .order_item .image_info .img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .page_content .order_item .image_info .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body main .page_content .order_item .image_info .info h6 {
+  font-size: 14px;
+  color: #fd6b22;
+}
+body main .page_content .order_item .image_info .info p {
+  font-size: 12px;
+  margin: 0;
+  color: #222020;
+}
+body main .page_content .order_item .price_time {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+body main .page_content .order_item .price_time span {
+  color: #666b88;
+  font-size: 12px;
+}
+body main .page_content .order_item .price_time h6 {
+  margin: 0;
+  font-size: 18px;
+  color: #fd6b22;
+}
 body.en {
   direction: ltr;
 }

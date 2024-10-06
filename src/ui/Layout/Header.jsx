@@ -43,14 +43,11 @@ function Header() {
         </div>
         <div className={`nav_links ${showMenu ? "show" : ""}`}>
           <NavLink className="nav_link" to="/">
-            الرئيسية
+            الطلبات
           </NavLink>
           <NavLink className="nav_link" to="/products">
             المنتجات
           </NavLink>
-          {/* <NavLink className="nav_link" to="/categories">
-            الاقسام
-          </NavLink> */}
           <NavLink className="nav_link" to="/about">
             من نحن
           </NavLink>

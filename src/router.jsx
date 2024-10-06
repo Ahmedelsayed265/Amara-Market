@@ -2,14 +2,15 @@ import About from "./routes/About";
 import Contact from "./routes/Contact";
 import ForgetPassword from "./routes/ForgetPassword";
 import Login from "./routes/Login";
+import Orders from "./routes/Orders";
 import Products from "./routes/Products";
 import Register from "./routes/Register";
 
 const router = [
   {
     path: "/",
-    element: <></>,
-    protected: true
+    element: <Orders />,
+    protected: true,
   },
   {
     path: "/about",
@@ -18,7 +19,7 @@ const router = [
   {
     path: "/products",
     element: <Products />,
-    protected: true
+    protected: true,
   },
   {
     path: "/contact",
