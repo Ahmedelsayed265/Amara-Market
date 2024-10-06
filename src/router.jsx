@@ -9,6 +9,7 @@ const router = [
   {
     path: "/",
     element: <></>,
+    protected: true
   },
   {
     path: "/about",
@@ -17,6 +18,7 @@ const router = [
   {
     path: "/products",
     element: <Products />,
+    protected: true
   },
   {
     path: "/contact",

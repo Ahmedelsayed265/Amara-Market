@@ -106,6 +106,40 @@ $shadow: 0px 2px 8px #0000001a;
   }
 }
 
+.confirm-delete {
+  p {
+    color: $dark;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 14px;
+    span {
+      color: red;
+      font-weight: 600;
+    }
+  }
+  button {
+    font-size: 14px;
+  }
+  .cancel-btn {
+    border: 1px solid $dark;
+    color: $dark;
+    width: 100%;
+    outline: none;
+    background: none;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .delete-btn {
+    width: 100%;
+    padding: 8px;
+    background: red;
+    color: $white;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+  }
+}
+
 .dropdown-toggle:active {
   background: $white !important;
   border-color: $main !important;

@@ -1,12 +1,17 @@
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import InputField from "../form-elements/InputField";
 import SubmitButton from "../form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
 
-export default function AddProductModal({ showModal, setShowModal, id }) {
+export default function AddProductModal({
+  showModal,
+  setShowModal,
+  id,
+  product,
+}) {
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -17,13 +22,40 @@ export default function AddProductModal({ showModal, setShowModal, id }) {
     description: "",
   });
 
+  useEffect(() => {
+    if (product) {
+      setFormData({
+        id: product?.id,
+        title: product?.title,
+        image: product?.image,
+        price: product?.price,
+        offer_price: product?.offer_price,
+        description: product?.description,
+      });
+    }
+  }, [product, showModal]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const payload = {
+      id: formData.id,
+      title: formData.title,
+      price: formData.price,
+      offer_price: formData.offer_price,
+      description: formData.description,
+      section_id: product?.section_id || id,
+    };
+
+    if (typeof formData.image === "object") {
+      payload.image = formData.image;
+    }
+
     try {
       const res = await axiosInstance.post(
-        "/market/create_product",
-        { ...formData, section_id: id },
+        product?.id ? "/market/update_product" : "/market/create_product",
+        payload,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -31,11 +63,17 @@ export default function AddProductModal({ showModal, setShowModal, id }) {
         }
       );
       if (res.data.code === 200) {
-        toast.success("تم اضافة المنتج بنجاح");
+        toast.success(
+          product?.id ? "تم تحديث المنتج بنجاح" : "تم اضافة المنتج بنجاح"
+        );
         handleClose();
         queryClient.invalidateQueries({ queryKey: ["sections"] });
       } else {
-        throw new Error(res.data.message || "فشل إضافة المنتج");
+        throw new Error(
+          res.data.message || product?.id
+            ? "فشل تحديث المنتج"
+            : "فشل إضافة المنتج"
+        );
       }
     } catch (error) {
       console.error("Error in adding product:", error);
@@ -64,7 +102,7 @@ export default function AddProductModal({ showModal, setShowModal, id }) {
   return (
     <Modal centered show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>إضافة قسم</Modal.Title>
+        <Modal.Title>{product?.id ? "تحديث المنتج" : "اضافة منتج"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
@@ -83,7 +121,19 @@ export default function AddProductModal({ showModal, setShowModal, id }) {
               />
               <div className="upload_image_wrap">
                 {formData.image ? (
-                  <img src={URL.createObjectURL(formData.image)} alt="upload" />
+                  typeof formData.image === "string" ? (
+                    <img src={formData.image} alt="upload" />
+                  ) : formData.image instanceof File &&
+                    formData.image.type.startsWith("image/") ? (
+                    <img
+                      src={URL.createObjectURL(formData.image)}
+                      alt="upload"
+                    />
+                  ) : (
+                    <div className="icon">
+                      <img src="/images/gallery.svg" alt="upload" />
+                    </div>
+                  )
                 ) : (
                   <div className="icon">
                     <img src="/images/gallery.svg" alt="upload" />
@@ -144,7 +194,10 @@ export default function AddProductModal({ showModal, setShowModal, id }) {
             }
           />
 
-          <SubmitButton name="اضافة" loading={loading} />
+          <SubmitButton
+            name={product?.id ? "تحديث" : "اضافة"}
+            loading={loading}
+          />
         </form>
       </Modal.Body>
     </Modal>

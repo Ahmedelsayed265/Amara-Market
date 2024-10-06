@@ -10,6 +10,7 @@ export default function AddSectionModal({
   showModal,
   setShowModal,
   targetSection,
+  setTargetSection,
 }) {
   const queryClient = useQueryClient();
   const [loading, setLoading] = useState(false);
@@ -76,7 +77,7 @@ export default function AddSectionModal({
 
   const handleClose = () => {
     setShowModal(false);
-
+    setTargetSection(null);
     setFormData({
       title: "",
       image: null,
@@ -86,7 +87,7 @@ export default function AddSectionModal({
   return (
     <Modal centered show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>إضافة قسم</Modal.Title>
+        <Modal.Title>{formData.id ? "تحديث القسم" : "اضافة قسم"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
@@ -137,7 +138,10 @@ export default function AddSectionModal({
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <SubmitButton name="اضافة" loading={loading} />
+          <SubmitButton
+            name={formData.id ? "تحديث" : "اضافة"}
+            loading={loading}
+          />
         </form>
       </Modal.Body>
     </Modal>

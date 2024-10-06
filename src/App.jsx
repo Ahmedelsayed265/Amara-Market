@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./ui/Layout/Header";
 import router from "./router";
 import useAuth from "./hooks/useAuth";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const { loading } = useAuth();
@@ -17,11 +18,20 @@ function App() {
       <Header />
       <main>
         <Routes>
-          {router.map((route, index) => {
-            return (
-              <Route path={route.path} element={route.element} key={index} />
-            );
-          })}
+          {router.map(({ path, element, index, protected: isProtected }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isProtected ? (
+                  <ProtectedRoute>{element}</ProtectedRoute>
+                ) : (
+                  element
+                )
+              }
+              index={index}
+            />
+          ))}
         </Routes>
       </main>
     </>

@@ -68,6 +68,38 @@ input[type=number]::-webkit-inner-spin-button {
   margin-bottom: 0;
 }
 
+.confirm-delete p {
+  color: #222020;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 14px;
+}
+.confirm-delete p span {
+  color: red;
+  font-weight: 600;
+}
+.confirm-delete button {
+  font-size: 14px;
+}
+.confirm-delete .cancel-btn {
+  border: 1px solid #222020;
+  color: #222020;
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 12px;
+  border-radius: 8px;
+}
+.confirm-delete .delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: red;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+
 .dropdown-toggle:active {
   background: #fff !important;
   border-color: #fd6b22 !important;
@@ -1098,6 +1130,7 @@ body main .products_section .product_card {
 }
 body main .products_section .product_card .img {
   width: 100%;
+  position: relative;
 }
 body main .products_section .product_card .img img {
   aspect-ratio: 1/1;
@@ -1107,6 +1140,28 @@ body main .products_section .product_card .img img {
   border-radius: 12px;
   background: #f8f8f8;
   mix-blend-mode: multiply;
+}
+body main .products_section .product_card .img .btns {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body main .products_section .product_card .img .btns button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+body main .products_section .product_card .img .btns .delete {
+  background: red;
+  color: #fff;
+}
+body main .products_section .product_card .img .btns .edit {
+  background: #777777;
+  color: #fff;
 }
 body main .products_section .product_card .content {
   padding: 12px;
