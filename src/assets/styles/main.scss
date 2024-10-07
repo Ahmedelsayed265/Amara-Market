@@ -105,7 +105,7 @@ body {
       padding: 32px 0;
       .order_item {
         @include space-between();
-        border-radius: 24px;
+        border-radius: 12px;
         background: $inputBg;
         padding: 16px;
         .image_info {
@@ -152,6 +152,46 @@ body {
             color: $main;
           }
         }
+      }
+    }
+
+    .filter {
+      background: $inputBg;
+      padding: 16px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      h6 {
+        margin-bottom: 12px;
+      }
+      span {
+        font-size: 14px;
+        color: $text;
+      }
+      .form-checks {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        label {
+          font-size: 14px;
+        }
+        .form-check-input {
+          box-shadow: none !important;
+          cursor: pointer;
+          &:checked {
+            background-color: $main;
+            border-color: $main;
+          }
+        }
+      }
+      button {
+        background: $main;
+        color: $white;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 100%;
+        padding: 12px;
       }
     }
   }

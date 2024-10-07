@@ -8,6 +8,7 @@ import useGetAuthedUser from "./profile/useGetAuthedUser";
 
 const useAuth = () => {
   const dispatch = useDispatch();
+  const [isAuthed, setIsAuthed] = useState(false);
   const [loading, setLoading] = useState(true);
   const [cookies] = useCookies(["token", "id"]);
   const token = cookies?.token;
@@ -52,21 +53,21 @@ const useAuth = () => {
       return;
     }
 
-    if (isFetched) {
-      if (profile) {
-        dispatch(setUser(profile));
-        dispatch(setIsLogged(true));
-        setLoading(false);
-      } else {
-        refetch().then(() => setLoading(false));
-      }
+    if (isFetched && profile) {
+      dispatch(setUser(profile));
+      dispatch(setIsLogged(true));
+      setIsAuthed(true);
+      setLoading(false);
+    } else if (isFetched) {
+      setIsAuthed(false);
+      setLoading(false);
     } else {
       refetch().then(() => setLoading(false));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [decodedToken?.sub, dispatch, id, isExpired, isFetched, profile, refetch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [decodedToken?.sub, dispatch, id, isExpired, isFetched, profile, refetch, token]);
 
-  return { loading, profile };
+  return { loading, profile, isAuthed, handleLogout };
 };
 
 export default useAuth;

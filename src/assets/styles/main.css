@@ -1287,7 +1287,7 @@ body main .page_content .order_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 24px;
+  border-radius: 12px;
   background: #f8f8f8;
   padding: 16px;
 }
@@ -1335,6 +1335,45 @@ body main .page_content .order_item .price_time h6 {
   margin: 0;
   font-size: 18px;
   color: #fd6b22;
+}
+body main .filter {
+  background: #f8f8f8;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body main .filter h6 {
+  margin-bottom: 12px;
+}
+body main .filter span {
+  font-size: 14px;
+  color: #666b88;
+}
+body main .filter .form-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body main .filter .form-checks label {
+  font-size: 14px;
+}
+body main .filter .form-checks .form-check-input {
+  box-shadow: none !important;
+  cursor: pointer;
+}
+body main .filter .form-checks .form-check-input:checked {
+  background-color: #fd6b22;
+  border-color: #fd6b22;
+}
+body main .filter button {
+  background: #fd6b22;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  padding: 12px;
 }
 body.en {
   direction: ltr;

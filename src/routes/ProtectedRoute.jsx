@@ -1,20 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useCookies } from "react-cookie";
+import useAuth from "../hooks/useAuth";
 
-function ProtectedRoute({ children, profile }) {
-  const isLogged = useSelector((state) => state.authedUser.isLogged);
+function ProtectedRoute({ children }) {
   const navigate = useNavigate();
-
-  const [cookies] = useCookies(["token", "id"]);
-  const token = cookies?.token;
+  const { isAuthed, loading } = useAuth();
 
   useEffect(() => {
-    if ((!token && !isLogged) || !profile) {
+    if (!loading && !isAuthed) {
       navigate("/login", { replace: false });
     }
-  }, [token, isLogged, navigate, profile]);
+  }, [isAuthed, loading, navigate]);
 
   return children;
 }
