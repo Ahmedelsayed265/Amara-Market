@@ -404,6 +404,10 @@ body header nav .more_actions .drop_Message_Menu {
   min-width: 350px;
   height: 300px;
   flex-direction: column;
+  top: 20px !important;
+  padding: 16px !important;
+  border-radius: 16px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 body header nav .more_actions .drop_Message_Menu .scroll_menu {
   overflow-y: scroll;
@@ -442,14 +446,6 @@ body header nav .more_actions .drop_Message_Menu .showall {
 }
 body header nav .more_actions .drop_Message_Menu.show {
   display: flex;
-  transform: translate(0, 0) !important;
-  inset: unset !important;
-  border: none !important;
-  left: 0% !important;
-  top: 64px !important;
-  padding: 16px !important;
-  border-radius: 16px !important;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 body header nav .more_actions .toggler {
   display: none;
@@ -462,6 +458,10 @@ body header nav .more_actions .toggler {
 body header nav .more_actions .auth_menu {
   display: none;
   flex-direction: column;
+  padding: 16px !important;
+  border-radius: 16px !important;
+  top: 20px !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   gap: 12px;
 }
 body header nav .more_actions .auth_menu .balance {
@@ -524,14 +524,6 @@ body header nav .more_actions .auth_menu a i {
 }
 body header nav .more_actions .auth_menu.show {
   display: flex;
-  transform: translate(0, 0) !important;
-  inset: unset !important;
-  border: none !important;
-  left: 0% !important;
-  top: 64px !important;
-  padding: 16px !important;
-  border-radius: 16px !important;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 body .form {
   display: flex;
@@ -841,7 +833,7 @@ body .question .vendorInput:checked::before {
   left: 4px;
 }
 body main {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 200px);
 }
 body main .auth {
   padding: 42px 0;
@@ -1640,8 +1632,9 @@ body footer .inner_footer {
   justify-content: space-between;
 }
 body footer .inner_footer h6 {
+  text-align: center;
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #222020;
 }
 body footer .inner_footer h6 a {
@@ -1649,16 +1642,17 @@ body footer .inner_footer h6 a {
 }
 @media (max-width: 576px) {
   body footer .inner_footer {
-    height: auto;
+    gap: 16px;
     flex-direction: column-reverse;
   }
 }
 body footer .links {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 body footer .links a {
-  font-size: 14px;
+  font-size: 12px;
   color: #222020;
   transition: 0.3s ease-in-out;
 }

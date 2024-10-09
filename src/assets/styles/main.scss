@@ -9,7 +9,7 @@ body {
   @import "./form-ui";
 
   main {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 200px);
     @import "./auth";
     @import "./contact";
     @import "./products";
@@ -390,23 +390,25 @@ body {
       width: 100%;
       @include space-between();
       h6 {
+        text-align: center;
         margin: 0;
-        font-size: 14px;
+        font-size: 12px;
         color: $dark;
         a {
           color: $main;
         }
       }
       @media (max-width: 576px) {
-        height: auto;
+        gap: 16px;
         flex-direction: column-reverse;
       }
     }
     .links {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
       a {
-        font-size: 14px;
+        font-size: 12px;
         color: $dark;
         transition: $transition;
         &:hover {
