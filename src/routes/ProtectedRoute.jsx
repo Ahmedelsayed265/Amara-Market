@@ -12,6 +12,10 @@ function ProtectedRoute({ children }) {
     }
   }, [isAuthed, loading, navigate]);
 
+  if (loading) {
+    return null;
+  }
+
   return children;
 }
 

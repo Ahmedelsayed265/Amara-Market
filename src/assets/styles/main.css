@@ -1355,6 +1355,7 @@ body main .page_content .order_item .image_info {
 }
 body main .page_content .order_item .image_info .img {
   min-width: 62px;
+  max-width: 62px;
   height: 62px;
 }
 body main .page_content .order_item .image_info .img img {
