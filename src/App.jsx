@@ -4,6 +4,7 @@ import Header from "./ui/Layout/Header";
 import router from "./router";
 import useAuth from "./hooks/useAuth";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Footer from "./ui/Layout/Footer";
 
 function App() {
   const { loading, profile } = useAuth();
@@ -34,6 +35,7 @@ function App() {
           ))}
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }

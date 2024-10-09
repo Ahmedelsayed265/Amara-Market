@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
@@ -11,8 +11,31 @@ function Header() {
   const isLogged = useSelector((state) => state.authedUser.isLogged);
   const user = useSelector((state) => state.authedUser.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [cookies, , deleteCookie] = useCookies(["token"]);
   const token = cookies?.token;
+
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        toggleRef.current &&
+        !toggleRef.current.contains(event.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const performLogout = async () => {
     try {
@@ -25,6 +48,7 @@ function Header() {
         delete axiosInstance.defaults.headers.common["Authorization"];
         dispatch(setUser({}));
         dispatch(setIsLogged(false));
+        navigate("/login");
       }
     } catch (error) {
       console.error("Error during logout:", error);
@@ -38,20 +62,36 @@ function Header() {
       <nav className="container">
         <div className="logo">
           <Link to="/">
-            <h1>عمارة ماركت</h1>
+            <img src="/images/logo.png" alt="" />
           </Link>
         </div>
-        <div className={`nav_links ${showMenu ? "show" : ""}`}>
-          <NavLink className="nav_link" to="/">
+        <div ref={menuRef} className={`nav_links ${showMenu ? "show" : ""}`}>
+          <NavLink
+            className="nav_link"
+            to="/"
+            onClick={() => setShowMenu(false)}
+          >
             الطلبات
           </NavLink>
-          <NavLink className="nav_link" to="/products">
+          <NavLink
+            className="nav_link"
+            to="/products"
+            onClick={() => setShowMenu(false)}
+          >
             المنتجات
           </NavLink>
-          <NavLink className="nav_link" to="/about">
+          <NavLink
+            className="nav_link"
+            to="/about"
+            onClick={() => setShowMenu(false)}
+          >
             من نحن
           </NavLink>
-          <NavLink className="nav_link" to="/contact">
+          <NavLink
+            className="nav_link"
+            to="/contact"
+            onClick={() => setShowMenu(false)}
+          >
             تواصل معنا
           </NavLink>
         </div>
@@ -103,7 +143,7 @@ function Header() {
               <Dropdown.Menu className="auth_menu">
                 <div className="profile">
                   <div className="img">
-                    <img src={user?.image} alt="" />
+                    <img src={user?.logo} alt="" />
                   </div>
                   <div className="info">
                     <p>{user?.name}</p>
@@ -138,7 +178,11 @@ function Header() {
           </Dropdown>
 
           {/* toggler */}
-          <Dropdown className="toggler" onClick={() => setShowMenu(!showMenu)}>
+          <Dropdown
+            ref={toggleRef}
+            className="toggler"
+            onClick={() => setShowMenu(!showMenu)}
+          >
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
                 <i className="fa-solid fa-bars"></i>

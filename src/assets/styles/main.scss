@@ -157,12 +157,15 @@ body {
 
     .filter {
       background: $inputBg;
-      padding: 16px;
+      padding: 24px;
       border-radius: 12px;
       display: flex;
       flex-direction: column;
+      position: sticky;
+      top: 100px;
       gap: 16px;
       h6 {
+        color: $main;
         margin-bottom: 12px;
       }
       span {
@@ -192,6 +195,223 @@ body {
         font-size: 14px;
         width: 100%;
         padding: 12px;
+      }
+    }
+
+    .products_list {
+      background: $inputBg;
+      padding: 16px;
+      border-radius: 12px;
+      .product {
+        display: flex;
+        border-bottom: 1px dashed $border;
+        gap: 16px;
+        width: 100%;
+        padding: 12px 0;
+        &:last-child {
+          border-bottom: 0;
+        }
+        .pro_img {
+          min-width: 80px;
+          width: 80px;
+          height: 80px;
+          img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            // mix-blend-mode: multiply;
+          }
+        }
+        .info {
+          display: flex;
+          width: 100%;
+          height: 80px;
+          flex-direction: column;
+          justify-content: center;
+          h6 {
+            font-size: 14px;
+            font-weight: 600;
+          }
+          .count_price {
+            display: flex;
+            p {
+              font-size: 14px;
+              white-space: nowrap;
+              flex: 1;
+              font-weight: 600;
+              span {
+                color: $main;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .order_status {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      gap: 12px;
+      background: $inputBg;
+      .progress_state {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        h6 {
+          font-size: 14px;
+          color: $main;
+          font-weight: 600;
+        }
+        .icon {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          @include centerFlex();
+          background: $white;
+          border: 1px solid $main;
+          i {
+            color: $main;
+          }
+        }
+      }
+      .progress,
+      .progress-stacked {
+        height: 8px;
+        background: $white;
+        .progress-bar {
+          background: $main;
+        }
+        &.complete {
+          .progress-bar {
+            background: rgb(34, 209, 34);
+          }
+        }
+        &.canceled {
+          .progress-bar {
+            background: rgb(255, 0, 0);
+          }
+        }
+      }
+      .add_rate {
+        display: flex;
+        gap: 12px;
+        button {
+          @include clearInput();
+          padding: 8px 16px;
+          border-radius: 8px;
+          border: 1px solid $main;
+          font-size: 14px;
+          color: $main;
+        }
+      }
+    }
+
+    .checkout-details {
+      background: $inputBg;
+      padding: 16px;
+      border-radius: 12px;
+      width: 100%;
+      ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        li {
+          border-bottom: 1px dashed $border;
+          padding: 12px 0;
+          color: $dark;
+          font-size: 16px;
+          @include space-between();
+          &:last-child {
+            border-bottom: 0;
+          }
+          .value {
+            color: $main;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .reciept {
+      background: $inputBg;
+      padding: 16px;
+      border-radius: 12px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          .icon {
+            height: 48px;
+            width: 48px;
+            background: $white;
+            @include centerFlex();
+            border-radius: 50%;
+            i {
+              font-size: 18px;
+              color: $main;
+            }
+          }
+          .text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            span {
+              font-size: 14px;
+              color: $main;
+              line-height: normal;
+              &:last-child {
+                font-size: 12px;
+                color: #777;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    background: $white;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    .inner_footer {
+      background: $inputBg;
+      border-radius: 40px;
+      padding: 18px 32px;
+      width: 100%;
+      @include space-between();
+      h6 {
+        margin: 0;
+        font-size: 14px;
+        color: $dark;
+        a {
+          color: $main;
+        }
+      }
+      @media (max-width: 576px) {
+        height: auto;
+        flex-direction: column-reverse;
+      }
+    }
+    .links {
+      display: flex;
+      gap: 12px;
+      a {
+        font-size: 14px;
+        color: $dark;
+        transition: $transition;
+        &:hover {
+          color: $main;
+        }
       }
     }
   }

@@ -254,3 +254,50 @@
     }
   }
 }
+
+.question {
+  padding: 0 0 30px;
+  width: 100%;
+  @include space-between();
+  .quest {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $dark;
+  }
+  .vendorInput {
+    appearance: none !important;
+    position: relative;
+    cursor: pointer;
+    &::after {
+      display: block;
+      width: 48px;
+      height: 24px;
+      border-radius: 12px;
+      content: "";
+      background-color: $text;
+      transition: $transition;
+    }
+    &::before {
+      transition: $transition;
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      content: "";
+      background-color: $white;
+    }
+    &:checked {
+      &::after {
+        background-color: $main;
+      }
+      &::before {
+        right: initial;
+        left: 4px;
+      }
+    }
+  }
+}

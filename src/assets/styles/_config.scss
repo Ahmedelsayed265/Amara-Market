@@ -106,6 +106,17 @@ $shadow: 0px 2px 8px #0000001a;
   }
 }
 
+.form-switch .form-check-input {
+  box-shadow: none !important;
+  &::after {
+    content: none !important;
+  }
+  &:checked {
+    background-color: $main;
+    border-color: $main;
+  }
+}
+
 .confirm-delete {
   p {
     color: $dark;

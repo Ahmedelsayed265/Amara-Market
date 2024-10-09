@@ -1,17 +1,42 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import useGetOrders from "../hooks/useGetOrders";
 import DataLoader from "../ui/Layout/DataLoader";
 import PageHeader from "../ui/Layout/PageHeader";
 
 function Orders() {
   const { data: orders, isLoading } = useGetOrders();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState({ status: "all", from: "", to: "" });
+
+  useEffect(() => {
+    if (searchParams.get("status")) {
+      setFilter((prev) => ({ ...prev, status: searchParams.get("status") }));
+    }
+
+    if (searchParams.get("from")) {
+      setFilter((prev) => ({ ...prev, from: searchParams.get("from") }));
+    }
+
+    if (searchParams.get("to")) {
+      setFilter((prev) => ({ ...prev, to: searchParams.get("to") }));
+    }
+  }, [searchParams]);
+
   const calculateDate = (createdAt) => {
-    const createdDate = new Date(createdAt);
-    const dd = String(createdDate.getDate()).padStart(2, "0");
-    const mm = String(createdDate.getMonth() + 1).padStart(2, "0");
-    const yyyy = createdDate.getFullYear();
-    return `${dd} / ${mm} / ${yyyy}`;
+    const date = new Date(createdAt);
+    return `${String(date.getDate()).padStart(2, "0")} / ${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")} / ${date.getFullYear()}`;
+  };
+
+  const handleFilterOrders = () => {
+    setSearchParams({ ...filter });
+  };
+
+  const updateFilter = (field, value) => {
+    setFilter((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -24,37 +49,66 @@ function Orders() {
               <DataLoader />
             ) : (
               <>
-                <div className="col-lg-2 col-md-2 col-12 p-2 pt-3">
+                <div className="col-lg-3 col-md-2 col-12 p-2 pt-3">
                   <div className="filter">
-                    <h6>تصفية</h6>
+                    <h6>
+                      <i className="fa-regular fa-sliders"></i> تصفية
+                    </h6>
 
                     <div className="form-checks">
-                      <Form.Check type="radio" name="status" id="all" label="كل الطلبات" />
-                      <Form.Check type="radio" name="status" id="new" label="جديد" />
-                      <Form.Check type="radio" name="status" id="progress" label="الحالى" />
-                      <Form.Check type="radio" name="status" id="complete" label="مكتمل" />
-                      <Form.Check type="radio" name="status" id="cancel" label="ملغى" />
+                      {["all", "new", "progress", "complete", "cancel"].map(
+                        (status) => (
+                          <Form.Check
+                            key={status}
+                            type="radio"
+                            name="status"
+                            id={status}
+                            label={
+                              status === "all"
+                                ? "كل الطلبات"
+                                : status === "new"
+                                ? "جديد"
+                                : status === "progress"
+                                ? "الحالى"
+                                : status === "complete"
+                                ? "مكتمل"
+                                : "ملغى"
+                            }
+                            checked={filter.status === status}
+                            onChange={() => updateFilter("status", status)}
+                          />
+                        )
+                      )}
                     </div>
 
                     <div className="form gap-2">
                       <div className="input-field">
                         <label htmlFor="start_date">من</label>
-                        <Form.Control type="date" />
+                        <Form.Control
+                          type="date"
+                          value={filter.from}
+                          onChange={(e) => updateFilter("from", e.target.value)}
+                        />
                       </div>
                       <div className="input-field">
-                        <label htmlFor="start_date">الى</label>
-                        <Form.Control type="date" />
+                        <label htmlFor="end_date">الى</label>
+                        <Form.Control
+                          type="date"
+                          value={filter.to}
+                          onChange={(e) => updateFilter("to", e.target.value)}
+                        />
                       </div>
                     </div>
 
-                    <button>تأكيد</button>
+                    <button onClick={handleFilterOrders}>تأكيد</button>
                   </div>
                 </div>
-                <div className="col-lg-10 col-md-10 col-12 p-2">
+
+                <div className="col-lg-9 col-md-10 col-12 p-2">
                   <div className="row">
                     {orders?.map((order) => (
                       <div
-                        className="col-lg-4 col-md-6 col-12 p-2"
+                        className="col-lg-6 col-md-6 col-12 p-2"
                         key={order.id}
                       >
                         <Link to={`/order/${order.id}`} className="order_item">
@@ -68,7 +122,7 @@ function Orders() {
                             <div className="info">
                               <h6>{order?.user?.name}</h6>
                               <p>حالة الطلب : {order?.status}</p>
-                              <p>رقم الاوردر : {order?.id}#</p>
+                              <p>رقم الطلب : {order?.id}#</p>
                             </div>
                           </div>
                           <div className="price_time">

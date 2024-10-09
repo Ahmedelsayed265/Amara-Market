@@ -43,7 +43,7 @@ export default function SelectField({
         placeholder={placeholder}
         value={
           isMulti
-            ? options?.filter((opt) => value.includes(opt.value))
+            ? options?.filter((opt) => value?.includes(opt.value))
             : options?.find((opt) => opt.value === value) || null
         }
         onChange={handleSelectChange}
