@@ -99,7 +99,7 @@ export default function AddSectionModal({
                 id="image"
                 name="image"
                 accept="image/*"
-                required
+                required={!targetSection?.id}
                 onChange={(e) =>
                   setFormData({ ...formData, image: e.target.files[0] })
                 }

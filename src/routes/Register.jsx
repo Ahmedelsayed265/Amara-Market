@@ -25,6 +25,7 @@ export default function Register() {
     city_id: "",
     categories: [],
     token: 123,
+    delivery_price: "",
   });
 
   return (

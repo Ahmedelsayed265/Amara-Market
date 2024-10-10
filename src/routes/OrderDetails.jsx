@@ -117,6 +117,15 @@ function OrderDetails() {
                   <ul>
                     <li>
                       <div className="icon">
+                        <i className="fa-sharp fa-light fa-cube"></i>
+                      </div>
+                      <div className="text">
+                        <span>رقم الطلب</span>
+                        <h6>#{order?.id}</h6>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="icon">
                         <i className="fa-light fa-map-pin"></i>
                       </div>
                       <div className="text">
@@ -139,8 +148,8 @@ function OrderDetails() {
                       </div>
                       <div className="text">
                         <span>ملاحظات</span>
-                        {order?.notes ? (
-                          <span>{order?.notes}</span>
+                        {order?.note ? (
+                          <span>{order?.note}</span>
                         ) : (
                           <span>لا توجد ملاحظات</span>
                         )}

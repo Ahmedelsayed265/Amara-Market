@@ -191,20 +191,32 @@ function EditProfile() {
                   />
                 </div>
 
-                <SelectField
-                  id="city_id"
-                  label="المدينة"
-                  placeholder="إختر المدينة"
-                  icon={<i className="fa-light fa-city"></i>}
-                  options={cities?.map(({ id, name }) => ({
-                    value: id,
-                    label: name,
-                  }))}
-                  value={formData.city_id}
-                  isLoading={citiesLoading}
-                  onChange={handleChange}
-                  isMulti={false}
-                />
+                <div className="form_group">
+                  <SelectField
+                    id="city_id"
+                    label="المدينة"
+                    placeholder="إختر المدينة"
+                    icon={<i className="fa-light fa-city"></i>}
+                    options={cities?.map(({ id, name }) => ({
+                      value: id,
+                      label: name,
+                    }))}
+                    value={formData.city_id}
+                    isLoading={citiesLoading}
+                    onChange={handleChange}
+                    isMulti={false}
+                  />
+                  <InputField
+                    label="سعر التوصيل"
+                    name="delivery_price"
+                    id="delivery_price"
+                    required
+                    icon={<i className="fa-regular fa-person-carry-box"></i>}
+                    placeholder="00"
+                    value={formData.delivery_price}
+                    onChange={handleChange}
+                  />
+                </div>
 
                 <SelectField
                   id="categories"

@@ -114,7 +114,7 @@ export default function AddProductModal({
                 id="image"
                 name="image"
                 accept="image/*"
-                required
+                required={!product?.id}
                 onChange={(e) =>
                   setFormData({ ...formData, image: e.target.files[0] })
                 }

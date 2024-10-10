@@ -11,6 +11,7 @@ import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import MapModal from "../../ui/modals/MapModal";
 import axiosInstance from "../../utils/axiosInstance";
+import { Form } from "react-bootstrap";
 
 export default function RegisterForm({
   formData,
@@ -178,31 +179,69 @@ export default function RegisterForm({
           />
         </div>
 
-        <PasswordField
-          label={"كلمة المرور"}
-          placeholder="ادخل كلمة المرور"
-          id="password"
-          name="password"
-          required
-          icon={<i className="fa-regular fa-lock"></i>}
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <div className="form_group">
+          <PasswordField
+            label={"كلمة المرور"}
+            placeholder="ادخل كلمة المرور"
+            id="password"
+            name="password"
+            required
+            icon={<i className="fa-regular fa-lock"></i>}
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <InputField
+            label="سعر التوصيل"
+            name="delivery_price"
+            id="delivery_price"
+            required
+            icon={<i className="fa-regular fa-person-carry-box"></i>}
+            placeholder="00"
+            value={formData.delivery_price}
+            onChange={handleChange}
+          />
+        </div>
 
-        <SelectField
-          id="city_id"
-          label="المدينة"
-          placeholder="إختر المدينة"
-          icon={<i className="fa-light fa-city"></i>}
-          options={cities?.map(({ id, name }) => ({
-            value: id,
-            label: name,
-          }))}
-          value={formData.city_id}
-          isLoading={citiesLoading}
-          onChange={handleChange}
-          isMulti={false}
-        />
+        <div className="form_group">
+          <SelectField
+            id="city_id"
+            label="المدينة"
+            placeholder="إختر المدينة"
+            icon={<i className="fa-light fa-city"></i>}
+            options={cities?.map(({ id, name }) => ({
+              value: id,
+              label: name,
+            }))}
+            value={formData.city_id}
+            isLoading={citiesLoading}
+            onChange={handleChange}
+            isMulti={false}
+          />
+
+          <div className="input-field">
+            <label htmlFor="work_houres">
+              <i className="fa-regular fa-clock"></i> ساعات العمل
+            </label>
+            <div className="d-flex align-items-center gap-2">
+              <Form.Control
+                type="time"
+                value={formData.from_time}
+                id="from_time"
+                required
+                name="from_time"
+                onChange={handleChange}
+              />
+              <Form.Control
+                type="time"
+                required
+                value={formData.to_time}
+                id="to_time"
+                name="to_time"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </div>
 
         <SelectField
           id="categories"
@@ -223,6 +262,7 @@ export default function RegisterForm({
           <InputField
             label="كود المتجر"
             name="market_code"
+            required
             id="market_code"
             icon={<i className="fa-light fa-store"></i>}
             placeholder="كود المتجر"

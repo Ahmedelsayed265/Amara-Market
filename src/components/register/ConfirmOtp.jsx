@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
-import { setIsLogged, setUser } from "../../redux/slices/authedUser";
-import { useCookies } from "react-cookie";
 
 function ConfirmOtp({ formData, setOtpData, otpData }) {
   const navigate = useNavigate();
@@ -67,9 +67,16 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
         return;
       }
 
+      const payload = {
+        ...formData,
+        work_houres: formData.from_time + " - " + formData.to_time,
+      };
+
+      payload.delete("from_time", "to_time");
+
       const registerResponse = await axiosInstance.post(
         "/market/register",
-        formData,
+        payload,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
