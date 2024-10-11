@@ -16,7 +16,11 @@ function ForgetPassStep1({ formData, setFormData, setStep }) {
       const res = await axiosInstance.post("/market/check_phone", formData);
       if (res.data.code === 200) {
         toast.success(t("otpSentSuccessfully"));
-        setFormData((prev) => ({ ...prev, hashed_code: res.data.data }));
+        setFormData((prev) => ({
+          ...prev,
+          hashed_code: res.data?.data?.code,
+          user_id: res.data?.data?.user?.id,
+        }));
         setStep(2);
       }
     } catch (error) {

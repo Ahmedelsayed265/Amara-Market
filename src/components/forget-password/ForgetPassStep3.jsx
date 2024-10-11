@@ -25,6 +25,7 @@ function ForgetPassStep3({ formData, setFormData }) {
     try {
       const res = await axiosInstance.post("/market/update_password", {
         password: formData.password,
+        id: formData.user_id,
       });
       if (res.data.code === 200) {
         toast.success(t("passwordUpdated"));
