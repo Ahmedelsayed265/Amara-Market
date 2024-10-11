@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import axiosInstance from "../utils/axiosInstance";
-import { toast } from "react-toastify";
-import { useQueryClient } from "@tanstack/react-query";
 import AddProductModal from "./modals/AddProductModal";
 
 function ProductCard({ p }) {
@@ -10,6 +11,7 @@ function ProductCard({ p }) {
   const [showAddProductModal, setShowAddProductModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const deleteProduct = async () => {
     setLoading(true);
@@ -18,7 +20,7 @@ function ProductCard({ p }) {
         id: p?.id,
       });
       if (res.data?.code === 200) {
-        toast.success("تم حذف المنتج بنجاح");
+        toast.success(t("productDeleted"));
         setShowConfirmationModal(false);
         queryClient.invalidateQueries({ queryKey: ["sections"] });
       } else {
@@ -52,17 +54,22 @@ function ProductCard({ p }) {
         <h6>{p?.title}</h6>
         {p?.offer_price ? (
           <p>
-            {p?.offer_price} ر.س <span>{p?.price} ر.س</span>
+            {p?.offer_price} {t("sar")}{" "}
+            <span>
+              {p?.price} {t("sar")}
+            </span>
           </p>
         ) : (
-          <p>{p?.price} ر.س</p>
+          <p>
+            {p?.price} {t("sar")}
+          </p>
         )}
       </div>
       <ConfirmationModal
         showModal={showConfirmationModal}
         setShowModal={setShowConfirmationModal}
-        buttonText={"حذف"}
-        text={"هل تريد حذف منتج"}
+        buttonText={t("delete")}
+        text={t("deleteProduct")}
         type={"delete"}
         eventFun={deleteProduct}
         loading={loading}

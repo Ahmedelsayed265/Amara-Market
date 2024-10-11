@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../utils/axiosInstance";
 
-
 export default function useGetOrderById(id) {
+  const { lang } = useSelector((state) => state.language);
   const { isLoading, data, error } = useQuery({
-    queryKey: ["order", id],
+    queryKey: ["order", lang, id],
     queryFn: async () => {
       try {
         const res = await axiosInstance.post("/market/get_market_order", {

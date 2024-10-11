@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Form } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import InputField from "../../ui/form-elements/InputField";
 import PhoneField from "../../ui/form-elements/PhoneField";
@@ -11,7 +13,6 @@ import useGetCities from "../../hooks/settings/useGetCities";
 import useGetCategories from "../../hooks/settings/useGetCategories";
 import MapModal from "../../ui/modals/MapModal";
 import axiosInstance from "../../utils/axiosInstance";
-import { Form } from "react-bootstrap";
 
 export default function RegisterForm({
   formData,
@@ -21,7 +22,7 @@ export default function RegisterForm({
 }) {
   const { data: cities, isLoading: citiesLoading } = useGetCities();
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
-
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [marketType, setMarketType] = useState(1);
@@ -38,6 +39,14 @@ export default function RegisterForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (formData.lat === 24.7136 && formData.lng === 46.6753) {
+      toast.error(t("pleaseSelectLocation"));
+      setShowModal(true);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await axiosInstance.post("/market/can_register", {
         email: formData.email,
@@ -63,7 +72,7 @@ export default function RegisterForm({
   return (
     <div className="col-lg-8 col-12">
       <form className="form" onSubmit={handleSubmit}>
-        <div className="image_wrapper">
+        <label htmlFor="image" className="image_wrapper">
           <img
             src={
               formData.image
@@ -82,7 +91,7 @@ export default function RegisterForm({
             />
             <img src="/images/upload.svg" alt="upload" />
           </label>
-          <div className="logo_wrap">
+          <label htmlFor="logo" className="logo_wrap">
             <img
               src={
                 formData.logo
@@ -101,17 +110,17 @@ export default function RegisterForm({
               />
               <img src="/images/upload.svg" alt="upload" />
             </label>
-          </div>
-        </div>
+          </label>
+        </label>
 
         <div className="form_group">
           <InputField
-            label="إسم المتجر"
+            label={t("marketName")}
             name="name"
             id="name"
             required
             icon={<i className="fa-regular fa-user"></i>}
-            placeholder="اسم المتجر"
+            placeholder={t("marketName")}
             value={formData.name}
             onChange={handleChange}
           />
@@ -119,7 +128,7 @@ export default function RegisterForm({
           {/* market type  */}
           <div className="input-field">
             <label>
-              <i className="fa-sharp fa-solid fa-store"></i> نوع المتجر
+              <i className="fa-sharp fa-solid fa-store"></i> {t("marketType")}
             </label>
             <div className="market_types">
               <label htmlFor={0} className="market_type_radio">
@@ -133,7 +142,7 @@ export default function RegisterForm({
                     setMarketCode("");
                   }}
                 />
-                <span>متاجر عامة</span>
+                <span>{t("globalMarkets")}</span>
               </label>
 
               <label htmlFor={1} className="market_type_radio">
@@ -147,7 +156,7 @@ export default function RegisterForm({
                     setMarketCode("");
                   }}
                 />
-                <span>متاجر عمارة</span>
+                <span>{t("amaraMarkets")}</span>
               </label>
             </div>
           </div>
@@ -155,7 +164,7 @@ export default function RegisterForm({
 
         <div className="form_group">
           <InputField
-            label="البريد الالكتروني"
+            label={t("email")}
             name="email"
             id="email"
             type="email"
@@ -167,7 +176,7 @@ export default function RegisterForm({
           />
 
           <PhoneField
-            label="رقم الهاتف"
+            label={t("phoneNumber")}
             icon={<i className="fa-light fa-phone"></i>}
             placeholder="5xxxxxxxxx"
             maxLength={9}
@@ -181,8 +190,8 @@ export default function RegisterForm({
 
         <div className="form_group">
           <PasswordField
-            label={"كلمة المرور"}
-            placeholder="ادخل كلمة المرور"
+            label={t("password")}
+            placeholder={t("enterPassword")}
             id="password"
             name="password"
             required
@@ -191,7 +200,7 @@ export default function RegisterForm({
             onChange={handleChange}
           />
           <InputField
-            label="سعر التوصيل"
+            label={t("deliveryPrice")}
             name="delivery_price"
             id="delivery_price"
             required
@@ -205,8 +214,8 @@ export default function RegisterForm({
         <div className="form_group">
           <SelectField
             id="city_id"
-            label="المدينة"
-            placeholder="إختر المدينة"
+            label={t("city")}
+            placeholder={t("selectCity")}
             icon={<i className="fa-light fa-city"></i>}
             options={cities?.map(({ id, name }) => ({
               value: id,
@@ -220,7 +229,7 @@ export default function RegisterForm({
 
           <div className="input-field">
             <label htmlFor="work_houres">
-              <i className="fa-regular fa-clock"></i> ساعات العمل
+              <i className="fa-regular fa-clock"></i> {t("workHoures")}
             </label>
             <div className="d-flex align-items-center gap-2">
               <Form.Control
@@ -245,8 +254,8 @@ export default function RegisterForm({
 
         <SelectField
           id="categories"
-          label="القسم"
-          placeholder="إختر القسم"
+          label={t("categories")}
+          placeholder={t("selectCategories")}
           icon={<i className="fa-light fa-grid-2"></i>}
           options={categories?.map(({ id, name }) => ({
             value: id,
@@ -260,20 +269,20 @@ export default function RegisterForm({
 
         {marketType === 1 && (
           <InputField
-            label="كود المتجر"
+            label={t("marketCode")}
             name="market_code"
             required
             id="market_code"
             icon={<i className="fa-light fa-store"></i>}
-            placeholder="كود المتجر"
+            placeholder={t("marketCode")}
             value={marketCode}
             onChange={(e) => setMarketCode(e.target.value)}
           />
         )}
 
         <LocationField
-          label="موقع المتجر"
-          placeholder="موقع المتجر"
+          label={t("marketLocation")}
+          placeholder={t("marketLocation")}
           icon={<i className="fa-light fa-location-dot"></i>}
           setShowModal={setShowModal}
           id="address"
@@ -284,26 +293,26 @@ export default function RegisterForm({
         />
 
         <InputField
-          label="وصف المتجر"
+          label={t("marketDescription")}
           name="description"
           id="description"
           as={"textarea"}
           icon={<i className="fa-solid fa-dumpster-fire"></i>}
-          placeholder="وصف المتجر"
+          placeholder={t("marketDescription")}
           value={formData.description}
           onChange={handleChange}
         />
 
         <p className="noAccount">
-          بمواصلتك، فإنك توافق على <Link to="/terms">الشروط والاحكام</Link> و{" "}
-          <Link to="/privacy">سياسة الخصوصية</Link>
+          {t("agreement")} <Link to="/terms">{t("termsConditions")}</Link> و{" "}
+          <Link to="/privacy">{t("privacyPolicy")}</Link>
         </p>
 
-        <SubmitButton name="انشاء حساب" loading={loading} />
+        <SubmitButton name={t("register")} loading={loading} />
 
         <p className="noAccount">
-          لدي حساب بالفعل
-          <Link to="/login"> تسجيل الدخول </Link>
+          {t("alreadyHaveAccount")}
+          <Link to="/login"> {t("login")} </Link>
         </p>
 
         <MapModal

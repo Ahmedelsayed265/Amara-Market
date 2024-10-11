@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PageHeader from "../ui/Layout/PageHeader";
 import RegisterForm from "../components/register/RegisterForm";
 import ConfirmOtp from "../components/register/ConfirmOtp";
 
 export default function Register() {
   const [step, setStep] = useState(1);
-
+  const { t } = useTranslation();
   const [otpData, setOtpData] = useState({
     hashed_code: "",
     code: "",
@@ -30,7 +31,7 @@ export default function Register() {
 
   return (
     <>
-      <PageHeader title="إنشاء حساب" />
+      <PageHeader title={t("register")} />
       <section className="auth">
         <div className="container">
           <div className="row justify-content-center m-0">

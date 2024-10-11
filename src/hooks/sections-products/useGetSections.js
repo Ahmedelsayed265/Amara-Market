@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
 function useGetSections() {
+  const { lang } = useSelector((state) => state.language);
   const { isLoading, data, error } = useQuery({
-    queryKey: ["sections"],
+    queryKey: ["sections", lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.post("/market/get_menu");

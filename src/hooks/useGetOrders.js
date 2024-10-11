@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../utils/axiosInstance";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axiosInstance from "../utils/axiosInstance";
 
 export default function useGetOrders() {
+  const { lang } = useSelector((state) => state.language);
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status") || "all";
   const from = searchParams.get("from") || "";
   const to = searchParams.get("to") || "";
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["orders", status, from, to],
+    queryKey: ["orders", lang, status, from, to],
     queryFn: async () => {
       const payload = {};
       if (status !== "all") {

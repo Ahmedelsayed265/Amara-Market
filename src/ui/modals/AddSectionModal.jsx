@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import InputField from "../form-elements/InputField";
 import SubmitButton from "../form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
@@ -13,6 +14,7 @@ export default function AddSectionModal({
   setTargetSection,
 }) {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -54,21 +56,17 @@ export default function AddSectionModal({
         }
       );
       if (res.status === 200) {
-        toast.success(
-          formData.id ? "تم تحديث القسم بنجاح" : "تم اضافة قسم بنجاح"
-        );
+        toast.success(formData.id ? t("sectionUpdated") : t("sectionAdded"));
         handleClose();
         queryClient.invalidateQueries({ queryKey: ["sections"] });
       } else {
         throw new Error(
-          res.data.message || formData.id ? "فشل التحديث" : "فشل الاضافة"
+          res.data.message || formData.id ? t("updateFailed") : t("addFailed")
         );
       }
     } catch (error) {
       console.error("Error in adding section:", error);
-      toast.error(
-        error.response?.data?.message || "حدث خطأ ما، حاول مرة أخرى."
-      );
+      toast.error(error.response?.data?.message || t("somethingWentWrong"));
       throw error;
     } finally {
       setLoading(false);
@@ -87,12 +85,14 @@ export default function AddSectionModal({
   return (
     <Modal centered show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{formData.id ? "تحديث القسم" : "اضافة قسم"}</Modal.Title>
+        <Modal.Title>
+          {formData.id ? t("editSection") : t("addSection")}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
           <div className="input-field">
-            <label>صورة القسم</label>
+            <label>{t("sectionImage")}</label>
             <label htmlFor="image" className="upload_image">
               <input
                 type="file"
@@ -128,18 +128,18 @@ export default function AddSectionModal({
             </label>
           </div>
           <InputField
-            label="اسم القسم"
+            label={t("sectionName")}
             name="title"
             id="title"
             required
-            placeholder="اسم القسم"
+            placeholder={t("sectionName")}
             value={formData.title}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
           />
           <SubmitButton
-            name={formData.id ? "تحديث" : "اضافة"}
+            name={formData.id ? t("update") : t("add")}
             loading={loading}
           />
         </form>

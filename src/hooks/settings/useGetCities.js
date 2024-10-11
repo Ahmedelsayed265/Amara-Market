@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
 function useGetCities() {
+  const { lang } = useSelector((state) => state.language);
   const { isLoading, data, error } = useQuery({
-    queryKey: ["cities"],
+    queryKey: ["cities", lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.get("/get_cities");
@@ -17,7 +19,7 @@ function useGetCities() {
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    refetchOnReconnect: false
+    refetchOnReconnect: false,
   });
 
   return { isLoading, data, error };

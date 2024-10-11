@@ -1,11 +1,13 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import useGetOrders from "../hooks/useGetOrders";
 import DataLoader from "../ui/Layout/DataLoader";
 import PageHeader from "../ui/Layout/PageHeader";
 
 function Orders() {
+  const { t } = useTranslation();
   const { data: orders, isLoading } = useGetOrders();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filter, setFilter] = useState({ status: "all", from: "", to: "" });
@@ -41,7 +43,7 @@ function Orders() {
 
   return (
     <>
-      <PageHeader title="الطلبات" />
+      <PageHeader title={t("orders")} />
       <section className="page_content">
         <div className="container">
           <div className="row m-0">
@@ -52,7 +54,7 @@ function Orders() {
                 <div className="col-lg-3 col-md-2 col-12 p-2 pt-3">
                   <div className="filter">
                     <h6>
-                      <i className="fa-regular fa-sliders"></i> تصفية
+                      <i className="fa-regular fa-sliders"></i> {t("filter")}
                     </h6>
 
                     <div className="form-checks">
@@ -63,17 +65,7 @@ function Orders() {
                             type="radio"
                             name="status"
                             id={status}
-                            label={
-                              status === "all"
-                                ? "كل الطلبات"
-                                : status === "new"
-                                ? "جديد"
-                                : status === "progress"
-                                ? "الحالى"
-                                : status === "complete"
-                                ? "مكتمل"
-                                : "ملغى"
-                            }
+                            label={t(status)}
                             checked={filter.status === status}
                             onChange={() => updateFilter("status", status)}
                           />
@@ -83,7 +75,7 @@ function Orders() {
 
                     <div className="form gap-2">
                       <div className="input-field">
-                        <label htmlFor="start_date">من</label>
+                        <label htmlFor="start_date">{t("from")}</label>
                         <Form.Control
                           type="date"
                           value={filter.from}
@@ -91,7 +83,7 @@ function Orders() {
                         />
                       </div>
                       <div className="input-field">
-                        <label htmlFor="end_date">الى</label>
+                        <label htmlFor="end_date">{t("to")}</label>
                         <Form.Control
                           type="date"
                           value={filter.to}
@@ -100,7 +92,7 @@ function Orders() {
                       </div>
                     </div>
 
-                    <button onClick={handleFilterOrders}>تأكيد</button>
+                    <button onClick={handleFilterOrders}>{t("confirm")}</button>
                   </div>
                 </div>
 
@@ -121,13 +113,19 @@ function Orders() {
                             </div>
                             <div className="info">
                               <h6>{order?.user?.name}</h6>
-                              <p>حالة الطلب : {order?.status}</p>
-                              <p>رقم الطلب : {order?.id}#</p>
+                              <p>
+                                {t("status")} : {order?.status}
+                              </p>
+                              <p>
+                                {t("order")} : {order?.id}#
+                              </p>
                             </div>
                           </div>
                           <div className="price_time">
                             <span>{calculateDate(order?.created_at)}</span>
-                            <h6>{order?.total} ر.س</h6>
+                            <h6>
+                              {order?.total} {t("sar")}
+                            </h6>
                           </div>
                         </Link>
                       </div>

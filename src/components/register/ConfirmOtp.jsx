@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
@@ -11,6 +12,7 @@ import axiosInstance from "../../utils/axiosInstance";
 function ConfirmOtp({ formData, setOtpData, otpData }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [, setCookies] = useCookies(["token", "id"]);
   const [loading, setLoading] = useState(false);
   const [timer, setTimer] = useState(60);
@@ -36,7 +38,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
       });
       if (res.data.code === 200) {
         setTimer(60);
-        toast.success("تم ارسال رمز التحقق بنجاح");
+        toast.success(t("otpSentSuccessfully"));
         setOtpData((prev) => ({
           ...prev,
           hashed_code: res.data.data,
@@ -63,7 +65,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
       );
 
       if (checkCodeResponse.data.code !== 200) {
-        toast.error("فشل التحقق من رمز الهاتف.");
+        toast.error(t("otpCheckFailed"));
         return;
       }
 
@@ -81,7 +83,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
       );
 
       if (registerResponse.data.code !== 200) {
-        toast.error("فشل التسجيل.");
+        toast.error(t("registerFailed"));
         return;
       }
 
@@ -91,7 +93,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
       });
 
       if (loginResponse.data.code === 200) {
-        toast.success("تم التسجيل بنجاح");
+        toast.success(t("registerSuccessfully"));
 
         dispatch(setUser(loginResponse.data.data));
         dispatch(setIsLogged(true));
@@ -110,11 +112,11 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
 
         navigate("/");
       } else {
-        toast.error("فشل تسجيل الدخول.");
+        toast.error(loginResponse.data.message);
       }
     } catch (error) {
       console.error("Error during registration process:", error);
-      toast.error("حدث خطأ أثناء عملية التسجيل. يرجى المحاولة مرة أخرى.");
+      toast.error(t("registerProcessFailed"));
     } finally {
       setLoading(false);
     }
@@ -126,8 +128,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
         <div className="header">
           <img src="/images/OTP.svg" alt="" />
           <h4>
-            من فضلك ادخل رمز التحقق المرسل الي رقم الجوال{" "}
-            <span>+{formData.phone}</span>
+            {t("confirmOtp")} <span>+{formData.phone}</span>
           </h4>
         </div>
         <form onSubmit={handleSubmit} className="form">
@@ -137,7 +138,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
               className={`resend_link ${resendDisabled ? "disabled" : ""}`}
               onClick={handleResend}
             >
-              إعادة إرسال الرمز ؟
+              {t("resendCode")}
             </span>
             <div
               className="timer flex-row-reverse"
@@ -151,7 +152,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
               :<span>{(timer % 60).toString().padStart(2, "0")}</span>
             </div>
           </div>
-          <SubmitButton name="تأكيد" loading={loading} />
+          <SubmitButton name={t("confirm")} loading={loading} />
         </form>
       </div>
     </div>

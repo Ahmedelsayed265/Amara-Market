@@ -19,6 +19,10 @@ ul {
   margin: 0;
 }
 
+label {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
@@ -388,8 +392,8 @@ body header nav .more_actions {
 }
 body header nav .more_actions .dropdown-toggle {
   background: #fff;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -511,14 +515,23 @@ body header nav .more_actions .auth_menu .profile .info span {
   color: #fd6b22;
   font-size: 12px;
 }
-body header nav .more_actions .auth_menu a {
+body header nav .more_actions .auth_menu img {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body header nav .more_actions .auth_menu a,
+body header nav .more_actions .auth_menu button {
   display: flex;
   font-size: 12px;
   align-items: center;
   gap: 8px;
   color: #222020;
 }
-body header nav .more_actions .auth_menu a i {
+body header nav .more_actions .auth_menu a i,
+body header nav .more_actions .auth_menu button i {
   width: 16px;
   height: 16px;
 }
@@ -640,6 +653,7 @@ body .form .pass-group input {
 }
 body .form .phone-field input {
   border-radius: 0 12px 12px 0 !important;
+  direction: ltr;
 }
 body .form .phone-field .phone-key {
   color: #222020;
@@ -1666,4 +1680,36 @@ body.en {
 body.en .closeModal {
   right: 16px;
   left: unset;
+}
+body.en .form .input-field input,
+body.en .form .input-field textarea,
+body.en .form .input-field select {
+  direction: ltr;
+}
+body.en .form .phone-field .d-flex {
+  flex-direction: row-reverse;
+}
+body.en .form .pass-group input {
+  border-radius: 12px 0 0 12px !important;
+  border-left: 1px solid #f2f2f2 !important;
+  border-right: 0 !important;
+}
+body.en .form .pass-group .show-pass {
+  border-radius: 0 12px 12px 0 !important;
+}
+body.en .form .image_wrapper .logo_wrap {
+  right: initial;
+  left: 24px;
+}
+body.en .form .image_wrapper .upload_iamge {
+  left: initial;
+  right: 12px;
+}
+body.en .form-check {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+body.en .form-check .form-check-input {
+  float: right;
+  margin-right: -1.5em;
 }/*# sourceMappingURL=main.css.map */

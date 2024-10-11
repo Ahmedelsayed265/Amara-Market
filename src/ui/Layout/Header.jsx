@@ -4,19 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { setLanguage } from "../../redux/slices/language";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import axiosInstance from "../../utils/axiosInstance";
 
 function Header() {
-  const [showMenu, setShowMenu] = useState(false);
-  const isLogged = useSelector((state) => state.authedUser.isLogged);
-  const user = useSelector((state) => state.authedUser.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cookies, , deleteCookie] = useCookies(["token"]);
-  const token = cookies?.token;
-
   const menuRef = useRef(null);
   const toggleRef = useRef(null);
+
+  const { t } = useTranslation();
+  const { user } = useSelector((state) => state.authedUser);
+  const { isLogged } = useSelector((state) => state.authedUser);
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [cookies, , deleteCookie] = useCookies(["token"]);
+  const token = cookies?.token;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -56,6 +61,15 @@ function Header() {
     }
   };
 
+  const handleLang = (newLang) => {
+    dispatch(setLanguage(newLang));
+    i18next.changeLanguage(newLang);
+    const bodyElement = document.querySelector("body");
+    if (bodyElement) {
+      bodyElement.classList.toggle("en", newLang === "en");
+    }
+  };
+
   return (
     <header>
       <div className={`layer ${showMenu ? "show" : ""}`}></div>
@@ -65,38 +79,56 @@ function Header() {
             <img src="/images/logo.png" alt="" />
           </Link>
         </div>
+
         <div ref={menuRef} className={`nav_links ${showMenu ? "show" : ""}`}>
           <NavLink
             className="nav_link"
             to="/"
             onClick={() => setShowMenu(false)}
           >
-            الطلبات
+            {t("orders")}
           </NavLink>
           <NavLink
             className="nav_link"
             to="/products"
             onClick={() => setShowMenu(false)}
           >
-            المنتجات
+            {t("products")}
           </NavLink>
           <NavLink
             className="nav_link"
             to="/about"
             onClick={() => setShowMenu(false)}
           >
-            من نحن
+            {t("aboutUs")}
           </NavLink>
           <NavLink
             className="nav_link"
             to="/contact"
             onClick={() => setShowMenu(false)}
           >
-            تواصل معنا
+            {t("contactUs")}
           </NavLink>
         </div>
+
         <div className="more_actions">
-          {/* notification  */}
+          <Dropdown>
+            <Dropdown.Toggle id="dropdown-basic">
+              <div className="user_wrapper">
+                <i className="fa-sharp fa-solid fa-globe"></i>
+              </div>
+            </Dropdown.Toggle>
+            <Dropdown.Menu className="auth_menu">
+              <button onClick={() => handleLang("en")}>
+                <img src="/images/Flag_of_the_United_States.svg" alt="use" />{" "}
+                English
+              </button>
+              <button onClick={() => handleLang("ar")}>
+                <img src="/images/Flag_of_Saudi_Arabia.svg" alt="sa" /> العربية
+              </button>
+            </Dropdown.Menu>
+          </Dropdown>
+
           <Dropdown>
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
@@ -127,12 +159,11 @@ function Header() {
                 to="/notifications"
                 style={{ textDecoration: "none" }}
               >
-                عرض جميع الاشعارات
+                {t("Notifications")}
               </Link>
             </Dropdown.Menu>
           </Dropdown>
 
-          {/* profile actions */}
           <Dropdown>
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
@@ -152,32 +183,33 @@ function Header() {
                 </div>
 
                 <div className="balance">
-                  <h6> الرصيد: {user?.wallet} ر.س</h6>
+                  <h6>
+                    {t("balance")}: {user?.wallet} {t("sar")}
+                  </h6>
                 </div>
 
                 <Link to="/edit-profile">
                   <i className="fa-solid fa-user-pen"></i>
-                  تعديل الحساب
+                  {t("file")}
                 </Link>
                 <Link to="/" onClick={performLogout}>
-                  <i className="fa-solid fa-right-from-bracket"></i> تسجيل
-                  الخروج
+                  <i className="fa-solid fa-right-from-bracket"></i>{" "}
+                  {t("logout")}
                 </Link>
               </Dropdown.Menu>
             ) : (
               <Dropdown.Menu className="auth_menu">
                 <Link to="/login">
-                  <i className="fa-solid fa-arrow-right-to-bracket"></i> تسجيل
-                  الدخول
+                  <i className="fa-solid fa-arrow-right-to-bracket"></i>{" "}
+                  {t("login")}
                 </Link>
                 <Link to="/register">
-                  <i className="fa-regular fa-user-plus"></i> انشاء حساب
+                  <i className="fa-regular fa-user-plus"></i> {t("register")}
                 </Link>
               </Dropdown.Menu>
             )}
           </Dropdown>
 
-          {/* toggler */}
           <Dropdown
             ref={toggleRef}
             className="toggler"

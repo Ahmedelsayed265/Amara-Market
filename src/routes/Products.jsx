@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import SectionsSlider from "../components/products/SectionsSlider";
 import useGetSections from "../hooks/sections-products/useGetSections";
 import DataLoader from "../ui/Layout/DataLoader";
@@ -14,6 +15,7 @@ import axiosInstance from "../utils/axiosInstance";
 
 export default function Products() {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [targetSection, setTargetSection] = useState(null);
@@ -53,7 +55,7 @@ export default function Products() {
 
   return (
     <>
-      <PageHeader title="المنتجات" />
+      <PageHeader title={t("products")} />
       <section className="products_section">
         {isLoading ? (
           <DataLoader />
@@ -62,9 +64,9 @@ export default function Products() {
             <div className="row m-0">
               <div className="col-12 p-2 mb-2">
                 <div className="section_header">
-                  <h6>الأقسام</h6>
+                  <h6>{t("sections")}</h6>
                   <button onClick={() => setShowModal(true)}>
-                    <i className="fa-regular fa-plus"></i> اضافة قسم
+                    <i className="fa-regular fa-plus"></i> {t("addSection")}
                   </button>
                 </div>
               </div>
@@ -76,7 +78,7 @@ export default function Products() {
               <div className="col-12 p-2 mb-2">
                 <div className="section_header">
                   <h6>
-                    منتجات قسم{" "}
+                    {t("productsSection")}{" "}
                     <span>
                       {sections?.find((s) => s.id === Number(sectionId))?.title}
                     </span>
@@ -91,18 +93,18 @@ export default function Products() {
                         );
                       }}
                     >
-                      تعديل القسم
+                      {t("editSection")}
                     </button>
 
                     <button
                       className="outline"
                       onClick={() => setShowConfirmationModal(true)}
                     >
-                      حذف القسم
+                      {t("deleteSection")}
                     </button>
 
                     <button onClick={() => setShowAddProductModal(true)}>
-                      <i className="fa-regular fa-plus"></i> اضافة منتج
+                      <i className="fa-regular fa-plus"></i> {t("addProduct")}
                     </button>
                   </div>
                 </div>
@@ -132,8 +134,8 @@ export default function Products() {
         <ConfirmationModal
           showModal={showConfirmationModal}
           setShowModal={setShowConfirmationModal}
-          buttonText={"حذف"}
-          text={"هل تريد حذف قسم"}
+          buttonText={t("delete")}
+          text={t("deleteSectionText")}
           type={"delete"}
           eventFun={deleteSection}
           loading={loading}

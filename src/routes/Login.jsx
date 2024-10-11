@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setIsLogged, setUser } from "../redux/slices/authedUser";
+import { useTranslation } from "react-i18next";
 import PhoneField from "../ui/form-elements/PhoneField";
 import PageHeader from "../ui/Layout/PageHeader";
 import PasswordField from "../ui/form-elements/PasswordField";
@@ -13,6 +14,7 @@ import axiosInstance from "../utils/axiosInstance";
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [, setCookie] = useCookies(["token", "id"]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,7 +32,7 @@ export default function Login() {
     try {
       const res = await axiosInstance.post("/market/login", formData);
       if (res.data?.code === 200) {
-        toast.success("تم تسجيل الدخول بنجاح");
+        toast.success(t("loginSuccess"));
         dispatch(setUser(res.data.data));
         dispatch(setIsLogged(true));
         navigate("/");
@@ -45,11 +47,11 @@ export default function Login() {
           sameSite: "Strict",
         });
       } else {
-        toast.error("رقم الهاتف او كلمة المرور غير صحيحة");
+        toast.error(t("loginError"));
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message || "حدث خطأ ما");
+      toast.error(error.response.data.message || t("somethingWentWrong"));
     } finally {
       setLoading(false);
     }
@@ -57,20 +59,18 @@ export default function Login() {
 
   return (
     <>
-      <PageHeader title={"تسجيل الدخول"} />
+      <PageHeader title={t("login")} />
       <section className="auth">
         <div className="container">
           <div className="row justify-content-center m-0">
             <div className="col-lg-8 col-12 p-2 mb-4">
-              <h2 className="auth-head">تسجيل الدخول</h2>
-              <p className="auth-subhead">
-                اهلا بك ...! ادخل بياناتك المسجلة لإتمام عملية الدخول
-              </p>
+              <h2 className="auth-head">{t("login")}</h2>
+              <p className="auth-subhead">{t("loginSubTitle")}</p>
             </div>
             <div className="col-lg-8 col-12">
               <form className="form" onSubmit={handleSubmit}>
                 <PhoneField
-                  label="رقم الهاتف"
+                  label={t("phoneNumber")}
                   value={formData.phone}
                   icon={<i className="fa-light fa-phone"></i>}
                   placeholder="5xxxxxxxxx"
@@ -81,8 +81,8 @@ export default function Login() {
                   onChange={handleChange}
                 />
                 <PasswordField
-                  label={"كلمة المرور"}
-                  placeholder="ادخل كلمة المرور"
+                  label={t("password")}
+                  placeholder={t("enterPassword")}
                   id="password"
                   name="password"
                   required
@@ -91,11 +91,12 @@ export default function Login() {
                   onChange={handleChange}
                 />
                 <Link to="/forget-password" className="forgetpass">
-                  نسيت كلمة المرور؟
+                  {t("forgetPassword")}
                 </Link>
-                <SubmitButton loading={loading} name={"تسجيل الدخول"} />
+                <SubmitButton loading={loading} name={t("login")} />
                 <p className="noAccount">
-                  ليس لديك حساب؟ <Link to="/register">انشاء حساب</Link>
+                  {t("don'tHaveAccount")}{" "}
+                  <Link to="/register">{t("register")}</Link>
                 </p>
               </form>
             </div>

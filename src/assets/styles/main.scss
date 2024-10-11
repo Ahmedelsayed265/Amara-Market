@@ -425,5 +425,37 @@ body {
       right: 16px;
       left: unset;
     }
+    .form .input-field input,
+    .form .input-field textarea,
+    .form .input-field select {
+      direction: ltr;
+    }
+    .form .phone-field .d-flex {
+      flex-direction: row-reverse;
+    }
+    .form .pass-group input {
+      border-radius: 12px 0 0 12px !important;
+      border-left: 1px solid $inputStroke !important;
+      border-right: 0 !important;
+    }
+    .form .pass-group .show-pass {
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .form .image_wrapper .logo_wrap {
+      right: initial;
+      left: 24px;
+    }
+    .form .image_wrapper .upload_iamge {
+      left: initial;
+      right: 12px;
+    }
+    .form-check {
+      padding-left: 0;
+      padding-right: 1.5rem;
+    }
+    .form-check .form-check-input {
+      float: right;
+      margin-right: -1.5em;
+    }
   }
 }

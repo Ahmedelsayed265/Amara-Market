@@ -1,4 +1,5 @@
 import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import SubmitButton from "../form-elements/SubmitButton";
 
 const ConfirmationModal = ({
@@ -11,6 +12,7 @@ const ConfirmationModal = ({
   type = "delete",
   loading,
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton />
@@ -28,7 +30,7 @@ const ConfirmationModal = ({
             }}
             className="cancel-btn"
           >
-            الغاء
+            {t("cancel")}
           </button>
           <SubmitButton
             className={"delete-btn"}

@@ -115,6 +115,7 @@
   .phone-field {
     input {
       border-radius: 0 12px 12px 0 !important;
+      direction: ltr;
     }
     .phone-key {
       color: $dark;

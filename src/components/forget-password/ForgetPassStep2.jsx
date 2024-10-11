@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import axiosInstance from "../../utils/axiosInstance";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 
 function ForgetPassStep2({ formData, setFormData, setStep }) {
   const [timer, setTimer] = useState(60);
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(true);
 
@@ -28,7 +30,7 @@ function ForgetPassStep2({ formData, setFormData, setStep }) {
       });
       if (res.data.code === 200) {
         setTimer(60);
-        toast.success("تم ارسال رمز التحقق بنجاح");
+        toast.success(t("otpSentSuccessfully"));
         setFormData((prev) => ({
           ...prev,
           hashed_code: res.data.data,
@@ -70,8 +72,7 @@ function ForgetPassStep2({ formData, setFormData, setStep }) {
       <div className="header">
         <img src="/images/OTP.svg" alt="" />
         <h4>
-          من فضلك ادخل رمز التحقق المرسل الي رقم الجوال{" "}
-          <span>+{formData.phone}</span>
+          {t("forgetPasswordTitle2")} <span>+{formData.phone}</span>
         </h4>
       </div>
       <form onSubmit={handleSubmit} className="form">
@@ -81,7 +82,7 @@ function ForgetPassStep2({ formData, setFormData, setStep }) {
             className={`resend_link ${resendDisabled ? "disabled" : ""}`}
             onClick={handleResend}
           >
-            إعادة إرسال الرمز ؟
+            {t("resendCode")}
           </span>
           <div
             className="timer flex-row-reverse"
@@ -95,7 +96,7 @@ function ForgetPassStep2({ formData, setFormData, setStep }) {
             :<span>{(timer % 60).toString().padStart(2, "0")}</span>
           </div>
         </div>
-        <SubmitButton name="تأكيد" loading={loading} />
+        <SubmitButton name={t("confirm")} loading={loading} />
       </form>
     </div>
   );

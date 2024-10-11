@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 
 function useGetCategories() {
+  const { lang } = useSelector((state) => state.language);
   const { isLoading, data, error } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", lang],
     queryFn: async () => {
       try {
         const res = await axiosInstance.post("/get_categories");
@@ -17,7 +19,7 @@ function useGetCategories() {
     retry: false,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    refetchOnReconnect: false
+    refetchOnReconnect: false,
   });
 
   return { isLoading, data, error };

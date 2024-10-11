@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import axiosInstance from "../../utils/axiosInstance";
 
 function ForgetPassStep3({ formData, setFormData }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -15,7 +17,7 @@ function ForgetPassStep3({ formData, setFormData }) {
     setLoading(true);
 
     if (formData.password !== confirmPassword) {
-      toast.error("كلمة المرور غير متطابقة");
+      toast.error(t("passwordsDoNotMatch"));
       setLoading(false);
       return;
     }
@@ -25,11 +27,11 @@ function ForgetPassStep3({ formData, setFormData }) {
         password: formData.password,
       });
       if (res.data.code === 200) {
-        toast.success("تم تغيير كلمة المرور بنجاح");
+        toast.success(t("passwordUpdated"));
         navigate("/login");
       }
     } catch (error) {
-      toast.error(error.response.data.message || "حدث خطأ ما");
+      toast.error(error.response.data.message || t("somethingWentWrong"));
     } finally {
       setLoading(false);
     }
@@ -39,15 +41,12 @@ function ForgetPassStep3({ formData, setFormData }) {
     <div className="otp_form_container">
       <div className="header">
         <img src="/images/new-pass.svg" alt="" />
-        <h4>
-          ادخل كلمة السر الجديدة واحرص ان تكون قوية ويسهل تذكرها ولا تقل عن 6
-          خانات
-        </h4>
+        <h4>{t("forgetPasswordTitle3")}</h4>
       </div>
       <form onSubmit={handleSubmit} className="form">
         <PasswordField
-          label={"كلمة المرور"}
-          placeholder="ادخل كلمة المرور"
+          label={t("password")}
+          placeholder={t("enterPassword")}
           id="password"
           name="password"
           required
@@ -58,8 +57,8 @@ function ForgetPassStep3({ formData, setFormData }) {
           }
         />
         <PasswordField
-          label="تأكيد كلمة المرور"
-          placeholder="ادخل كلمة المرور"
+          label={t("confirmPassword")}
+          placeholder={t("enterPassword")}
           id="password"
           name="password"
           required
@@ -67,7 +66,7 @@ function ForgetPassStep3({ formData, setFormData }) {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <SubmitButton name="تأكيد" loading={loading} />
+        <SubmitButton name={t("confirm")} loading={loading} />
       </form>
     </div>
   );

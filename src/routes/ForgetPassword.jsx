@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import PageHeader from "../ui/Layout/PageHeader";
 import ForgetPassStep1 from "../components/forget-password/ForgetPassStep1";
 import ForgetPassStep2 from "../components/forget-password/ForgetPassStep2";
@@ -6,12 +7,13 @@ import ForgetPassStep3 from "../components/forget-password/ForgetPassStep3";
 
 export default function ForgetPassword() {
   const [step, setStep] = useState(1);
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     phone: "",
   });
   return (
     <>
-      <PageHeader title="إستعادة الحساب" />
+      <PageHeader title={t("recoverAccount")} />
       <section className="auth">
         <div className="container">
           <div className="row justify-content-center m-0">
