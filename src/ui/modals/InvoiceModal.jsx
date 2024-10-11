@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import InvoiceTemplate from "../Layout/InvoiceTemplate";
 import { useReactToPrint } from "react-to-print";
 
 function InvoiceModal({ showModal, setShowModal, order }) {
@@ -25,8 +24,16 @@ function InvoiceModal({ showModal, setShowModal, order }) {
         <Modal.Title>{t("invoice")}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="form">
-        <InvoiceTemplate order={order} ref={invoiceRef} />
-        <button onClick={() => handlePrint()}>{t("print")}</button>
+        <div className="invoice_template" ref={invoiceRef}>
+          <h2>{t("invoice")}</h2>
+          <p>Order ID: #{order?.id}</p>
+          <p>Customer Name: {order?.customer?.name}</p>
+          <p>
+            Total Amount: {order?.total} {order?.currency}
+          </p>
+        </div>
+
+        <button onClick={handlePrint}>{t("print")}</button>
       </Modal.Body>
     </Modal>
   );
