@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
+import { convertTo12Hour } from "../../utils/helper";
 import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
@@ -70,11 +71,24 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
       }
 
       const payload = {
-        ...formData,
-        work_houres: formData.from_time + " - " + formData.to_time,
+        logo: formData.logo,
+        image: formData.image,
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        password: formData.password,
+        description: formData.description,
+        address: formData.address,
+        lat: formData.lat,
+        lng: formData.lng,
+        city_id: formData.city_id,
+        categories: formData.categories,
+        delivery_price: formData.delivery_price,
+        work_hours:
+          convertTo12Hour(formData.from_time) +
+          " - " +
+          convertTo12Hour(formData.to_time),
       };
-
-      payload.delete("from_time", "to_time");
 
       const registerResponse = await axiosInstance.post(
         "/market/register",

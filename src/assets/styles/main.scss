@@ -377,6 +377,15 @@ body {
         }
       }
     }
+
+    .sections {
+      background: $inputBg;
+      padding: 24px;
+      border-radius: 16px;
+      .section_header {
+        margin-bottom: 16px;
+      }
+    }
   }
 
   footer {
@@ -456,6 +465,10 @@ body {
     .form-check .form-check-input {
       float: right;
       margin-right: -1.5em;
+    }
+    main .contact_section form .form-group .inputfield label {
+      left: 16px;
+      right: initial;
     }
   }
 }

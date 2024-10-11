@@ -1,14 +1,18 @@
 import { useState } from "react";
-import PageHeader from "../ui/Layout/PageHeader";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import PageHeader from "../ui/Layout/PageHeader";
 import axiosInstance from "../utils/axiosInstance";
+import { useSelector } from "react-redux";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
+  const { user } = useSelector((state) => state.authedUser);
+
   const [formData, setFormData] = useState({
-    name: "",
+    title: "",
     email: "",
-    phone: "",
     message: "",
   });
 
@@ -26,18 +30,21 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/contact_us", formData);
+      const res = await axiosInstance.post("/contact_us", {
+        ...formData,
+        user_id: user?.id,
+        type: "market",
+      });
       if (res.data.code === 200) {
-        toast.success("تم الارسال بنجاح");
+        toast.success(t("messageSentSuccessfully"));
         setFormData({
-          name: "",
+          title: "",
           email: "",
-          phone: "",
           message: "",
         });
       }
     } catch (error) {
-      toast.error(error.response.data.message || "حدث خطأ ما");
+      toast.error(error.response.data.message || t("somethingWentWrong"));
       throw new Error(error.message);
     } finally {
       setLoading(false);
@@ -46,32 +53,33 @@ export default function Contact() {
 
   return (
     <>
-      <PageHeader title="اتصل بنا" />
+      <PageHeader title={t("contactUs")} />
       <section className="contact_section">
         <div className="container">
           <div className="row m-0 justify-content-center">
             <div className="col-lg-8 p-2">
-             
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <div className="inputfield">
-                    <label htmlFor="name">الإسم</label>
+                    <label htmlFor="title">{t("subject")}</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
+                      id="title"
+                      name="title"
                       onFocus={(e) => highlight(e)}
                       onBlur={(e) => dehighlight(e)}
-                      value={formData.name}
+                      value={formData.title}
                       onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
+                        setFormData({ ...formData, title: e.target.value })
                       }
                     />
                     <span className="highlight"></span>
                   </div>
+                </div>
 
+                <div className="form-group">
                   <div className="inputfield">
-                    <label htmlFor="email">البريد الالكتروني</label>
+                    <label htmlFor="email">{t("email")}</label>
                     <input
                       type="email"
                       id="email"
@@ -89,25 +97,8 @@ export default function Contact() {
 
                 <div className="form-group">
                   <div className="inputfield">
-                    <label htmlFor="phone">رقم الهاتف</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
-                      onFocus={(e) => highlight(e)}
-                      onBlur={(e) => dehighlight(e)}
-                    />
-                    <span className="highlight"></span>
-                  </div>
-                </div>
-                <div className="form-group">
-                  <div className="inputfield">
                     <label htmlFor="message" className="message-label">
-                      الرسالة
+                      {t("message")}
                     </label>
                     <textarea
                       name="message"
@@ -122,8 +113,10 @@ export default function Contact() {
                     <span className="highlight"></span>
                   </div>
                 </div>
+
                 <button type="submit" className="customBtn" disabled={loading}>
-                  ارسال {loading && <i className="fa fa-spinner fa-spin"></i>}
+                  {t("send")}{" "}
+                  {loading && <i className="fa fa-spinner fa-spin"></i>}
                 </button>
               </form>
             </div>

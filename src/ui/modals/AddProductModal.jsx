@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import InputField from "../form-elements/InputField";
 import SubmitButton from "../form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
@@ -13,6 +14,7 @@ export default function AddProductModal({
   product,
 }) {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -63,23 +65,19 @@ export default function AddProductModal({
         }
       );
       if (res.data.code === 200) {
-        toast.success(
-          product?.id ? "تم تحديث المنتج بنجاح" : "تم اضافة المنتج بنجاح"
-        );
+        toast.success(product?.id ? t("productUpdated") : t("productAdded"));
         handleClose();
         queryClient.invalidateQueries({ queryKey: ["sections"] });
       } else {
         throw new Error(
           res.data.message || product?.id
-            ? "فشل تحديث المنتج"
-            : "فشل إضافة المنتج"
+            ? t("productUpdateFailed")
+            : t("productAddFailed")
         );
       }
     } catch (error) {
       console.error("Error in adding product:", error);
-      toast.error(
-        error.response?.data?.message || "حدث خطأ ما، حاول مرة أخرى."
-      );
+      toast.error(error.response?.data?.message || t("somethingWentWrong"));
       throw error;
     } finally {
       setLoading(false);
@@ -102,12 +100,14 @@ export default function AddProductModal({
   return (
     <Modal centered show={showModal} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{product?.id ? "تحديث المنتج" : "اضافة منتج"}</Modal.Title>
+        <Modal.Title>
+          {product?.id ? t("editProduct") : t("addProduct")}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form className="form" onSubmit={handleSubmit}>
           <div className="input-field">
-            <label>صورة المنتج</label>
+            <label>{t("productImage")}</label>
             <label htmlFor="image" className="upload_image">
               <input
                 type="file"
@@ -144,11 +144,11 @@ export default function AddProductModal({
           </div>
 
           <InputField
-            label="اسم المنتج"
+            label={t("productName")}
             name="title"
             id="title"
             required
-            placeholder="اسم المنتج"
+            placeholder={t("productName")}
             value={formData.title}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
@@ -157,7 +157,7 @@ export default function AddProductModal({
 
           <div className="form_group">
             <InputField
-              label="السعر"
+              label={t("price")}
               name="price"
               id="price"
               required
@@ -169,8 +169,8 @@ export default function AddProductModal({
               }
             />
             <InputField
-              label="السعر بعد الخصم"
-              hint={"(اختياري)"}
+              label={t("priceAfterDiscount")}
+              hint={`( ${t("optional")} )`}
               name="offer_price"
               id="offer_price"
               type="number"
@@ -183,11 +183,11 @@ export default function AddProductModal({
           </div>
 
           <InputField
-            label="وصف المنتج"
+            label={t("productDescription")}
             name="description"
             id="description"
             as={"textarea"}
-            placeholder="وصف المنتج"
+            placeholder={t("productDescription")}
             value={formData.description}
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
@@ -195,7 +195,7 @@ export default function AddProductModal({
           />
 
           <SubmitButton
-            name={product?.id ? "تحديث" : "اضافة"}
+            name={product?.id ? t("editProduct") : t("addProduct")}
             loading={loading}
           />
         </form>

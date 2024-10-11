@@ -1134,7 +1134,7 @@ body main .contact_section form .form-group .inputfield .highlight::after {
   transform: translate(-50%);
 }
 body main .products_section {
-  padding: 32px 0;
+  padding: 16px 0;
 }
 body main .products_section .section_header {
   display: flex;
@@ -1631,6 +1631,14 @@ body main .reciept ul li .text span:last-child {
   font-size: 12px;
   color: #777;
 }
+body main .sections {
+  background: #f8f8f8;
+  padding: 24px;
+  border-radius: 16px;
+}
+body main .sections .section_header {
+  margin-bottom: 16px;
+}
 body footer {
   background: #fff;
   display: flex;
@@ -1712,4 +1720,8 @@ body.en .form-check {
 body.en .form-check .form-check-input {
   float: right;
   margin-right: -1.5em;
+}
+body.en main .contact_section form .form-group .inputfield label {
+  left: 16px;
+  right: initial;
 }/*# sourceMappingURL=main.css.map */

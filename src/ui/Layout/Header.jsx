@@ -190,7 +190,7 @@ function Header() {
 
                 <Link to="/edit-profile">
                   <i className="fa-solid fa-user-pen"></i>
-                  {t("file")}
+                  {t("editProfile")}
                 </Link>
                 <Link to="/" onClick={performLogout}>
                   <i className="fa-solid fa-right-from-bracket"></i>{" "}

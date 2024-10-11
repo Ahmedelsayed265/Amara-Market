@@ -5,8 +5,10 @@ import ForgetPassword from "./routes/ForgetPassword";
 import Login from "./routes/Login";
 import OrderDetails from "./routes/OrderDetails";
 import Orders from "./routes/Orders";
+import Privacy from "./routes/Privacy";
 import Products from "./routes/Products";
 import Register from "./routes/Register";
+import Terms from "./routes/Terms";
 
 const router = [
   {
@@ -24,6 +26,14 @@ const router = [
     element: <About />,
   },
   {
+    path: "/terms",
+    element: <Terms />,
+  },
+  {
+    path: "/privacy",
+    element: <Privacy />,
+  },
+  {
     path: "/products",
     element: <Products />,
     protected: true,
@@ -36,6 +46,7 @@ const router = [
   {
     path: "/contact",
     element: <Contact />,
+    protected: true,
   },
   {
     path: "/login",

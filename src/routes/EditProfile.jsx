@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../redux/slices/authedUser";
+import { useTranslation } from "react-i18next";
+import { convertTo12Hour, convertTo24Hour } from "../utils/helper";
 import InputField from "../ui/form-elements/InputField";
 import LocationField from "../ui/form-elements/LocationField";
 import SelectField from "../ui/form-elements/SelectField";
@@ -14,7 +17,6 @@ import useGetCities from "../hooks/settings/useGetCities";
 import useGetCategories from "../hooks/settings/useGetCategories";
 import PasswordField from "../ui/form-elements/PasswordField";
 import axiosInstance from "../utils/axiosInstance";
-import { setUser } from "../redux/slices/authedUser";
 
 function EditProfile() {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +26,7 @@ function EditProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authedUser.user);
+  const { t } = useTranslation();
   const { data: cities, isLoading: citiesLoading } = useGetCities();
   const { data: categories, isLoading: categoriesLoading } = useGetCategories();
 
@@ -38,10 +41,13 @@ function EditProfile() {
         lat: user.lat,
         lng: user.lng,
         description: user.description,
+        delivery_price: user.delivery_price,
         categories: user.categories?.map((category) => category.id),
         image: user?.image,
         logo: user?.logo,
         password: "",
+        from_time: convertTo24Hour(user?.work_hours?.split(" - ")?.[0]),
+        to_time: convertTo24Hour(user?.work_hours?.split(" - ")?.[1]),
       });
     }
   }, [user]);
@@ -67,7 +73,12 @@ function EditProfile() {
       lat: formData.lat,
       lng: formData.lng,
       description: formData.description,
+      delivery_price: formData.delivery_price,
       categories: formData.categories,
+      work_hours:
+        convertTo12Hour(formData.from_time) +
+        " - " +
+        convertTo12Hour(formData.to_time),
     };
 
     if (typeof formData.image === "object") {
@@ -105,13 +116,13 @@ function EditProfile() {
 
   return (
     <>
-      <PageHeader title="تعديل الملف الشخصي" />
+      <PageHeader title={t("editProfile")} />
       <section className="auth">
         <div className="container">
           <div className="row justify-content-center m-0">
             <div className="col-lg-8 col-12">
               <form className="form" onSubmit={handleSubmit}>
-                <div className="image_wrapper">
+                <label htmlFor="image" className="image_wrapper">
                   <img
                     src={
                       typeof formData.image === "object"
@@ -130,7 +141,7 @@ function EditProfile() {
                     />
                     <img src="/images/upload.svg" alt="upload" />
                   </label>
-                  <div className="logo_wrap">
+                  <label htmlFor="logo" className="logo_wrap">
                     <img
                       src={
                         typeof formData.logo === "object"
@@ -149,17 +160,17 @@ function EditProfile() {
                       />
                       <img src="/images/upload.svg" alt="upload" />
                     </label>
-                  </div>
-                </div>
+                  </label>
+                </label>
 
                 <div className="form_group">
                   <InputField
-                    label="إسم المتجر"
+                    label={t("marketName")}
                     name="name"
                     id="name"
                     required
                     icon={<i className="fa-regular fa-user"></i>}
-                    placeholder="اسم المتجر"
+                    placeholder={t("marketName")}
                     value={formData.name}
                     onChange={handleChange}
                   />
@@ -167,7 +178,7 @@ function EditProfile() {
 
                 <div className="form_group">
                   <InputField
-                    label="البريد الالكتروني"
+                    label={t("email")}
                     name="email"
                     id="email"
                     type="email"
@@ -179,7 +190,7 @@ function EditProfile() {
                   />
 
                   <PhoneField
-                    label="رقم الهاتف"
+                    label={t("phoneNumber")}
                     icon={<i className="fa-light fa-phone"></i>}
                     placeholder="5xxxxxxxxx"
                     maxLength={9}
@@ -194,8 +205,8 @@ function EditProfile() {
                 <div className="form_group">
                   <SelectField
                     id="city_id"
-                    label="المدينة"
-                    placeholder="إختر المدينة"
+                    label={t("city")}
+                    placeholder={t("selectCity")}
                     icon={<i className="fa-light fa-city"></i>}
                     options={cities?.map(({ id, name }) => ({
                       value: id,
@@ -207,7 +218,7 @@ function EditProfile() {
                     isMulti={false}
                   />
                   <InputField
-                    label="سعر التوصيل"
+                    label={t("deliveryPrice")}
                     name="delivery_price"
                     id="delivery_price"
                     required
@@ -218,10 +229,34 @@ function EditProfile() {
                   />
                 </div>
 
+                <div className="input-field">
+                  <label htmlFor="work_houres">
+                    <i className="fa-regular fa-clock"></i> {t("workHoures")}
+                  </label>
+                  <div className="d-flex align-items-center gap-2">
+                    <Form.Control
+                      type="time"
+                      value={formData.from_time}
+                      id="from_time"
+                      required
+                      name="from_time"
+                      onChange={handleChange}
+                    />
+                    <Form.Control
+                      type="time"
+                      required
+                      value={formData.to_time}
+                      id="to_time"
+                      name="to_time"
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
                 <SelectField
                   id="categories"
-                  label="القسم"
-                  placeholder="إختر القسم"
+                  label={t("categories")}
+                  placeholder={t("selectCategories")}
                   icon={<i className="fa-light fa-grid-2"></i>}
                   options={categories?.map(({ id, name }) => ({
                     value: id,
@@ -235,19 +270,19 @@ function EditProfile() {
 
                 {user?.market_code === 1 && (
                   <InputField
-                    label="كود المتجر"
+                    label={t("marketCode")}
                     name="market_code"
                     id="market_code"
                     icon={<i className="fa-light fa-store"></i>}
-                    placeholder="كود المتجر"
+                    placeholder={t("marketCode")}
                     value={formData}
                     onChange={(e) => handleChange(e)}
                   />
                 )}
 
                 <LocationField
-                  label="موقع المتجر"
-                  placeholder="موقع المتجر"
+                  label={t("marketLocation")}
+                  placeholder={t("marketLocation")}
                   icon={<i className="fa-light fa-location-dot"></i>}
                   setShowModal={setShowModal}
                   id="address"
@@ -258,19 +293,19 @@ function EditProfile() {
                 />
 
                 <InputField
-                  label="وصف المتجر"
+                  label={t("marketDescription")}
                   name="description"
                   id="description"
                   as={"textarea"}
                   icon={<i className="fa-solid fa-dumpster-fire"></i>}
-                  placeholder="وصف المتجر"
+                  placeholder={t("marketDescription")}
                   value={formData.description}
                   onChange={handleChange}
                 />
 
                 <div className="question p-0 pt-2">
                   <label htmlFor="wantChangePassword" className="quest">
-                    تغيير كلمة المرور
+                    {t("wantChangePassword")}
                   </label>
                   <Form.Switch
                     id="wantChangePassword"
@@ -282,7 +317,7 @@ function EditProfile() {
                 {wantChangePassword && (
                   <div className="d-flex gap-2 flex-lg-row flex-column w-100">
                     <PasswordField
-                      placeholder="ادخل كلمة المرور"
+                      placeholder={t("enterNewPassword")}
                       id="password"
                       name="password"
                       required
@@ -292,7 +327,7 @@ function EditProfile() {
                   </div>
                 )}
 
-                <SubmitButton name="تعديل الحساب" loading={loading} />
+                <SubmitButton name={t("editProfile")} loading={loading} />
 
                 <MapModal
                   showModal={showModal}

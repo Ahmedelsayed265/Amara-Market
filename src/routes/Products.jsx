@@ -62,20 +62,19 @@ export default function Products() {
         ) : (
           <div className="container">
             <div className="row m-0">
-              <div className="col-12 p-2 mb-2">
-                <div className="section_header">
-                  <h6>{t("sections")}</h6>
-                  <button onClick={() => setShowModal(true)}>
-                    <i className="fa-regular fa-plus"></i> {t("addSection")}
-                  </button>
+              <div className="col-12 p-2">
+                <div className="sections">
+                  <div className="section_header">
+                    <h6>{t("sections")}</h6>
+                    <button onClick={() => setShowModal(true)}>
+                      <i className="fa-regular fa-plus"></i> {t("addSection")}
+                    </button>
+                  </div>
+                  <SectionsSlider sections={sections} sectionId={sectionId} />
                 </div>
               </div>
 
-              <div className="col-12 p-2 mb-5">
-                <SectionsSlider sections={sections} sectionId={sectionId} />
-              </div>
-
-              <div className="col-12 p-2 mb-2">
+              <div className="col-12 p-2 mb-2 mt-5">
                 <div className="section_header">
                   <h6>
                     {t("productsSection")}{" "}

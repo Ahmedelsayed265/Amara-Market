@@ -7,12 +7,14 @@ import PageHeader from "../ui/Layout/PageHeader";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { useTranslation } from "react-i18next";
 
 function OrderDetails() {
   const { id } = useParams();
+  const { t } = useTranslation();
   const { data: order, isLoading } = useGetOrderById(id);
   const [now, setNow] = useState(100 / 3);
-  const [status, setStatus] = useState("جديد");
+  const [status, setStatus] = useState(t("new"));
 
   dayjs.extend(customParseFormat);
   dayjs.extend(localizedFormat);
@@ -23,21 +25,21 @@ function OrderDetails() {
   useEffect(() => {
     if (order?.status === "complete") {
       setNow(100);
-      setStatus("مكتمل");
+      setStatus(t("complete"));
     }
-    if (order?.status === "in_progress") {
+    if (order?.status === "progress") {
       setNow((100 / 3) * 2);
-      setStatus("قيد التنفيذ");
+      setStatus(t("progress"));
     }
     if (order?.status === "canceled") {
       setNow(100);
-      setStatus("ملغى");
+      setStatus(t("canceled"));
     }
-  }, [order]);
+  }, [order, t]);
 
   return (
     <>
-      <PageHeader title="تفاصيل الطلب" />
+      <PageHeader title={t("orderDetails")} />
       <section className="page_content">
         <div className="container">
           {isLoading ? (
@@ -69,11 +71,12 @@ function OrderDetails() {
                           <h6>{c?.product?.title}</h6>
                           <div className="count_price">
                             <p>
-                              الكمية : <span>X{c?.quantity}</span>
+                              {t("quantity")} : <span>X{c?.quantity}</span>
                             </p>
                             <p>
-                              الأجمالى :{" "}
-                              <span>{c?.product?.price * c?.quantity}</span> ر.س
+                              {t("total")} :{" "}
+                              <span>{c?.product?.price * c?.quantity}</span>{" "}
+                              {t("sar")}
                             </p>
                           </div>
                         </div>
@@ -84,27 +87,27 @@ function OrderDetails() {
                   <div className="checkout-details">
                     <ul>
                       <li>
-                        <div className="title">المجموع الفرعي</div>
+                        <div className="title">{t("subtotal")}</div>
                         <div className="value">
-                          {order?.sub_total.toFixed(2)} ر.س
+                          {order?.sub_total.toFixed(2)} {t("sar")}
                         </div>
                       </li>
                       <li>
-                        <div className="title">سعر التوصيل</div>
+                        <div className="title">{t("deliveryPrice")}</div>
                         <div className="value ">
-                          {order?.delivery_price.toFixed(2)} ر.س
+                          {order?.delivery_price.toFixed(2)} {t("sar")}
                         </div>
                       </li>
                       <li className="discount">
-                        <div className="title">الضريبة</div>
+                        <div className="title">{t("taxes")}</div>
                         <div className="value ">
-                          {order?.taxes.toFixed(2)} ر.س
+                          {order?.taxes.toFixed(2)} {t("sar")}
                         </div>
                       </li>
                       <li className="discount">
-                        <div className="title">الإجمالى</div>
+                        <div className="title">{t("total")}</div>
                         <div className="value ">
-                          {order?.total.toFixed(2)} ر.س
+                          {order?.total.toFixed(2)} {t("sar")}
                         </div>
                       </li>
                     </ul>
@@ -120,7 +123,7 @@ function OrderDetails() {
                         <i className="fa-sharp fa-light fa-cube"></i>
                       </div>
                       <div className="text">
-                        <span>رقم الطلب</span>
+                        <span>{t("orderNumber")}</span>
                         <h6>#{order?.id}</h6>
                       </div>
                     </li>
@@ -129,7 +132,7 @@ function OrderDetails() {
                         <i className="fa-light fa-map-pin"></i>
                       </div>
                       <div className="text">
-                        <span>عنوان التوصيل</span>
+                        <span>{t("deliveryAddress")}</span>
                         <span>{order?.address?.address}</span>
                       </div>
                     </li>
@@ -138,7 +141,7 @@ function OrderDetails() {
                         <i className="fa-solid fa-wallet"></i>
                       </div>
                       <div className="text">
-                        <span> طريقة الدفع</span>
+                        <span>{t("paymentMethod")} </span>
                         <span>{order?.payment_method}</span>
                       </div>
                     </li>
@@ -147,11 +150,11 @@ function OrderDetails() {
                         <i className="fa-light fa-circle-exclamation"></i>
                       </div>
                       <div className="text">
-                        <span>ملاحظات</span>
+                        <span>{t("notes")}</span>
                         {order?.note ? (
                           <span>{order?.note}</span>
                         ) : (
-                          <span>لا توجد ملاحظات</span>
+                          <span>{t("noNotes")}</span>
                         )}
                       </div>
                     </li>
@@ -160,7 +163,7 @@ function OrderDetails() {
                         <i className="fa-light fa-calendar-days"></i>
                       </div>
                       <div className="text">
-                        <span>تاريخ الطلب</span>
+                        <span>{t("orderDate")}</span>
                         <p>
                           <span>{formattedDate}</span>
                         </p>

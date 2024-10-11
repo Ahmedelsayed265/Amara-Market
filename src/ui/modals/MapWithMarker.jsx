@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { GoogleMap, Marker, StandaloneSearchBox } from "@react-google-maps/api";
+import { useTranslation } from "react-i18next";
 
 const MapWithMarker = ({ formData, setFormData }) => {
   const [markerPosition, setMarkerPosition] = useState({});
   const [searchInput, setSearchInput] = useState("");
+  const { t } = useTranslation();
   const searchBox = useRef(null);
 
   useEffect(() => {
     setMarkerPosition({
       lat: Number(formData.lat),
-      lng: Number(formData.lng)
+      lng: Number(formData.lng),
     });
 
     reverseGeocodeMarkerPosition();
@@ -21,7 +23,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
     setFormData({
       ...formData,
       lat: coord.lat.toFixed(6),
-      lng: coord.lng.toFixed(6)
+      lng: coord.lng.toFixed(6),
     });
 
     reverseGeocodeMarkerPosition(coord);
@@ -50,14 +52,14 @@ const MapWithMarker = ({ formData, setFormData }) => {
       const selectedPlace = places[0];
       const position = {
         lat: selectedPlace.geometry.location.lat(),
-        lng: selectedPlace.geometry.location.lng()
+        lng: selectedPlace.geometry.location.lng(),
       };
       setMarkerPosition(position);
 
       setFormData({
         ...formData,
         lat: position.lat.toFixed(6),
-        lng: position.lng.toFixed(6)
+        lng: position.lng.toFixed(6),
       });
 
       setSearchInput(selectedPlace.name);
@@ -79,7 +81,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       mapContainerStyle={{
         width: "100%",
         height: "400px",
-        borderRadius: "12px"
+        borderRadius: "12px",
       }}
       zoom={10}
       center={markerPosition}
@@ -91,7 +93,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
         onDragEnd={(e) => {
           handleMarkerDragEnd({
             lat: e.latLng.lat(),
-            lng: e.latLng.lng()
+            lng: e.latLng.lng(),
           });
         }}
       />
@@ -101,7 +103,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       >
         <input
           type="search"
-          placeholder="ابحث عن موقعك..."
+          placeholder={t("searchForYourLocation")}
           className="mapSearchInput"
           value={searchInput}
           onChange={handleInputChange}
