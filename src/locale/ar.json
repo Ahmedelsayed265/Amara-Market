@@ -130,5 +130,12 @@
     "acceptOrder": "قبول الطلب",
     "printInvoice": "طباعة الفاتورة",
     "invoice": "الفاتورة",
-    "print": "طباعة"
+    "print": "طباعة",
+    "bannerRequired": "يجب عليك تحميل البانر",
+    "logoRequired": "يجب عليك تحميل الشعار",
+    "and": "و",
+    "invoiceNumber": "فاتورة رقم",
+    "customerName": "اسم العميل",
+    "customerPhone": "رقم الهاتف",
+    "noOrdersWithThisStatus": "لا يوجد طلبات بهذة الحالة"
 }

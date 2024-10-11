@@ -3,6 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useReactToPrint } from "react-to-print";
+import { calculateDate } from "./../../utils/helper";
 
 function InvoiceModal({ showModal, setShowModal, order }) {
   const { t } = useTranslation();
@@ -10,7 +11,7 @@ function InvoiceModal({ showModal, setShowModal, order }) {
   const user = useSelector((state) => state.authedUser.user);
 
   const handlePrint = useReactToPrint({
-    content: () => invoiceRef.current,
+    contentRef: invoiceRef,
     documentTitle: "Invoice",
     onAfterPrint: () => setShowModal(false),
   });
@@ -48,17 +49,19 @@ function InvoiceModal({ showModal, setShowModal, order }) {
           <div className="total_price_wrap">
             <div className="info">
               <div className="block">
-                <h6>Zayn Ahmed</h6>
-                <p>+9960123456789</p>
+                <h6>
+                  {t("customerName")}: {order?.user?.name}
+                </h6>
+                <p>
+                  {t("customerPhone")} {order?.user?.phone}
+                </p>
               </div>
               <div className="block">
-                <h6>Invoice - 9874</h6>
-                <p>24 May 2023</p>
+                <h6>
+                  {t("invoiceNumber")} - <b>{order?.id}</b>
+                </h6>
+                <p>{calculateDate(order?.created_at)}</p>
               </div>
-            </div>
-            <div className="total">
-              <h6>Total</h6>
-              <p>$8602.08</p>
             </div>
           </div>
 
@@ -67,41 +70,55 @@ function InvoiceModal({ showModal, setShowModal, order }) {
           <table className="exampleTable">
             <thead>
               <th>#</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-              <th>Discount</th>
-              <th>After Discount</th>
+              <th>{t("productName")}</th>
+              <th>{t("quantity")}</th>
+              <th>{t("price")}</th>
+              <th>{t("total")}</th>
             </thead>
+
             <tbody>
               {order?.products?.map((order) => (
                 <tr key={order?.product?.id}>
                   <td>#{order?.product?.id}</td>
                   <td>{order?.product?.title}</td>
                   <td>X{order?.quantity}</td>
-                  <td>200 </td>
-                  <td>400</td>
-                  <td>10%</td>
-                  <td>360</td>
+                  <td>
+                    {order?.product?.price} {t("sar")}{" "}
+                  </td>
+                  <td>
+                    {order?.product?.price * order?.quantity} {t("sar")}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <span className="line"></span>
+
           <div className="invoice_subTotal">
             <ul>
               <li>
-                <h6>SUB TOTAL</h6>
-                <p>$8500.00</p>
+                <h6>{t("subtotal")}</h6>
+                <p>
+                  {order?.sub_total} {t("sar")}
+                </p>
               </li>
               <li>
-                <h6>TAX</h6>
-                <p>$102.08</p>
+                <h6>{t("taxes")}</h6>
+                <p>
+                  {order?.taxes} {t("sar")}
+                </p>
               </li>
               <li>
-                <h6>GRAND TOTAL</h6>
-                <p>$8602.08</p>
+                <h6>{t("deliveryPrice")}</h6>
+                <p>
+                  {order?.delivery_price} {t("sar")}
+                </p>
+              </li>
+              <li>
+                <h6>{t("total")}</h6>
+
+                <b>
+                  {order?.total} {t("sar")}
+                </b>
               </li>
             </ul>
           </div>

@@ -290,6 +290,25 @@ button {
   padding-left: 16px;
 }
 
+table th,
+table td {
+  padding: 0.75rem;
+}
+
+.empty_text {
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  font-weight: bold;
+  color: #aaaaaa;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -915,7 +934,7 @@ body .invoice_template .header .company p span {
 }
 body .invoice_template .header .invoice_data {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
 }
 body .invoice_template .header .invoice_data h6 {
@@ -927,17 +946,16 @@ body .invoice_template .header .invoice_data h6 {
 body .invoice_template .line {
   height: 1px;
   width: 100%;
-  background: #aaaaaa;
+  background: #eeeeee;
 }
 body .invoice_template .total_price_wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
 }
 body .invoice_template .total_price_wrap .info {
   display: flex;
   align-items: center;
-  gap: 34px;
+  justify-content: space-between;
+  width: 100%;
 }
 body .invoice_template .total_price_wrap .info p {
   font-size: 14px;
@@ -972,10 +990,14 @@ body .invoice_template .total_price_wrap .total p {
 body .invoice_template .exampleTable th,
 body .invoice_template .exampleTable td {
   text-align: center;
+  border: 1px solid #eeeeee;
+}
+body .invoice_template table {
+  border-collapse: collapse;
+  border: 1px solid #eeeeee;
 }
 body .invoice_template .invoice_subTotal {
-  margin: 0 0 0 auto;
-  min-width: 300px;
+  max-width: 400px;
 }
 body .invoice_template .invoice_subTotal ul {
   display: flex;
@@ -1031,152 +1053,6 @@ body .invoice_template .invoice_footer .qr_holder img {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-}
-body .invoice_template.temp2 {
-  border: 0;
-  background: none;
-  padding: 12px;
-}
-body .invoice_template.temp2 .header .invoice_data h6 {
-  opacity: 0.6;
-}
-body .invoice_template.temp2 .invoice_footer {
-  background: #f8f8f8;
-  padding: 16px;
-  border-radius: 12px;
-  margin-top: 60px;
-  align-items: center;
-}
-body .invoice_template.temp2 .invoice_subTotal {
-  margin: 0 0 0 auto;
-  border-radius: 12px;
-  padding: 16px 24px;
-  min-width: 300px;
-  background: #f8f8f8;
-}
-body .invoice_template.temp2 .total_price_wrap .about_invoice {
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-body .invoice_template.temp2 .total_price_wrap .about_invoice p {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  line-height: normal;
-  margin: 0;
-}
-body .invoice_template.temp2 .total_price_wrap .about_invoice p span {
-  line-height: normal;
-}
-body .invoice_template.temp3 {
-  border: 0;
-  background: #f8f8f8;
-  gap: 36px;
-}
-body .invoice_template.temp3 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body .invoice_template.temp3 .header .invo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-direction: column;
-}
-body .invoice_template.temp3 .header .invo h6 {
-  color: #222020;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 36px;
-  font-family: "Playfair Display", serif;
-}
-body .invoice_template.temp3 .header .invo p {
-  color: #222020;
-  text-transform: uppercase;
-  font-size: 16px;
-  letter-spacing: 4px;
-  font-weight: 400;
-  line-height: 16px;
-}
-body .invoice_template.temp3 .pill_to {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body .invoice_template.temp3 .pill_to .pilling {
-  padding: 12px 16px;
-  border: 1px solid #aaaaaa;
-  min-width: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body .invoice_template.temp3 .pill_to .pilling .block {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-body .invoice_template.temp3 .pill_to .pilling .block p {
-  color: #222020;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 16px;
-  margin: 0;
-}
-body .invoice_template.temp3 .line {
-  background: #222020;
-}
-body .invoice_template.temp3 .invoice_subTotal {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-body .invoice_template.temp3 .invoice_subTotal ul {
-  min-width: 300px;
-  gap: 0;
-}
-body .invoice_template.temp3 .invoice_subTotal ul li {
-  padding: 8px;
-}
-body .invoice_template.temp3 .invoice_subTotal ul li:last-child {
-  border: 1px solid #aaaaaa;
-}
-body .invoice_template.temp3 .invoice_subTotal .bank_info h6 {
-  color: #222020;
-  font-weight: 500;
-}
-body .invoice_template.temp3 .invoice_subTotal .bank_info p {
-  margin: 0;
-}
-body .invoice_template.temp3 .exampleTable {
-  border-collapse: collapse;
-  border: 1px solid #aaaaaa;
-}
-body .invoice_template.temp3 .exampleTable td,
-body .invoice_template.temp3 .exampleTable th {
-  border: 0;
-  border-bottom: 1px solid #aaaaaa;
-}
-body .invoice_template.temp3 .invoice_footer {
-  padding: 0px;
-}
-body .invoice_template.temp3 .invoice_footer .left_side {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-body .invoice_template.temp3 .invoice_footer .left_side h3 {
-  font-family: Playfair Display;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 36px;
-  color: #222020;
 }
 body main {
   min-height: calc(100vh - 200px);

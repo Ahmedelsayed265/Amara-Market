@@ -36,6 +36,7 @@ export default function SelectField({
         className="basic-single"
         classNamePrefix="select"
         isLoading={isLoading}
+        required={true}
         isSearchable={true}
         isMulti={isMulti}
         id={id}

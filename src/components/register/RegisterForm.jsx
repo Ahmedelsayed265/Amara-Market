@@ -47,6 +47,16 @@ export default function RegisterForm({
       return;
     }
 
+    if (!formData.image) {
+      toast.error(t("bannerRequired"));
+      return;
+    }
+
+    if (!formData.logo) {
+      toast.error(t("logoRequired"));
+      return;
+    }
+
     try {
       const res = await axiosInstance.post("/market/can_register", {
         email: formData.email,
@@ -297,6 +307,7 @@ export default function RegisterForm({
           name="description"
           id="description"
           as={"textarea"}
+          required
           icon={<i className="fa-solid fa-dumpster-fire"></i>}
           placeholder={t("marketDescription")}
           value={formData.description}
@@ -304,8 +315,8 @@ export default function RegisterForm({
         />
 
         <p className="noAccount">
-          {t("agreement")} <Link to="/terms">{t("termsConditions")}</Link> و{" "}
-          <Link to="/privacy">{t("privacyPolicy")}</Link>
+          {t("agreement")} <Link to="/terms">{t("termsConditions")}</Link>{" "}
+          {t("and")} <Link to="/privacy">{t("privacyPolicy")}</Link>
         </p>
 
         <SubmitButton name={t("register")} loading={loading} />

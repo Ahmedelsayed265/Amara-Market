@@ -97,8 +97,8 @@ function Orders() {
                   </div>
                 </div>
 
-                <div className="col-lg-9 col-md-10 col-12 p-2">
-                  <div className="row">
+                <div className="col-lg-9 col-md-10 col-12 p-2 h-100">
+                  <div className="row h-100">
                     {orders?.data?.map((order) => (
                       <div
                         className="col-lg-6 col-md-6 col-12 p-2"
@@ -131,6 +131,11 @@ function Orders() {
                         </Link>
                       </div>
                     ))}
+                    {
+                      orders?.data?.length === 0 && (
+                        <p className="empty_text">{t("noOrdersWithThisStatus")}</p>
+                      )
+                    }
                     {orders?.total > 12 && (
                       <CustomPagination count={orders?.total} />
                     )}
