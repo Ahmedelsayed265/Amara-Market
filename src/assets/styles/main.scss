@@ -259,23 +259,44 @@ body {
       gap: 12px;
       background: $inputBg;
       .progress_state {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        h6 {
-          font-size: 14px;
-          color: $main;
-          font-weight: 600;
-        }
-        .icon {
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-          @include centerFlex();
-          background: $white;
-          border: 1px solid $main;
-          i {
+        @include space-between();
+        .status {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          h6 {
+            font-size: 14px;
             color: $main;
+            font-weight: 600;
+          }
+          .icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            @include centerFlex();
+            background: $white;
+            border: 1px solid $main;
+            i {
+              color: $main;
+            }
+          }
+        }
+        .actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          button {
+            background: $main;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: $white;
+            &.cancel {
+              background: red;
+            }
+            &.accept {
+              background: rgb(34, 209, 34);
+            }
           }
         }
       }
@@ -389,7 +410,7 @@ body {
     }
 
     .notifications_section {
-      padding: 60px 0;
+      padding: 32px 0;
       .notify {
         padding: 16px;
         background: $inputBg;

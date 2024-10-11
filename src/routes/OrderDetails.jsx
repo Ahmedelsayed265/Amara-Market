@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import { ProgressBar } from "react-bootstrap";
 import useGetOrderById from "../hooks/useGetOrderById";
 import DataLoader from "../ui/Layout/DataLoader";
@@ -8,12 +9,20 @@ import PageHeader from "../ui/Layout/PageHeader";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import axiosInstance from "../utils/axiosInstance";
+import InvoiceModal from "../ui/modals/InvoiceModal";
+import SubmitButton from "./../ui/form-elements/SubmitButton";
 
 function OrderDetails() {
   const { id } = useParams();
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const { data: order, isLoading } = useGetOrderById(id);
+
+  const [cancelLoading, setCancelLoading] = useState(false);
+  const [acceptLoading, setAcceptLoading] = useState(false);
   const [now, setNow] = useState(100 / 3);
+  const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState(t("new"));
 
   dayjs.extend(customParseFormat);
@@ -23,19 +32,44 @@ function OrderDetails() {
   const formattedDate = dayjs(originalDate).format("YYYY-MM-DD hh:mm A");
 
   useEffect(() => {
-    if (order?.status === "complete") {
-      setNow(100);
-      setStatus(t("complete"));
-    }
-    if (order?.status === "progress") {
-      setNow((100 / 3) * 2);
-      setStatus(t("progress"));
-    }
-    if (order?.status === "canceled") {
-      setNow(100);
-      setStatus(t("canceled"));
+    if (order?.status) {
+      setStatus(order?.status);
     }
   }, [order, t]);
+
+  useEffect(() => {
+    if (status === "complete" || status === "canceled") {
+      setNow(100);
+    }
+    if (status === "in_progress") {
+      setNow((100 / 3) * 2);
+    }
+  }, [status]);
+
+  const handleChangeStatus = async (s) => {
+    if (s === "canceled") {
+      setCancelLoading(true);
+    } else {
+      setAcceptLoading(true);
+    }
+    try {
+      const res = await axiosInstance.post("/market/update_order_status", {
+        id: order?.id,
+        status: s,
+      });
+      if (res.status === 200) {
+        queryClient.invalidateQueries({ queryKey: ["orders"] });
+        queryClient.invalidateQueries({ queryKey: ["order"] });
+        setStatus(s);
+      }
+    } catch (error) {
+      console.error("Error during change status:", error);
+      throw new Error(error.message);
+    } finally {
+      setCancelLoading(false);
+      setAcceptLoading(false);
+    }
+  };
 
   return (
     <>
@@ -49,13 +83,40 @@ function OrderDetails() {
               <div className="col-12 p-2">
                 <div className="order_status">
                   <div className="progress_state">
-                    <div className="icon">
-                      <i className="fa-sharp fa-solid fa-bag-shopping"></i>
+                    <div className="status">
+                      <div className="icon">
+                        <i className="fa-sharp fa-solid fa-bag-shopping"></i>
+                      </div>
+                      <h6>{t(status)}</h6>
                     </div>
-                    <h6>{status}</h6>
+                    <div className="actions">
+                      {status === "new" && (
+                        <SubmitButton
+                          name={t("acceptOrder")}
+                          className="accept"
+                          loading={acceptLoading}
+                          onClick={() => handleChangeStatus("in_progress")}
+                        />
+                      )}
+
+                      {(status === "new" || status === "in_progress") && (
+                        <SubmitButton
+                          className="cancel"
+                          onClick={() => handleChangeStatus("canceled")}
+                          name={t("cancelOrder")}
+                          loading={cancelLoading}
+                        />
+                      )}
+
+                      {status === "complete" && (
+                        <button onClick={() => setShowModal(true)}>
+                          {t("printInvoice")}
+                        </button>
+                      )}
+                    </div>
                   </div>
 
-                  <ProgressBar now={now} className={order?.status} />
+                  <ProgressBar now={now} className={status} />
                 </div>
               </div>
 
@@ -142,7 +203,7 @@ function OrderDetails() {
                       </div>
                       <div className="text">
                         <span>{t("paymentMethod")} </span>
-                        <span>{order?.payment_method}</span>
+                        <span>{t(order?.payment_method)}</span>
                       </div>
                     </li>
                     <li>
@@ -176,6 +237,11 @@ function OrderDetails() {
             </div>
           )}
         </div>
+        <InvoiceModal
+          showModal={showModal}
+          order={order}
+          setShowModal={setShowModal}
+        />
       </section>
     </>
   );

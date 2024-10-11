@@ -118,5 +118,11 @@
     "loginSuccess": "Login successful",
     "noNotifications": "No Notifications",
     "notifications": "Notifications",
-    "orderNumber": "Order Number"
+    "orderNumber": "Order Number",
+    "offline": "Offline",
+    "online": "Online",
+    "cash": "Cash",
+    "wallet": "Wallet",
+    "visa": "Visa",
+    "apple_pay": "Apple Pay"
 }

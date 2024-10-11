@@ -64,6 +64,7 @@
     "all": "كل الطلبات",
     "new": "جديد",
     "progress": "قيد التنفيذ",
+    "in_progress": "قيد التنفيذ",
     "complete": "مكتمل",
     "canceled": "ملغي",
     "status": "حالة الطلب",
@@ -118,5 +119,16 @@
     "loginSuccess": "تم تسجيل الدخول بنجاح",
     "noNotifications": "لا يوجد اشعارات",
     "notifications": "الاشعارات",
-    "orderNumber": "رقم الطلب"
+    "orderNumber": "رقم الطلب",
+    "offline": "غير متصل",
+    "online": "متصل",
+    "cash": "دفع نقدى",
+    "wallet": "محفظة",
+    "visa": "فيزا",
+    "apple_pay": "Apple Pay",
+    "cancelOrder": "الغاء الطلب",
+    "acceptOrder": "قبول الطلب",
+    "printInvoice": "طباعة الفاتورة",
+    "invoice": "الفاتورة",
+    "print": "طباعة"
 }

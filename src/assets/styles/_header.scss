@@ -177,7 +177,6 @@ header {
           color: $white;
           border-radius: 8px;
           padding: 8px;
-          margin-bottom: 12px;
           h6 {
             font-size: 14px;
             margin: 0;
@@ -236,6 +235,15 @@ header {
         &.show {
           display: flex;
         }
+      }
+    }
+    .question {
+      margin-bottom: 8px;
+      label {
+        font-size: 14px;
+      }
+      input {
+        cursor: pointer;
       }
     }
   }

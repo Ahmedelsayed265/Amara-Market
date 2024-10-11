@@ -59,7 +59,7 @@ function Orders() {
                     </h6>
 
                     <div className="form-checks">
-                      {["all", "new", "progress", "complete", "cancel"].map(
+                      {["all", "new", "progress", "complete", "canceled"].map(
                         (status) => (
                           <Form.Check
                             key={status}

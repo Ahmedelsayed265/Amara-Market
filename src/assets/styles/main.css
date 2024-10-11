@@ -488,7 +488,6 @@ body header nav .more_actions .auth_menu .balance {
   color: #fff;
   border-radius: 8px;
   padding: 8px;
-  margin-bottom: 12px;
 }
 body header nav .more_actions .auth_menu .balance h6 {
   font-size: 14px;
@@ -549,6 +548,15 @@ body header nav .more_actions .auth_menu button i {
 }
 body header nav .more_actions .auth_menu.show {
   display: flex;
+}
+body header nav .question {
+  margin-bottom: 8px;
+}
+body header nav .question label {
+  font-size: 14px;
+}
+body header nav .question input {
+  cursor: pointer;
 }
 body .form {
   display: flex;
@@ -1615,14 +1623,19 @@ body main .order_status {
 body main .order_status .progress_state {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+body main .order_status .progress_state .status {
+  display: flex;
+  align-items: center;
   gap: 12px;
 }
-body main .order_status .progress_state h6 {
+body main .order_status .progress_state .status h6 {
   font-size: 14px;
   color: #fd6b22;
   font-weight: 600;
 }
-body main .order_status .progress_state .icon {
+body main .order_status .progress_state .status .icon {
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -1632,8 +1645,26 @@ body main .order_status .progress_state .icon {
   background: #fff;
   border: 1px solid #fd6b22;
 }
-body main .order_status .progress_state .icon i {
+body main .order_status .progress_state .status .icon i {
   color: #fd6b22;
+}
+body main .order_status .progress_state .actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+body main .order_status .progress_state .actions button {
+  background: #fd6b22;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #fff;
+}
+body main .order_status .progress_state .actions button.cancel {
+  background: red;
+}
+body main .order_status .progress_state .actions button.accept {
+  background: rgb(34, 209, 34);
 }
 body main .order_status .progress,
 body main .order_status .progress-stacked {
@@ -1744,7 +1775,7 @@ body main .sections .section_header {
   margin-bottom: 16px;
 }
 body main .notifications_section {
-  padding: 60px 0;
+  padding: 32px 0;
 }
 body main .notifications_section .notify {
   padding: 16px;

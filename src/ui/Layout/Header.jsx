@@ -1,11 +1,12 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Form } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { setIsLogged, setUser } from "../../redux/slices/authedUser";
 import { setLanguage } from "../../redux/slices/language";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import i18next from "i18next";
 import axiosInstance from "../../utils/axiosInstance";
 import useGetNotifications from "../../hooks/useGetNotifications";
@@ -17,6 +18,7 @@ function Header() {
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const toggleRef = useRef(null);
+  const queryClient = useQueryClient();
 
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
@@ -24,6 +26,8 @@ function Header() {
   const { data: notifications, isLoading } = useGetNotifications();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(user?.status || 0);
   const [cookies, , deleteCookie] = useCookies(["token"]);
   const token = cookies?.token;
 
@@ -71,6 +75,25 @@ function Header() {
     const bodyElement = document.querySelector("body");
     if (bodyElement) {
       bodyElement.classList.toggle("en", newLang === "en");
+    }
+  };
+
+  const handleStatus = async () => {
+    setLoading(true);
+    const newStatus = status === 1 ? 0 : 1;
+    try {
+      const res = await axiosInstance.post("/market/change_status", {
+        status: newStatus,
+      });
+      if (res.data.code === 200) {
+        setStatus(newStatus);
+        queryClient.invalidateQueries({ queryKey: ["authed-user"] });
+      }
+    } catch (error) {
+      console.error("Error during change status:", error);
+      throw new Error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -190,6 +213,19 @@ function Header() {
                   <h6>
                     {t("balance")}: {user?.wallet} {t("sar")}
                   </h6>
+                </div>
+
+                <div className="question p-0 pt-2">
+                  <label htmlFor="status" className="quest">
+                    {status === 0 ? t("offline") : t("online")}
+                  </label>
+                  <Form.Switch
+                    id="status"
+                    name="status"
+                    disabled={loading}
+                    checked={status === 1}
+                    onChange={handleStatus}
+                  />
                 </div>
 
                 <Link to="/edit-profile">
