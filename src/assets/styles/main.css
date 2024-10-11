@@ -282,6 +282,14 @@ button {
   font-size: 14px;
 }
 
+.one-line-wrap {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  padding-left: 16px;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
@@ -419,25 +427,29 @@ body header nav .more_actions .drop_Message_Menu .scroll_menu {
 }
 body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message {
   width: 100%;
+  background: #f8f8f8;
+  padding: 12px;
+  border-radius: 8px;
 }
-body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message .image-wrapper {
-  align-items: center;
-  border-radius: 50%;
+body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message .header {
   display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-  width: 32px;
-  aspect-ratio: 1;
-  background-color: rgba(67, 129, 248, 0.1019607843);
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
 }
-body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message .image-wrapper i {
-  font-size: 16px;
-  color: #fd6b22;
+body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message .header .title {
+  font-size: 14px;
+  color: #222020;
+}
+body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message .header .time {
+  color: #666b88;
+  font-size: 10px;
 }
 body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message p {
   margin: 0;
   text-align: start;
+  font-size: 14px;
+  color: #222020;
 }
 body header nav .more_actions .drop_Message_Menu .showall {
   width: 100%;
@@ -1257,6 +1269,98 @@ body main .products_section .product_card .content p span {
   color: #666b88;
   text-decoration: line-through;
 }
+body main .pagination_component {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  justify-content: center;
+}
+body main .pagination_component img {
+  opacity: 50%;
+  transition: opacity 0.2s;
+}
+body main .pagination_component button:hover img {
+  opacity: 100%;
+}
+body main .pagination_component button.disabled:hover {
+  cursor: default;
+}
+body main .pagination_component button.disabled:hover img {
+  opacity: 50%;
+}
+body main .pagination_component .reverse img {
+  transform: rotate(180deg);
+}
+body main .pagination_component p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+body main .pagination_component p span {
+  color: #222020;
+  font-weight: 600;
+}
+body main .numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+body main .numbers button {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 15px;
+  color: #222020;
+  font-weight: 500;
+  transition: 0.3s;
+  color: #666b88;
+}
+body main .numbers button:hover {
+  background: #f8f8f8;
+}
+body main .numbers button.active {
+  background: #fd6b22;
+  color: #fff;
+}
+body main .paginator_btns {
+  display: flex;
+  align-items: center;
+}
+body main .paginator_btns.rotate button {
+  transform: rotate(180deg);
+}
+body main .paginator_btns button {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+body main .paginator_btns button i {
+  color: #666b88;
+  font-size: 18px;
+}
+body main .paginator_btns button.disabled {
+  opacity: 50%;
+  pointer-events: none;
+}
+body main .paginator_btns button:hover {
+  background: #fd6b22;
+}
+body main .paginator_btns button:hover i {
+  color: #fff;
+}
 body main .error-section {
   padding: 60px 16px;
   display: flex;
@@ -1638,6 +1742,56 @@ body main .sections {
 }
 body main .sections .section_header {
   margin-bottom: 16px;
+}
+body main .notifications_section {
+  padding: 60px 0;
+}
+body main .notifications_section .notify {
+  padding: 16px;
+  background: #f8f8f8;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body main .notifications_section .notify .notify_info {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+}
+body main .notifications_section .notify .notify_info .img {
+  min-width: 60px;
+  max-width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+body main .notifications_section .notify .notify_info .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body main .notifications_section .notify .notify_info .content h6 {
+  font-size: 12px;
+  color: #666b88;
+}
+body main .notifications_section .notify .notify_info .content p {
+  margin-top: 4px;
+  color: #222020;
+  font-size: 12px;
+  line-height: 20px;
+}
+body main .notifications_section .notify .date_time {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+body main .notifications_section .notify .date_time span {
+  white-space: nowrap;
+  color: #666b88;
+  font-size: 12px;
+  line-height: 20px;
 }
 body footer {
   background: #fff;

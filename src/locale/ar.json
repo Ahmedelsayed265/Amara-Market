@@ -115,5 +115,8 @@
     "orderDate": "تاريخ الطلب",
     "wantChangePassword": "هل تريد تغيير كلمة المرور",
     "enterNewPassword": "ادخل كلمة مرور جديدة",
-    "loginSuccess": "تم تسجيل الدخول بنجاح"
+    "loginSuccess": "تم تسجيل الدخول بنجاح",
+    "noNotifications": "لا يوجد اشعارات",
+    "notifications": "الاشعارات",
+    "orderNumber": "رقم الطلب"
 }

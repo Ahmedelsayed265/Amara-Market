@@ -115,5 +115,8 @@
     "orderDate": "Order Date",
     "wantChangePassword": "Do you want to change your password",
     "enterNewPassword": "Enter new password",
-    "loginSuccess": "Login successful"
+    "loginSuccess": "Login successful",
+    "noNotifications": "No Notifications",
+    "notifications": "Notifications",
+    "orderNumber": "Order Number"
 }

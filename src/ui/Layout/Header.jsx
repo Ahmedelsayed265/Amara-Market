@@ -8,6 +8,9 @@ import { setLanguage } from "../../redux/slices/language";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import axiosInstance from "../../utils/axiosInstance";
+import useGetNotifications from "../../hooks/useGetNotifications";
+import DataLoader from "./DataLoader";
+import NotificationItem from "./NotificationItem";
 
 function Header() {
   const dispatch = useDispatch();
@@ -18,6 +21,7 @@ function Header() {
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
   const { isLogged } = useSelector((state) => state.authedUser);
+  const { data: notifications, isLoading } = useGetNotifications();
 
   const [showMenu, setShowMenu] = useState(false);
   const [cookies, , deleteCookie] = useCookies(["token"]);
@@ -137,9 +141,9 @@ function Header() {
             </Dropdown.Toggle>
             <Dropdown.Menu className="drop_Message_Menu">
               <div className="scroll_menu">
-                {/* {notificationsLoading ? (
-                  <DataLoader />
-                ) : notifications?.data && notifications?.data?.length > 0 ? (
+                {isLoading ? (
+                  <DataLoader minHeight="150px" />
+                ) : notifications?.total > 0 ? (
                   <>
                     {notifications?.data?.map((notification) => (
                       <Dropdown.Item
@@ -151,15 +155,15 @@ function Header() {
                     ))}
                   </>
                 ) : (
-                  <EmptyData>{t("noNotifications")}</EmptyData>
-                )} */}
+                  <p>{t("noNotifications")}</p>
+                )}
               </div>
               <Link
                 className="showall"
                 to="/notifications"
                 style={{ textDecoration: "none" }}
               >
-                {t("Notifications")}
+                {t("showAllNotifications")}
               </Link>
             </Dropdown.Menu>
           </Dropdown>

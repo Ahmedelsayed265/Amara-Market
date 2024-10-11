@@ -3,6 +3,7 @@ import Contact from "./routes/Contact";
 import EditProfile from "./routes/EditProfile";
 import ForgetPassword from "./routes/ForgetPassword";
 import Login from "./routes/Login";
+import Notifications from "./routes/Notifications";
 import OrderDetails from "./routes/OrderDetails";
 import Orders from "./routes/Orders";
 import Privacy from "./routes/Privacy";
@@ -46,6 +47,11 @@ const router = [
   {
     path: "/contact",
     element: <Contact />,
+    protected: true,
+  },
+  {
+    path: "/notifications",
+    element: <Notifications />,
     protected: true,
   },
   {

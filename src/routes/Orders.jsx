@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import useGetOrders from "../hooks/useGetOrders";
 import DataLoader from "../ui/Layout/DataLoader";
 import PageHeader from "../ui/Layout/PageHeader";
+import CustomPagination from "../ui/Layout/CustomPagination";
 
 function Orders() {
   const { t } = useTranslation();
@@ -98,7 +99,7 @@ function Orders() {
 
                 <div className="col-lg-9 col-md-10 col-12 p-2">
                   <div className="row">
-                    {orders?.map((order) => (
+                    {orders?.data?.map((order) => (
                       <div
                         className="col-lg-6 col-md-6 col-12 p-2"
                         key={order.id}
@@ -130,6 +131,9 @@ function Orders() {
                         </Link>
                       </div>
                     ))}
+                    {orders?.total > 12 && (
+                      <CustomPagination count={orders?.total} />
+                    )}
                   </div>
                 </div>
               </>

@@ -121,24 +121,26 @@ header {
           flex: 1 1 auto;
           .drop_Message {
             width: 100%;
-            .image-wrapper {
-              align-items: center;
-              border-radius: 50%;
-              display: flex;
-              justify-content: center;
-              overflow: hidden;
-              position: relative;
-              width: 32px;
-              aspect-ratio: 1;
-              background-color: #4381f81a;
-              i {
-                font-size: 16px;
-                color: $main;
+            background: $inputBg;
+            padding: 12px;
+            border-radius: 8px;
+            .header {
+              @include space-between();
+              margin-bottom: 8px;
+              .title {
+                font-size: 14px;
+                color: $dark;
+              }
+              .time {
+                color: $text;
+                font-size: 10px;
               }
             }
             p {
               margin: 0;
               text-align: start;
+              font-size: 14px;
+              color: $dark;
             }
           }
         }

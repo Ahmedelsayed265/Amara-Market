@@ -1,0 +1,94 @@
+.pagination_component {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  justify-content: center;
+  img {
+    opacity: 50%;
+    transition: opacity 0.2s;
+  }
+  button:hover {
+    img {
+      opacity: 100%;
+    }
+  }
+  button.disabled:hover {
+    img {
+      opacity: 50%;
+    }
+    cursor: default;
+  }
+  .reverse {
+    img {
+      transform: rotate(180deg);
+    }
+  }
+  p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    span {
+      color: $dark;
+      font-weight: 600;
+    }
+  }
+}
+.numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  button {
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+    color: $dark;
+    font-weight: 500;
+    transition: 0.3s;
+    color: $text;
+    &:hover {
+      background: $inputBg;
+    }
+    &.active {
+      background: $main;
+      color: $white;
+    }
+  }
+}
+.paginator_btns {
+  display: flex;
+  align-items: center;
+  &.rotate {
+    button {
+      transform: rotate(180deg);
+    }
+  }
+  button {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    @include centerFlex();
+    cursor: pointer;
+    i {
+      color: $text;
+      font-size: 18px;
+    }
+    &.disabled {
+      opacity: 50%;
+      pointer-events: none;
+    }
+    &:hover {
+      background: $main;
+      i {
+        color: $white;
+      }
+    }
+  }
+}

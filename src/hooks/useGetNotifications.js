@@ -3,36 +3,19 @@ import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axiosInstance from "../utils/axiosInstance";
 
-export default function useGetOrders() {
+export default function useGetNotifications() {
   const { lang } = useSelector((state) => state.language);
   const [searchParams] = useSearchParams();
-  const status = searchParams.get("status") || "all";
-  const from = searchParams.get("from") || "";
-  const to = searchParams.get("to") || "";
   const page = searchParams.get("page") || 1;
 
   const { isLoading, data, error } = useQuery({
-    queryKey: ["orders", lang, status, from, to, page],
+    queryKey: ["notifications", lang, page],
     queryFn: async () => {
-      const payload = {
-        page: page,
-        skip: 12,
-      };
-      if (status !== "all") {
-        payload.status = status;
-      }
-      if (from !== "") {
-        payload.from = from;
-      }
-      if (to !== "") {
-        payload.to = to;
-      }
-
       try {
-        const res = await axiosInstance.post(
-          "/market/get_market_orders",
-          payload
-        );
+        const res = await axiosInstance.post("/get_notification", {
+          type: "market",
+          skip: 9,
+        });
         if (res.status === 200) {
           return {
             data: res.data.data,

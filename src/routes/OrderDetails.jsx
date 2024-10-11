@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ProgressBar } from "react-bootstrap";
 import useGetOrderById from "../hooks/useGetOrderById";
 import DataLoader from "../ui/Layout/DataLoader";
@@ -7,7 +8,6 @@ import PageHeader from "../ui/Layout/PageHeader";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { useTranslation } from "react-i18next";
 
 function OrderDetails() {
   const { id } = useParams();
