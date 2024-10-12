@@ -2070,15 +2070,15 @@ body .login_section {
   display: flex;
 }
 body .login_section .img_div {
-  width: 50%;
+  width: 60%;
 }
 body .login_section .img_div img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: top;
+     object-position: top;
 }
 @media screen and (max-width: 768px) {
   body .login_section .img_div {
@@ -2086,7 +2086,7 @@ body .login_section .img_div img {
   }
 }
 body .login_section .login_form {
-  width: 50%;
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2096,7 +2096,7 @@ body .login_section .login_form .form_container {
   flex-direction: column;
   justify-content: center;
   gap: 42px;
-  width: min(100% - 42px, 600px);
+  width: min(100% - 42px, 500px);
 }
 body .login_section .login_form .form_container .header_form h2 {
   color: #fd6b22;

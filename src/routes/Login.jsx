@@ -59,7 +59,7 @@ export default function Login() {
   return (
     <section className="auth login_section">
       <div className="img_div">
-        <img src="/images/35721721426032.jpg" alt="" />
+        <img src="/images/login.png" alt="" />
       </div>
       <div className="login_form">
         <div className="form_container">
