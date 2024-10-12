@@ -12,11 +12,7 @@ function ProtectedRoute({ children }) {
     }
   }, [isAuthed, loading, navigate]);
 
-  if (loading) {
-    return null;
-  }
-
-  return children;
+  return loading ? null : children;
 }
 
 export default ProtectedRoute;
