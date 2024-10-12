@@ -526,7 +526,7 @@ body {
         flex-direction: column;
         justify-content: center;
         gap: 42px;
-        width: min(100% - 32px, 640px);
+        width: min(100% - 42px, 600px);
         .header_form {
           h2 {
             color: $main;
