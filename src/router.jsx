@@ -2,7 +2,6 @@ import About from "./routes/About";
 import Contact from "./routes/Contact";
 import EditProfile from "./routes/EditProfile";
 import ForgetPassword from "./routes/ForgetPassword";
-import Login from "./routes/Login";
 import Notifications from "./routes/Notifications";
 import OrderDetails from "./routes/OrderDetails";
 import Orders from "./routes/Orders";
@@ -53,10 +52,6 @@ const router = [
     path: "/notifications",
     element: <Notifications />,
     protected: true,
-  },
-  {
-    path: "/login",
-    element: <Login />,
   },
   {
     path: "/register",

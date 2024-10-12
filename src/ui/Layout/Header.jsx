@@ -178,7 +178,7 @@ function Header() {
                     ))}
                   </>
                 ) : (
-                  <p>{t("noNotifications")}</p>
+                  <p className="noNotifications">{t("noNotifications")}</p>
                 )}
               </div>
               <Link

@@ -444,6 +444,14 @@ body header nav .more_actions .drop_Message_Menu .scroll_menu {
   overflow-y: scroll;
   flex: 1 1 auto;
 }
+body header nav .more_actions .drop_Message_Menu .scroll_menu .noNotifications {
+  width: 100%;
+  text-align: start;
+  margin: 0;
+  padding: 16px;
+  font-size: 20px;
+  color: #aaaaaa;
+}
 body header nav .more_actions .drop_Message_Menu .scroll_menu .drop_Message {
   width: 100%;
   background: #f8f8f8;
@@ -2054,6 +2062,54 @@ body footer .links a {
 }
 body footer .links a:hover {
   color: #fd6b22;
+}
+body .login_section {
+  width: 100%;
+  padding: 0 !important;
+  height: 100vh;
+  display: flex;
+}
+body .login_section .img_div {
+  width: 50%;
+}
+body .login_section .img_div img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media screen and (max-width: 768px) {
+  body .login_section .img_div {
+    display: none;
+  }
+}
+body .login_section .login_form {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .login_section .login_form .form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 42px;
+  width: min(100% - 32px, 640px);
+}
+body .login_section .login_form .form_container .header_form h2 {
+  color: #fd6b22;
+  font-size: 22px;
+}
+body .login_section .login_form .form_container .header_form P {
+  font-size: 14px;
+  color: #666b88;
+}
+@media screen and (max-width: 768px) {
+  body .login_section .login_form {
+    width: 100%;
+  }
 }
 body.en {
   direction: ltr;

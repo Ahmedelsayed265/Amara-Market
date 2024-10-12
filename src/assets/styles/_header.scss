@@ -119,6 +119,14 @@ header {
         .scroll_menu {
           overflow-y: scroll;
           flex: 1 1 auto;
+          .noNotifications {
+            width: 100%;
+            text-align: start;
+            margin: 0;
+            padding: 16px;
+            font-size: 20px;
+            color: $inputHint;
+          }
           .drop_Message {
             width: 100%;
             background: $inputBg;
