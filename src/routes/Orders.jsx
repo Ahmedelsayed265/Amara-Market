@@ -115,7 +115,7 @@ function Orders() {
                             <div className="info">
                               <h6>{order?.user?.name}</h6>
                               <p>
-                                {t("status")} : {order?.status}
+                                {t("status")} : {t(order?.status)}
                               </p>
                               <p>
                                 {t("order")} : {order?.id}#
@@ -131,11 +131,11 @@ function Orders() {
                         </Link>
                       </div>
                     ))}
-                    {
-                      orders?.data?.length === 0 && (
-                        <p className="empty_text">{t("noOrdersWithThisStatus")}</p>
-                      )
-                    }
+                    {orders?.data?.length === 0 && (
+                      <p className="empty_text">
+                        {t("noOrdersWithThisStatus")}
+                      </p>
+                    )}
                     {orders?.total > 12 && (
                       <CustomPagination count={orders?.total} />
                     )}
