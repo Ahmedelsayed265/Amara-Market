@@ -95,14 +95,14 @@ function OrderDetails() {
                           name={t("acceptOrder")}
                           className="accept"
                           loading={acceptLoading}
-                          onClick={() => handleChangeStatus("in_progress")}
+                          event={() => handleChangeStatus("in_progress")}
                         />
                       )}
 
                       {(status === "new" || status === "in_progress") && (
                         <SubmitButton
                           className="cancel"
-                          onClick={() => handleChangeStatus("canceled")}
+                          event={() => handleChangeStatus("canceled")}
                           name={t("cancelOrder")}
                           loading={cancelLoading}
                         />
