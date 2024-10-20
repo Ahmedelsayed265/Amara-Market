@@ -137,5 +137,19 @@
     "invoiceNumber": "Invoice Number",
     "customerName": "Customer Name",
     "customerPhone": "Phone Number",
-    "noOrdersWithThisStatus": "No orders with this status"
+    "noOrdersWithThisStatus": "No orders with this status",
+    "verificationTitle": "Verify your store",
+    "verifyNow": "Verify Now",
+    "addattachments": "Add Attachments",
+    "payNow": "Pay Now",
+    "choosePayment": "Choose Payment Method",
+    "onlinePay": "Online Payment",
+    "walletPay": "Wallet Payment",
+    "paymentSuccess": "Payment Successful",
+    "ifYouProceedWithWalletAmountWillBeDeducted": "If you proceed with the wallet payment, an amount will be deducted.",
+    "yourBalance": "Your balance is",
+    "verificationSuccess": "Your documents have been sent successfully",
+    "verification": "🌟 Verify your store now to activate your account and enjoy all the exclusive features! 🚀 Don’t miss the opportunity, take your store to success today. 💼🔒",
+    "payText": "🎉 Your information has been successfully verified! 💼 Please make the payment to complete the verification process and receive the verification badge for customers ✅.",
+    "verificationTextRequirement": "Please upload the required documents to verify your  store: business license, owner ID, address proof, and bank details. Your account will be activated upon successful verification."
 }

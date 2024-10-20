@@ -528,14 +528,30 @@ body header nav .more_actions .auth_menu .profile {
 body header nav .more_actions .auth_menu .profile .img {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
+  position: relative;
 }
 body header nav .more_actions .auth_menu .profile .img img {
+  border-radius: 50%;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body header nav .more_actions .auth_menu .profile .img .verified {
+  position: absolute;
+  bottom: -8px;
+  left: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body header nav .more_actions .auth_menu .profile .img .verified i {
+  color: #2ecc71;
+  font-size: 12px;
 }
 body header nav .more_actions .auth_menu .profile .info {
   display: flex;
@@ -751,7 +767,8 @@ body .form .noAccount {
 body .form .noAccount a {
   color: #fd6b22;
 }
-body .form button {
+body .form button,
+body .form .sub_link {
   width: 100%;
   height: 56px;
   gap: 6px;
@@ -766,7 +783,8 @@ body .form button {
   background: #fd6b22;
   font-size: 14px;
 }
-body .form button.disabled {
+body .form button.disabled,
+body .form .sub_link.disabled {
   opacity: 0.7;
   pointer-events: none;
 }
@@ -2063,6 +2081,27 @@ body footer .links a {
 body footer .links a:hover {
   color: #fd6b22;
 }
+body .verification_card {
+  width: 100%;
+  padding: 24px;
+  background: #fd6b22;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body .verification_card h2 {
+  font-size: 16px;
+  color: #fff;
+  margin: 0;
+}
+body .verification_card button {
+  background: #fff;
+  color: #fd6b22;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 10px 32px;
+}
 body .login_section {
   width: 100%;
   padding: 0 !important;
@@ -2070,7 +2109,7 @@ body .login_section {
   display: flex;
 }
 body .login_section .img_div {
-  width: 60%;
+  width: 50%;
 }
 body .login_section .img_div img {
   width: 100%;
@@ -2086,7 +2125,7 @@ body .login_section .img_div img {
   }
 }
 body .login_section .login_form {
-  width: 40%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2096,7 +2135,7 @@ body .login_section .login_form .form_container {
   flex-direction: column;
   justify-content: center;
   gap: 42px;
-  width: min(100% - 42px, 500px);
+  width: min(100% - 42px, 560px);
 }
 body .login_section .login_form .form_container .header_form h2 {
   color: #fd6b22;
@@ -2110,6 +2149,99 @@ body .login_section .login_form .form_container .header_form P {
   body .login_section .login_form {
     width: 100%;
   }
+}
+body .verificationText {
+  font-size: 14px;
+  color: #666b88;
+}
+body .upload_attachments {
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  background: #f8f8f8;
+  border: #f2f2f2 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+body .upload_attachments .icon {
+  background: var(--input-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+body .upload_attachments .content h6 {
+  margin: 0;
+  font-size: 16px;
+}
+body .upload_attachments input {
+  display: none;
+}
+body .attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .attachments .attachment {
+  border-radius: 12px;
+  background: #f8f8f8;
+  border: #f2f2f2 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+}
+body .attachments .attachment .icon {
+  width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .attachments .attachment .icon img {
+  aspect-ratio: 1/1;
+  max-width: 42px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .attachments .attachment .delete {
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .attachments .attachment .delete i {
+  color: red;
+  height: 16px;
+}
+body .attachments .attachment .content h6 {
+  margin: 0;
+  font-size: 14px;
+  color: #222020;
+}
+body .attachments .attachment .content h6 a {
+  color: #222020;
+}
+body .attachments .attachment .content p {
+  margin: 0;
+  font-size: 12px;
+}
+body .priceText {
+  text-align: start !important;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+body .priceText span {
+  color: #fd6b22;
+  font-size: 18px;
 }
 body.en {
   direction: ltr;

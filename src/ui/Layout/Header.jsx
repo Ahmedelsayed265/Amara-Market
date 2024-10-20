@@ -202,6 +202,11 @@ function Header() {
                 <div className="profile">
                   <div className="img">
                     <img src={user?.logo} alt="" />
+                    {user?.paid ? (
+                      <span className="verified">
+                        <i className="fa-solid fa-badge-check"></i>
+                      </span>
+                    ) : null}
                   </div>
                   <div className="info">
                     <p>{user?.name}</p>

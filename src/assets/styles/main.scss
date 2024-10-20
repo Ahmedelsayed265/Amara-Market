@@ -501,13 +501,33 @@ body {
     }
   }
 
+  .verification_card {
+    width: 100%;
+    padding: 24px;
+    background: $main;
+    border-radius: 16px;
+    @include space-between();
+    h2 {
+      font-size: 16px;
+      color: $white;
+      margin: 0;
+    }
+    button {
+      background: $white;
+      color: $main;
+      border-radius: 8px;
+      font-size: 14px;
+      padding: 10px 32px;
+    }
+  }
+
   .login_section {
     width: 100%;
     padding: 0 !important;
     height: 100vh;
     display: flex;
     .img_div {
-      width: 60%;
+      width: 50%;
       img {
         width: 100%;
         height: 100%;
@@ -519,14 +539,14 @@ body {
       }
     }
     .login_form {
-      width: 40%;
+      width: 50%;
       @include centerFlex();
       .form_container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 42px;
-        width: min(100% - 42px, 500px);
+        width: min(100% - 42px, 560px);
         .header_form {
           h2 {
             color: $main;
@@ -544,6 +564,97 @@ body {
     }
   }
 
+  .verificationText {
+    font-size: 14px;
+    color: $text;
+  }
+
+  .upload_attachments {
+    padding: 12px;
+    width: 100%;
+    border-radius: 12px;
+    background: $inputBg;
+    border: $inputStroke 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    .icon {
+      background: var(--input-bg);
+      border-radius: 8px;
+      @include centerFlex();
+      padding: 12px;
+    }
+    .content {
+      h6 {
+        margin: 0;
+        font-size: 16px;
+      }
+    }
+    input {
+      display: none;
+    }
+  }
+  .attachments {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .attachment {
+      border-radius: 12px;
+      background: $inputBg;
+      border: $inputStroke 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      .icon {
+        width: 42px;
+        @include centerFlex();
+        img {
+          aspect-ratio: 1 / 1;
+          max-width: 42px;
+          object-fit: contain;
+        }
+      }
+      .delete {
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: none;
+        cursor: pointer;
+        @include centerFlex();
+        i {
+          color: red;
+          height: 16px;
+        }
+      }
+      .content {
+        h6 {
+          margin: 0;
+          font-size: 14px;
+          color: $dark;
+          a {
+            color: $dark;
+          }
+        }
+        p {
+          margin: 0;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .priceText {
+    text-align: start !important;
+    font-size: 14px;
+    margin-bottom: 4px;
+    span {
+      color: $main;
+      font-size: 18px;
+    }
+  }
   &.en {
     direction: ltr;
     .closeModal {
