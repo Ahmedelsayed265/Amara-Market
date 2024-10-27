@@ -14,7 +14,8 @@ const MapWithMarker = ({ formData, setFormData }) => {
       lng: Number(formData.lng),
     });
 
-    reverseGeocodeMarkerPosition();
+    reverseGeocodeMarkerPosition(markerPosition);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const handleMarkerDragEnd = (coord) => {
@@ -36,6 +37,10 @@ const MapWithMarker = ({ formData, setFormData }) => {
       if (status === "OK") {
         if (results[0]) {
           setSearchInput(results[0].formatted_address);
+          setFormData((prev) => ({
+            ...prev,
+            address: results[0].formatted_address,
+          }));
         } else {
           console.error("No results found");
         }
@@ -60,6 +65,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
         ...formData,
         lat: position.lat.toFixed(6),
         lng: position.lng.toFixed(6),
+        address: selectedPlace.name,
       });
 
       setSearchInput(selectedPlace.name);
@@ -67,6 +73,10 @@ const MapWithMarker = ({ formData, setFormData }) => {
   };
 
   const handleInputChange = (event) => {
+    setFormData((prev) => ({
+      ...prev,
+      address: event.target.value,
+    }));
     setSearchInput(event.target.value);
   };
 
@@ -74,6 +84,22 @@ const MapWithMarker = ({ formData, setFormData }) => {
     if (event.key === "Enter") {
       event.preventDefault();
     }
+  };
+
+  const handleMapClick = (e) => {
+    const position = {
+      lat: e.latLng.lat(),
+      lng: e.latLng.lng(),
+    };
+    setMarkerPosition(position);
+
+    setFormData({
+      ...formData,
+      lat: position.lat.toFixed(6),
+      lng: position.lng.toFixed(6),
+    });
+
+    reverseGeocodeMarkerPosition(position);
   };
 
   return (
@@ -85,6 +111,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       }}
       zoom={10}
       center={markerPosition}
+      onClick={handleMapClick} // Handle map click to place marker
     >
       <Marker
         icon="/images/map-pin.svg"
