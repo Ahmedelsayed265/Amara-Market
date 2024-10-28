@@ -86,21 +86,21 @@ const MapWithMarker = ({ formData, setFormData }) => {
     }
   };
 
-  const handleMapClick = (e) => {
-    const position = {
-      lat: e.latLng.lat(),
-      lng: e.latLng.lng(),
-    };
-    setMarkerPosition(position);
+  // const handleMapClick = (e) => {
+  //   const position = {
+  //     lat: e.latLng.lat(),
+  //     lng: e.latLng.lng(),
+  //   };
+  //   setMarkerPosition(position);
 
-    setFormData({
-      ...formData,
-      lat: position.lat.toFixed(6),
-      lng: position.lng.toFixed(6),
-    });
+  //   setFormData({
+  //     ...formData,
+  //     lat: position.lat.toFixed(6),
+  //     lng: position.lng.toFixed(6),
+  //   });
 
-    reverseGeocodeMarkerPosition(position);
-  };
+  //   reverseGeocodeMarkerPosition(position);
+  // };
 
   return (
     <GoogleMap
@@ -111,7 +111,7 @@ const MapWithMarker = ({ formData, setFormData }) => {
       }}
       zoom={10}
       center={markerPosition}
-      onClick={handleMapClick} // Handle map click to place marker
+      // onClick={handleMapClick} // Handle map click to place marker
     >
       <Marker
         icon="/images/map-pin.svg"
