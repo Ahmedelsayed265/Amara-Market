@@ -80,259 +80,257 @@ export default function RegisterForm({
   };
 
   return (
-    <div className="col-lg-8 col-12">
-      <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="image" className="image_wrapper">
+    <form className="form" onSubmit={handleSubmit}>
+      <label htmlFor="image" className="image_wrapper">
+        <img
+          src={
+            formData.image
+              ? URL.createObjectURL(formData.image)
+              : "/images/profile-banner.png"
+          }
+          alt="banner"
+        />
+        <label htmlFor="image" className="upload_iamge">
+          <input
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            onChange={handleChange}
+          />
+          <img src="/images/upload.svg" alt="upload" />
+        </label>
+        <label htmlFor="logo" className="logo_wrap">
           <img
             src={
-              formData.image
-                ? URL.createObjectURL(formData.image)
-                : "/images/profile-banner.png"
+              formData.logo
+                ? URL.createObjectURL(formData.logo)
+                : "/images/ava.jpg"
             }
-            alt="banner"
+            alt=""
           />
-          <label htmlFor="image" className="upload_iamge">
+          <label htmlFor="logo" className="upload_iamge">
             <input
               type="file"
-              name="image"
-              id="image"
+              name="logo"
+              id="logo"
               accept="image/*"
               onChange={handleChange}
             />
             <img src="/images/upload.svg" alt="upload" />
           </label>
-          <label htmlFor="logo" className="logo_wrap">
-            <img
-              src={
-                formData.logo
-                  ? URL.createObjectURL(formData.logo)
-                  : "/images/ava.jpg"
-              }
-              alt=""
-            />
-            <label htmlFor="logo" className="upload_iamge">
-              <input
-                type="file"
-                name="logo"
-                id="logo"
-                accept="image/*"
-                onChange={handleChange}
-              />
-              <img src="/images/upload.svg" alt="upload" />
-            </label>
-          </label>
         </label>
+      </label>
 
-        <div className="form_group">
-          <InputField
-            label={t("marketName")}
-            name="name"
-            id="name"
-            required
-            icon={<i className="fa-regular fa-user"></i>}
-            placeholder={t("marketName")}
-            value={formData.name}
-            onChange={handleChange}
-          />
+      <div className="form_group">
+        <InputField
+          label={t("marketName")}
+          name="name"
+          id="name"
+          required
+          icon={<i className="fa-regular fa-user"></i>}
+          placeholder={t("marketName")}
+          value={formData.name}
+          onChange={handleChange}
+        />
 
-          {/* market type  */}
-          <div className="input-field">
-            <label>
-              <i className="fa-sharp fa-solid fa-store"></i> {t("marketType")}
+        {/* market type  */}
+        <div className="input-field">
+          <label>
+            <i className="fa-sharp fa-solid fa-store"></i> {t("marketType")}
+          </label>
+          <div className="market_types">
+            <label htmlFor={0} className="market_type_radio">
+              <input
+                type="radio"
+                name="type"
+                id={0}
+                checked={marketType === 0}
+                onChange={() => {
+                  setMarketType(0);
+                  setMarketCode("");
+                }}
+              />
+              <span>{t("globalMarkets")}</span>
             </label>
-            <div className="market_types">
-              <label htmlFor={0} className="market_type_radio">
-                <input
-                  type="radio"
-                  name="type"
-                  id={0}
-                  checked={marketType === 0}
-                  onChange={() => {
-                    setMarketType(0);
-                    setMarketCode("");
-                  }}
-                />
-                <span>{t("globalMarkets")}</span>
-              </label>
 
-              <label htmlFor={1} className="market_type_radio">
-                <input
-                  type="radio"
-                  name="type"
-                  id={1}
-                  checked={marketType === 1}
-                  onChange={() => {
-                    setMarketType(1);
-                    setMarketCode("");
-                  }}
-                />
-                <span>{t("amaraMarkets")}</span>
-              </label>
-            </div>
+            <label htmlFor={1} className="market_type_radio">
+              <input
+                type="radio"
+                name="type"
+                id={1}
+                checked={marketType === 1}
+                onChange={() => {
+                  setMarketType(1);
+                  setMarketCode("");
+                }}
+              />
+              <span>{t("amaraMarkets")}</span>
+            </label>
           </div>
         </div>
+      </div>
 
-        <div className="form_group">
-          <InputField
-            label={t("email")}
-            name="email"
-            id="email"
-            type="email"
-            required
-            icon={<i className="fa-regular fa-envelope"></i>}
-            placeholder="EX: example@example.com"
-            value={formData.email}
-            onChange={handleChange}
-          />
+      <div className="form_group">
+        <InputField
+          label={t("email")}
+          name="email"
+          id="email"
+          type="email"
+          required
+          icon={<i className="fa-regular fa-envelope"></i>}
+          placeholder="EX: example@example.com"
+          value={formData.email}
+          onChange={handleChange}
+        />
 
-          <PhoneField
-            label={t("phoneNumber")}
-            icon={<i className="fa-light fa-phone"></i>}
-            placeholder="5xxxxxxxxx"
-            maxLength={9}
-            id="phone"
-            name="phone"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-          />
-        </div>
+        <PhoneField
+          label={t("phoneNumber")}
+          icon={<i className="fa-light fa-phone"></i>}
+          placeholder="5xxxxxxxxx"
+          maxLength={9}
+          id="phone"
+          name="phone"
+          required
+          value={formData.phone}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="form_group">
-          <PasswordField
-            label={t("password")}
-            placeholder={t("enterPassword")}
-            id="password"
-            name="password"
-            required
-            icon={<i className="fa-regular fa-lock"></i>}
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <InputField
-            label={t("deliveryPrice")}
-            name="delivery_price"
-            id="delivery_price"
-            required
-            icon={<i className="fa-regular fa-person-carry-box"></i>}
-            placeholder="00"
-            value={formData.delivery_price}
-            onChange={handleChange}
-          />
-        </div>
+      <div className="form_group">
+        <PasswordField
+          label={t("password")}
+          placeholder={t("enterPassword")}
+          id="password"
+          name="password"
+          required
+          icon={<i className="fa-regular fa-lock"></i>}
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <InputField
+          label={t("deliveryPrice")}
+          name="delivery_price"
+          id="delivery_price"
+          required
+          icon={<i className="fa-regular fa-person-carry-box"></i>}
+          placeholder="00"
+          value={formData.delivery_price}
+          onChange={handleChange}
+        />
+      </div>
 
-        <div className="form_group">
-          <SelectField
-            id="city_id"
-            label={t("city")}
-            placeholder={t("selectCity")}
-            icon={<i className="fa-light fa-city"></i>}
-            options={cities?.map(({ id, name }) => ({
-              value: id,
-              label: name,
-            }))}
-            value={formData.city_id}
-            isLoading={citiesLoading}
-            onChange={handleChange}
-            isMulti={false}
-          />
-
-          <div className="input-field">
-            <label htmlFor="work_houres">
-              <i className="fa-regular fa-clock"></i> {t("workHoures")}
-            </label>
-            <div className="d-flex align-items-center gap-2">
-              <Form.Control
-                type="time"
-                value={formData.from_time}
-                id="from_time"
-                required
-                name="from_time"
-                onChange={handleChange}
-              />
-              <Form.Control
-                type="time"
-                required
-                value={formData.to_time}
-                id="to_time"
-                name="to_time"
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-        </div>
-
+      <div className="form_group">
         <SelectField
-          id="categories"
-          label={t("categories")}
-          placeholder={t("selectCategories")}
-          icon={<i className="fa-light fa-grid-2"></i>}
-          options={categories?.map(({ id, name }) => ({
+          id="city_id"
+          label={t("city")}
+          placeholder={t("selectCity")}
+          icon={<i className="fa-light fa-city"></i>}
+          options={cities?.map(({ id, name }) => ({
             value: id,
             label: name,
           }))}
-          value={formData.categories}
-          isLoading={categoriesLoading}
+          value={formData.city_id}
+          isLoading={citiesLoading}
           onChange={handleChange}
-          isMulti={true}
+          isMulti={false}
         />
 
-        {marketType === 1 && (
-          <InputField
-            label={t("marketCode")}
-            name="market_code"
-            required
-            id="market_code"
-            icon={<i className="fa-light fa-store"></i>}
-            placeholder={t("marketCode")}
-            value={marketCode}
-            onChange={(e) => setMarketCode(e.target.value)}
-          />
-        )}
+        <div className="input-field">
+          <label htmlFor="work_houres">
+            <i className="fa-regular fa-clock"></i> {t("workHoures")}
+          </label>
+          <div className="d-flex align-items-center gap-2">
+            <Form.Control
+              type="time"
+              value={formData.from_time}
+              id="from_time"
+              required
+              name="from_time"
+              onChange={handleChange}
+            />
+            <Form.Control
+              type="time"
+              required
+              value={formData.to_time}
+              id="to_time"
+              name="to_time"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+      </div>
 
-        <LocationField
-          label={t("marketLocation")}
-          placeholder={t("marketLocation")}
-          icon={<i className="fa-light fa-location-dot"></i>}
-          setShowModal={setShowModal}
-          id="address"
-          name="address"
-          required
-          value={formData.address}
-          onChange={handleChange}
-        />
+      <SelectField
+        id="categories"
+        label={t("categories")}
+        placeholder={t("selectCategories")}
+        icon={<i className="fa-light fa-grid-2"></i>}
+        options={categories?.map(({ id, name }) => ({
+          value: id,
+          label: name,
+        }))}
+        value={formData.categories}
+        isLoading={categoriesLoading}
+        onChange={handleChange}
+        isMulti={true}
+      />
 
+      {marketType === 1 && (
         <InputField
-          label={t("marketDescription")}
-          name="description"
-          id="description"
-          as={"textarea"}
+          label={t("marketCode")}
+          name="market_code"
           required
-          icon={<i className="fa-solid fa-dumpster-fire"></i>}
-          placeholder={t("marketDescription")}
-          value={formData.description}
-          onChange={handleChange}
+          id="market_code"
+          icon={<i className="fa-light fa-store"></i>}
+          placeholder={t("marketCode")}
+          value={marketCode}
+          onChange={(e) => setMarketCode(e.target.value)}
         />
+      )}
 
-        <p className="noAccount">
-          {t("agreement")} <Link to="/terms">{t("termsConditions")}</Link>{" "}
-          {t("and")} <Link to="/privacy">{t("privacyPolicy")}</Link>
-        </p>
+      <LocationField
+        label={t("marketLocation")}
+        placeholder={t("marketLocation")}
+        icon={<i className="fa-light fa-location-dot"></i>}
+        setShowModal={setShowModal}
+        id="address"
+        name="address"
+        required
+        value={formData.address}
+        onChange={handleChange}
+      />
 
-        <SubmitButton name={t("register")} loading={loading} />
+      <InputField
+        label={t("marketDescription")}
+        name="description"
+        id="description"
+        as={"textarea"}
+        required
+        icon={<i className="fa-solid fa-dumpster-fire"></i>}
+        placeholder={t("marketDescription")}
+        value={formData.description}
+        onChange={handleChange}
+      />
 
-        <p className="noAccount">
-          {t("alreadyHaveAccount")}
-          <Link to="/login"> {t("login")} </Link>
-        </p>
+      <p className="noAccount">
+        {t("agreement")} <Link to="/terms">{t("termsConditions")}</Link>{" "}
+        {t("and")} <Link to="/privacy">{t("privacyPolicy")}</Link>
+      </p>
 
-        <MapModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      </form>
-    </div>
+      <SubmitButton name={t("register")} loading={loading} />
+
+      <p className="noAccount">
+        {t("alreadyHaveAccount")}
+        <Link to="/login"> {t("login")} </Link>
+      </p>
+
+      <MapModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        formData={formData}
+        setFormData={setFormData}
+      />
+    </form>
   );
 }

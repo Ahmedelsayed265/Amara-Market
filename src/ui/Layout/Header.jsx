@@ -22,7 +22,6 @@ function Header() {
 
   const { t } = useTranslation();
   const { user } = useSelector((state) => state.authedUser);
-  const { isLogged } = useSelector((state) => state.authedUser);
   const { data: notifications, isLoading } = useGetNotifications();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -61,7 +60,7 @@ function Header() {
         delete axiosInstance.defaults.headers.common["Authorization"];
         dispatch(setUser({}));
         dispatch(setIsLogged(false));
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error during logout:", error);
@@ -110,28 +109,29 @@ function Header() {
         <div ref={menuRef} className={`nav_links ${showMenu ? "show" : ""}`}>
           <NavLink
             className="nav_link"
-            to="/"
+            to=""
+            end
             onClick={() => setShowMenu(false)}
           >
             {t("orders")}
           </NavLink>
           <NavLink
             className="nav_link"
-            to="/products"
+            to="products"
             onClick={() => setShowMenu(false)}
           >
             {t("products")}
           </NavLink>
           <NavLink
             className="nav_link"
-            to="/about"
+            to="about"
             onClick={() => setShowMenu(false)}
           >
             {t("aboutUs")}
           </NavLink>
           <NavLink
             className="nav_link"
-            to="/contact"
+            to="contact"
             onClick={() => setShowMenu(false)}
           >
             {t("contactUs")}
@@ -183,7 +183,7 @@ function Header() {
               </div>
               <Link
                 className="showall"
-                to="/notifications"
+                to="notifications"
                 style={{ textDecoration: "none" }}
               >
                 {t("showAllNotifications")}
@@ -197,62 +197,49 @@ function Header() {
                 <i className="fa-solid fa-user"></i>
               </div>
             </Dropdown.Toggle>
-            {isLogged ? (
-              <Dropdown.Menu className="auth_menu">
-                <div className="profile">
-                  <div className="img">
-                    <img src={user?.logo} alt="" />
-                    {user?.paid ? (
-                      <span className="verified">
-                        <i className="fa-solid fa-badge-check"></i>
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="info">
-                    <p>{user?.name}</p>
-                    <span>{user?.email}</span>
-                  </div>
+            <Dropdown.Menu className="auth_menu">
+              <div className="profile">
+                <div className="img">
+                  <img src={user?.logo} alt="" />
+                  {user?.paid ? (
+                    <span className="verified">
+                      <i className="fa-solid fa-badge-check"></i>
+                    </span>
+                  ) : null}
                 </div>
-
-                <div className="balance">
-                  <h6>
-                    {t("balance")}: {user?.wallet} {t("sar")}
-                  </h6>
+                <div className="info">
+                  <p>{user?.name}</p>
+                  <span>{user?.email}</span>
                 </div>
+              </div>
 
-                <div className="question p-0 pt-2">
-                  <label htmlFor="status" className="quest">
-                    {status === 0 ? t("offline") : t("online")}
-                  </label>
-                  <Form.Switch
-                    id="status"
-                    name="status"
-                    disabled={loading}
-                    checked={status === 1}
-                    onChange={handleStatus}
-                  />
-                </div>
+              <div className="balance">
+                <h6>
+                  {t("balance")}: {user?.wallet} {t("sar")}
+                </h6>
+              </div>
 
-                <Link to="/edit-profile">
-                  <i className="fa-solid fa-user-pen"></i>
-                  {t("editProfile")}
-                </Link>
-                <Link to="/" onClick={performLogout}>
-                  <i className="fa-solid fa-right-from-bracket"></i>{" "}
-                  {t("logout")}
-                </Link>
-              </Dropdown.Menu>
-            ) : (
-              <Dropdown.Menu className="auth_menu">
-                <Link to="/login">
-                  <i className="fa-solid fa-arrow-right-to-bracket"></i>{" "}
-                  {t("login")}
-                </Link>
-                <Link to="/register">
-                  <i className="fa-regular fa-user-plus"></i> {t("register")}
-                </Link>
-              </Dropdown.Menu>
-            )}
+              <div className="question p-0 pt-2">
+                <label htmlFor="status" className="quest">
+                  {status === 0 ? t("offline") : t("online")}
+                </label>
+                <Form.Switch
+                  id="status"
+                  name="status"
+                  disabled={loading}
+                  checked={status === 1}
+                  onChange={handleStatus}
+                />
+              </div>
+
+              <Link to="/edit-profile">
+                <i className="fa-solid fa-user-pen"></i>
+                {t("editProfile")}
+              </Link>
+              <Link to="/" onClick={performLogout}>
+                <i className="fa-solid fa-right-from-bracket"></i> {t("logout")}
+              </Link>
+            </Dropdown.Menu>
           </Dropdown>
 
           <Dropdown

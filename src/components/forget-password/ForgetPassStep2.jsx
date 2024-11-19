@@ -96,7 +96,12 @@ function ForgetPassStep2({ formData, setFormData, setStep }) {
             :<span>{(timer % 60).toString().padStart(2, "0")}</span>
           </div>
         </div>
-        <SubmitButton name={t("confirm")} loading={loading} />
+        <div className="d-flex align-items-center gap-2 w-100">
+          <div onClick={() => setStep(1)} className="backBtn">
+            <i className="fa-light fa-arrow-left"></i>
+          </div>
+          <SubmitButton name={t("confirm")} loading={loading} />
+        </div>
       </form>
     </div>
   );

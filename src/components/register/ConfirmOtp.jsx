@@ -10,7 +10,7 @@ import OtpContainer from "../../ui/form-elements/OtpContainer";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
 
-function ConfirmOtp({ formData, setOtpData, otpData }) {
+function ConfirmOtp({ formData, setOtpData, otpData, setStep }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -124,7 +124,7 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
           sameSite: "Strict",
         });
 
-        navigate("/");
+        navigate("/dashboard");
       } else {
         toast.error(loginResponse.data.message);
       }
@@ -137,38 +137,41 @@ function ConfirmOtp({ formData, setOtpData, otpData }) {
   };
 
   return (
-    <div className="col-lg-6 col-12 p-2">
-      <div className="otp_form_container">
-        <div className="header">
-          <img src="/images/OTP.svg" alt="" />
-          <h4>
-            {t("confirmOtp")} <span>+{formData.phone}</span>
-          </h4>
-        </div>
-        <form onSubmit={handleSubmit} className="form">
-          <OtpContainer formData={otpData} setFormData={setOtpData} />
-          <div className="resend-code">
-            <span
-              className={`resend_link ${resendDisabled ? "disabled" : ""}`}
-              onClick={handleResend}
-            >
-              {t("resendCode")}
+    <div className="otp_form_container">
+      <div className="header">
+        <img src="/images/OTP.svg" alt="" />
+        <h4>
+          {t("confirmOtp")} <span>+{formData.phone}</span>
+        </h4>
+      </div>
+      <form onSubmit={handleSubmit} className="form">
+        <OtpContainer formData={otpData} setFormData={setOtpData} />
+        <div className="resend-code">
+          <span
+            className={`resend_link ${resendDisabled ? "disabled" : ""}`}
+            onClick={handleResend}
+          >
+            {t("resendCode")}
+          </span>
+          <div
+            className="timer flex-row-reverse"
+            style={{ justifyContent: "end !important" }}
+          >
+            <span>
+              {Math.floor(timer / 60)
+                .toString()
+                .padStart(2, "0")}
             </span>
-            <div
-              className="timer flex-row-reverse"
-              style={{ justifyContent: "end !important" }}
-            >
-              <span>
-                {Math.floor(timer / 60)
-                  .toString()
-                  .padStart(2, "0")}
-              </span>
-              :<span>{(timer % 60).toString().padStart(2, "0")}</span>
-            </div>
+            :<span>{(timer % 60).toString().padStart(2, "0")}</span>
+          </div>
+        </div>
+        <div className="d-flex align-items-center gap-2 w-100">
+          <div onClick={() => setStep(1)} className="backBtn">
+            <i className="fa-light fa-arrow-left"></i>
           </div>
           <SubmitButton name={t("confirm")} loading={loading} />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import SubmitButton from "../../ui/form-elements/SubmitButton";
 import PasswordField from "../../ui/form-elements/PasswordField";
 import axiosInstance from "../../utils/axiosInstance";
 
-function ForgetPassStep3({ formData, setFormData }) {
+function ForgetPassStep3({ formData, setFormData, setStep }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,12 @@ function ForgetPassStep3({ formData, setFormData }) {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <SubmitButton name={t("confirm")} loading={loading} />
+        <div className="d-flex align-items-center gap-2 w-100">
+          <div onClick={() => setStep(1)} className="backBtn">
+            <i className="fa-light fa-arrow-left"></i>
+          </div>
+          <SubmitButton name={t("confirm")} loading={loading} />
+        </div>
       </form>
     </div>
   );

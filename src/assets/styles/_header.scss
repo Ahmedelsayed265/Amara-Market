@@ -260,6 +260,13 @@ header {
           display: flex;
         }
       }
+      .loginLink{
+        padding: 10px 20px;
+        font-size: 12px;
+        color: $white;
+        background: $main;
+        border-radius: 8px;
+      }
     }
     .question {
       margin-bottom: 8px;

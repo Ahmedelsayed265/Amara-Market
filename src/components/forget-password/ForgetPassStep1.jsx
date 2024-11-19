@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import PhoneField from "../../ui/form-elements/PhoneField";
 import SubmitButton from "../../ui/form-elements/SubmitButton";
 import axiosInstance from "../../utils/axiosInstance";
+import { Link } from "react-router-dom";
 
 function ForgetPassStep1({ formData, setFormData, setStep }) {
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,12 @@ function ForgetPassStep1({ formData, setFormData, setStep }) {
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
         />
-        <SubmitButton name={t("send")} loading={loading} />
+        <div className="d-flex align-items-center gap-2 w-100">
+          <Link to="/login" className="backBtn">
+            <i className="fa-light fa-arrow-left"></i>
+          </Link>
+          <SubmitButton name={t("send")} loading={loading} />
+        </div>
       </form>
     </div>
   );

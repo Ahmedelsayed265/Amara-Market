@@ -1,12 +1,9 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import PageHeader from "../ui/Layout/PageHeader";
 import RegisterForm from "../components/register/RegisterForm";
 import ConfirmOtp from "../components/register/ConfirmOtp";
 
 export default function Register() {
-  const [step, setStep] = useState(1);
-  const { t } = useTranslation();
+  const [step, setStep] = useState(2);
   const [otpData, setOtpData] = useState({
     hashed_code: "",
     code: "",
@@ -31,10 +28,12 @@ export default function Register() {
 
   return (
     <>
-      <PageHeader title={t("register")} />
-      <section className="auth">
-        <div className="container">
-          <div className="row justify-content-center m-0">
+      <section className="auth login_section">
+        <div className="img_div">
+          <img src="/images/login.png" alt="" />
+        </div>
+        <div className="login_form">
+          <div className="form_container">
             {step === 1 ? (
               <RegisterForm
                 setStep={setStep}
@@ -47,6 +46,7 @@ export default function Register() {
                 otpData={otpData}
                 setOtpData={setOtpData}
                 formData={formData}
+                setStep={setStep}
               />
             )}
           </div>

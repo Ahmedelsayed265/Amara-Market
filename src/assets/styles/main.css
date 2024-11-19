@@ -592,6 +592,13 @@ body header nav .more_actions .auth_menu button i {
 body header nav .more_actions .auth_menu.show {
   display: flex;
 }
+body header nav .more_actions .loginLink {
+  padding: 10px 20px;
+  font-size: 12px;
+  color: #fff;
+  background: #fd6b22;
+  border-radius: 8px;
+}
 body header nav .question {
   margin-bottom: 8px;
 }
@@ -1080,43 +1087,121 @@ body .invoice_template .invoice_footer .qr_holder img {
   -o-object-fit: contain;
      object-fit: contain;
 }
-body main {
-  min-height: calc(100vh - 200px);
-}
-body main .auth {
+body .auth {
   padding: 42px 0;
 }
-body main .auth .auth-head {
+body .auth .auth-head {
   text-align: center;
   font-size: 18px;
   color: #fd6b22;
   font-weight: 600;
 }
-body main .auth .auth-subhead {
+body .auth .auth-subhead {
   text-align: center;
   font-size: 14px;
   color: #666b88;
 }
-body main .auth .market_types {
+body .auth .otp_form_container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+body .auth .otp_form_container .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+body .auth .otp_form_container .header img {
+  height: 200px;
+}
+body .auth .otp_form_container .header h4 {
+  font-size: 16px;
+  color: #222020;
+  text-align: center;
+}
+body .auth .otp_form_container .header h4 span {
+  color: #fd6b22;
+}
+body .login_section {
+  width: 100%;
+  padding: 0 !important;
+  height: 100vh;
+  display: flex;
+}
+body .login_section .img_div {
+  width: 50%;
+}
+body .login_section .img_div img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+@media screen and (max-width: 768px) {
+  body .login_section .img_div {
+    display: none;
+  }
+}
+body .login_section .login_form {
+  width: 50%;
+  height: 100dvh;
+  padding: 42px 0;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+body .login_section .login_form .form_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 42px;
+  margin: auto;
+  width: min(100% - 42px, 600px);
+}
+body .login_section .login_form .form_container .header_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body .login_section .login_form .form_container .header_form img {
+  height: 100px;
+  margin-bottom: 20px;
+}
+body .login_section .login_form .form_container .header_form h2 {
+  color: #fd6b22;
+  font-size: 22px;
+}
+body .login_section .login_form .form_container .header_form P {
+  font-size: 14px;
+  color: #666b88;
+}
+body .login_section .login_form .form_container .market_types {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-body main .auth .market_types .market_type_radio {
+body .login_section .login_form .form_container .market_types .market_type_radio {
   width: 100%;
   height: 56px;
 }
-body main .auth .market_types .market_type_radio input {
+body .login_section .login_form .form_container .market_types .market_type_radio input {
   display: none;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
 }
-body main .auth .market_types .market_type_radio input:checked + span {
+body .login_section .login_form .form_container .market_types .market_type_radio input:checked + span {
   background: #fd6b22;
   color: #fff;
 }
-body main .auth .market_types .market_type_radio span {
+body .login_section .login_form .form_container .market_types .market_type_radio span {
   transition: 0.3s ease-in-out;
   width: 100%;
   height: 100%;
@@ -1130,30 +1215,12 @@ body main .auth .market_types .market_type_radio span {
   font-size: 14px;
   cursor: pointer;
 }
-body main .auth .otp_form_container {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+@media screen and (max-width: 768px) {
+  body .login_section .login_form {
+    width: 100%;
+  }
 }
-body main .auth .otp_form_container .header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-body main .auth .otp_form_container .header img {
-  height: 200px;
-}
-body main .auth .otp_form_container .header h4 {
-  font-size: 16px;
-  color: #222020;
-  text-align: center;
-}
-body main .auth .otp_form_container .header h4 span {
-  color: #fd6b22;
-}
-body main .otp-container {
+body .otp-container {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1161,11 +1228,11 @@ body main .otp-container {
   direction: ltr !important;
 }
 @media (max-width: 576px) {
-  body main .otp-container {
+  body .otp-container {
     gap: 8px;
   }
 }
-body main .otp-container .otp-input {
+body .otp-container .otp-input {
   border-radius: 12px;
   flex: 1;
   width: inherit;
@@ -1178,13 +1245,28 @@ body main .otp-container .otp-input {
   color: #fd6b22 !important;
   outline: none;
 }
-body main .otp-container .otp-input::-webkit-inner-spin-button {
+body .otp-container .otp-input::-webkit-inner-spin-button {
   display: none;
 }
 @media (max-width: 576px) {
-  body main .otp-container .otp-input {
+  body .otp-container .otp-input {
     height: 60px !important;
   }
+}
+body .backBtn {
+  cursor: pointer;
+  padding: 0 24px;
+  border: 1px solid #222020;
+  height: 56px;
+  border-radius: 12px;
+  color: #222020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+body main {
+  min-height: calc(100vh - 200px);
 }
 body main .contact_section {
   padding: 32px 0;
@@ -2101,54 +2183,6 @@ body .verification_card button {
   border-radius: 8px;
   font-size: 14px;
   padding: 10px 32px;
-}
-body .login_section {
-  width: 100%;
-  padding: 0 !important;
-  height: 100vh;
-  display: flex;
-}
-body .login_section .img_div {
-  width: 50%;
-}
-body .login_section .img_div img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: top;
-     object-position: top;
-}
-@media screen and (max-width: 768px) {
-  body .login_section .img_div {
-    display: none;
-  }
-}
-body .login_section .login_form {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-body .login_section .login_form .form_container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 42px;
-  width: min(100% - 42px, 560px);
-}
-body .login_section .login_form .form_container .header_form h2 {
-  color: #fd6b22;
-  font-size: 22px;
-}
-body .login_section .login_form .form_container .header_form P {
-  font-size: 14px;
-  color: #666b88;
-}
-@media screen and (max-width: 768px) {
-  body .login_section .login_form {
-    width: 100%;
-  }
 }
 body .verificationText {
   font-size: 14px;

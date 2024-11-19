@@ -34,7 +34,7 @@ export default function Login() {
         toast.success(t("loginSuccess"));
         dispatch(setUser(res.data.data));
         dispatch(setIsLogged(true));
-        navigate("/");
+        navigate("/dashboard");
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
@@ -64,6 +64,9 @@ export default function Login() {
       <div className="login_form">
         <div className="form_container">
           <div className="header_form">
+            <Link to="/">
+              <img src="/images/logo.png" alt="" />
+            </Link>
             <h2 className="auth-head">{t("login")}</h2>
             <p className="auth-subhead">{t("loginSubTitle")}</p>
           </div>
