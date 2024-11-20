@@ -151,5 +151,33 @@
     "verificationSuccess": "Your documents have been sent successfully",
     "verification": "🌟 Verify your store now to activate your account and enjoy all the exclusive features! 🚀 Don’t miss the opportunity, take your store to success today. 💼🔒",
     "payText": "🎉 Your information has been successfully verified! 💼 Please make the payment to complete the verification process and receive the verification badge for customers ✅.",
-    "verificationTextRequirement": "Please upload the required documents to verify your  store: business license, owner ID, address proof, and bank details. Your account will be activated upon successful verification."
+    "verificationTextRequirement": "Please upload the required documents to verify your  store: business license, owner ID, address proof, and bank details. Your account will be activated upon successful verification.",
+    "heroHint": "What are you waiting for?",
+    "heroText": "A comprehensive app designed to simplify managing your store, products, and customer orders. We provide innovative and user-friendly tools to grow your business, enhance customer experience, and boost your success in the world of commerce.",
+    "heroTitle": "Everything your store needs in one place with",
+    "exploreAmara": "Explore Amara Market",
+    "exploreSubTitle": "A simple and seamless user interface that allows you to easily purchase car spare parts.",
+    "joinUs": "Join Us",
+    "about": {
+        "title": "Our Journey: A Story of Innovation and Excellence",
+        "mission": "Our Mission",
+        "vission": "Our Vision",
+        "missionText": "Providing innovative technological solutions that help stores grow and achieve success easily and quickly.",
+        "vissionText": "To become the first choice for e-commerce store owners in managing their businesses and achieving their commercial goals.",
+        "text": "We are a team focused on developing innovative solutions for managing e-commerce stores. Our goal is to simplify store, product, and order management, helping business owners improve performance and boost sales. With our app, you get a seamless, integrated experience to manage your store professionally, from inventory tracking to order management. We believe success depends on efficiency, which is why our app is designed to support your business growth and save you time."
+    },
+    "features": {
+        "title": "App Features",
+        "f1Title": "Track Orders in Real-Time",
+        "f1Text": "Track the status of each order from submission to delivery, with instant notifications for every update.",
+        "f2Title": "Comprehensive Reports",
+        "f2Text": "Get accurate reports on sales, inventory, and orders to make data-driven decisions.",
+        "f3Title": "High Data Security",
+        "f3Text": "We ensure the protection of your data and your customers' privacy using advanced security technologies.",
+        "f4Title": "Continuous Technical Support",
+        "f4Text": "Our support team is always available to assist you and resolve any issues as quickly as possible."
+    },
+    "downloadApp": "Download the App Now",
+    "downloadApp2": "And Enjoy Shopping!",
+    "downloadAppSub": "Everything for your store in one place. Easier management, greater success with Amara Market."
 }

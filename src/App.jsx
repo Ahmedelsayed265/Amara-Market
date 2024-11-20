@@ -8,6 +8,8 @@ import Dashboard from "./Dashboard";
 import LandingPage from "./routes/LandingPage";
 import Register from "./routes/Register";
 import ForgetPassword from "./routes/ForgetPassword";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const { loading } = useAuth();
@@ -16,6 +18,7 @@ function App() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setTimeout(() => AOS.refresh(), 100);
   }, [location]);
 
   useEffect(() => {
@@ -24,6 +27,24 @@ function App() {
     lang === "en" ? body.classList.add("en") : body.classList.remove("en");
     i18n.changeLanguage(lang);
   }, [lang]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      const sectionDivs = section.querySelectorAll("[data-aos]");
+      sectionDivs.forEach((div, index) => {
+        div.setAttribute("data-aos-delay", (index + 1) * 100);
+      });
+    });
+
+    AOS.init({
+      offset: 20,
+      delay: 50,
+      duration: 700,
+      easing: "ease-out-cubic",
+      once: true,
+    });
+  }, []);
 
   return loading ? null : (
     <Routes>

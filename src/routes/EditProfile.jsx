@@ -102,7 +102,7 @@ function EditProfile() {
       if (res.data.code === 200) {
         toast.success("تم تحديث الملف الشخصي بنجاح");
         dispatch(setUser(res.data.data));
-        navigate("/");
+        navigate("/dashboard");
       } else {
         toast.error(res.data.message);
       }

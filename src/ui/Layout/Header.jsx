@@ -26,6 +26,10 @@ function Header() {
 
   const [showMenu, setShowMenu] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showActionsDropdown, setShowActionsDropdown] = useState(false);
+  const [showNotificationsDropdown, setShowNotificationsDropdown] =
+    useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [status, setStatus] = useState(user?.status || 0);
   const [cookies, , deleteCookie] = useCookies(["token"]);
   const token = cookies?.token;
@@ -50,6 +54,7 @@ function Header() {
   }, []);
 
   const performLogout = async () => {
+    setShowUserDropdown(false);
     try {
       const deleteToken = await axiosInstance.post("/market/logout", {
         token: token,
@@ -139,24 +144,40 @@ function Header() {
         </div>
 
         <div className="more_actions">
-          <Dropdown>
+          <Dropdown
+            show={showActionsDropdown}
+            onToggle={(isOpen) => setShowActionsDropdown(isOpen)}
+          >
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
                 <i className="fa-sharp fa-solid fa-globe"></i>
               </div>
             </Dropdown.Toggle>
             <Dropdown.Menu className="auth_menu">
-              <button onClick={() => handleLang("en")}>
+              <button
+                onClick={() => {
+                  handleLang("en");
+                  setShowActionsDropdown(false);
+                }}
+              >
                 <img src="/images/Flag_of_the_United_States.svg" alt="use" />{" "}
                 English
               </button>
-              <button onClick={() => handleLang("ar")}>
+              <button
+                onClick={() => {
+                  handleLang("ar");
+                  setShowActionsDropdown(false);
+                }}
+              >
                 <img src="/images/Flag_of_Saudi_Arabia.svg" alt="sa" /> العربية
               </button>
             </Dropdown.Menu>
           </Dropdown>
 
-          <Dropdown>
+          <Dropdown
+            show={showNotificationsDropdown}
+            onToggle={(isOpen) => setShowNotificationsDropdown(isOpen)}
+          >
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
                 <i className="fa-solid fa-bell"></i>
@@ -173,7 +194,10 @@ function Header() {
                         className="drop_Message"
                         key={notification?.id}
                       >
-                        <NotificationItem notification={notification} />
+                        <NotificationItem
+                          notification={notification}
+                          setShowActionsDropdown={setShowNotificationsDropdown}
+                        />
                       </Dropdown.Item>
                     ))}
                   </>
@@ -185,13 +209,17 @@ function Header() {
                 className="showall"
                 to="notifications"
                 style={{ textDecoration: "none" }}
+                onClick={() => setShowNotificationsDropdown(false)}
               >
                 {t("showAllNotifications")}
               </Link>
             </Dropdown.Menu>
           </Dropdown>
 
-          <Dropdown>
+          <Dropdown
+            show={showUserDropdown}
+            onToggle={(isOpen) => setShowUserDropdown(isOpen)}
+          >
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
                 <i className="fa-solid fa-user"></i>
@@ -232,7 +260,10 @@ function Header() {
                 />
               </div>
 
-              <Link to="/edit-profile">
+              <Link
+                to="edit-profile"
+                onClick={() => setShowUserDropdown(false)}
+              >
                 <i className="fa-solid fa-user-pen"></i>
                 {t("editProfile")}
               </Link>

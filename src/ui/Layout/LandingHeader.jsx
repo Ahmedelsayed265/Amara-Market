@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLanguage } from "../../redux/slices/language";
 import i18next from "i18next";
@@ -12,6 +12,7 @@ export default function LandingHeader() {
   const toggleRef = useRef(null);
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [showActionsDropdown, setShowActionsDropdown] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -52,36 +53,51 @@ export default function LandingHeader() {
         </div>
 
         <div ref={menuRef} className={`nav_links ${showMenu ? "show" : ""}`}>
-          <NavLink
+          {/* <NavLink
             className="nav_link"
             to="/"
             onClick={() => setShowMenu(false)}
           >
             {t("home")}
-          </NavLink>
+          </NavLink> */}
         </div>
 
         <div className="more_actions">
-          <Dropdown>
+          <Link to="/login" className="loginLink">
+            {t("joinUs")}
+          </Link>
+          
+          <Dropdown
+            show={showActionsDropdown}
+            onToggle={(isOpen) => {
+              setShowActionsDropdown(isOpen);
+            }}
+          >
             <Dropdown.Toggle id="dropdown-basic">
               <div className="user_wrapper">
                 <i className="fa-sharp fa-solid fa-globe"></i>
               </div>
             </Dropdown.Toggle>
             <Dropdown.Menu className="auth_menu">
-              <button onClick={() => handleLang("en")}>
+              <button
+                onClick={() => {
+                  handleLang("en");
+                  setShowActionsDropdown(false);
+                }}
+              >
                 <img src="/images/Flag_of_the_United_States.svg" alt="use" />{" "}
                 English
               </button>
-              <button onClick={() => handleLang("ar")}>
+              <button
+                onClick={() => {
+                  handleLang("ar");
+                  setShowActionsDropdown(false);
+                }}
+              >
                 <img src="/images/Flag_of_Saudi_Arabia.svg" alt="sa" /> العربية
               </button>
             </Dropdown.Menu>
           </Dropdown>
-
-          <Link to="/login" className="loginLink">
-            {t("login")}
-          </Link>
 
           <Dropdown
             ref={toggleRef}

@@ -1,0 +1,464 @@
+.heroSection {
+  background-image: linear-gradient(#fff4ef, $white);
+  @media (max-width: 576px) {
+    padding-top: 24px;
+  }
+  .img {
+    padding-top: 20px;
+    width: 100%;
+    @include centerFlex();
+    img {
+      width: 90%;
+    }
+    @media (max-width: 576px) {
+      padding-top: 32px;
+    }
+  }
+  .text {
+    height: 100%;
+    gap: 8px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    span {
+      font-size: 12px;
+      font-weight: 700;
+      color: $main;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      i {
+        font-size: 12px;
+        font-weight: 700;
+        color: $main;
+      }
+    }
+    h1 {
+      font-size: 40px;
+      color: $dark;
+      line-height: 70px;
+      font-weight: 700;
+      span {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: inherit;
+        display: inline-block !important;
+        color: $main;
+        text-transform: capitalize;
+      }
+      @media (max-width: 576px) {
+        font-size: 32px;
+        line-height: 52px;
+        span {
+          font-size: 32px;
+        }
+      }
+    }
+    p {
+      margin-bottom: 24px;
+      color: #777;
+      @media (max-width: 576px) {
+        font-size: 14px;
+        line-height: 26px;
+      }
+    }
+    .download_btns {
+      display: flex;
+      gap: 16px;
+      img {
+        height: 44px;
+      }
+    }
+  }
+}
+
+.gallery {
+  padding: 40px 0;
+  .appImgs {
+    padding: 40px 0;
+    position: relative;
+    h2 {
+      color: $main;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 8px !important;
+    }
+    p {
+      color: #777;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 16px !important;
+    }
+    .swiper {
+      width: 100%;
+      padding: 30px 0;
+      position: relative;
+      display: flex;
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 234px;
+        height: 507px;
+        position: relative;
+        @media (max-width: 768px) {
+          width: 175.5px;
+          height: 380px;
+        }
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 16px;
+        }
+      }
+      .frame {
+        width: 267px;
+        height: 532px;
+        @media (max-width: 768px) {
+          width: 202.5px;
+          height: 401px;
+        }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+    }
+    .swiper-wrapper {
+      height: auto;
+    }
+    .swiper-3d .swiper-slide-shadow,
+    .swiper-3d .swiper-slide-shadow-bottom,
+    .swiper-3d .swiper-slide-shadow-left,
+    .swiper-3d .swiper-slide-shadow-right,
+    .swiper-3d .swiper-slide-shadow-top {
+      border-radius: 16px;
+      box-shadow: 0px 2px 4px #00000010;
+      border: 4px solid $white;
+    }
+    .swiper-3d .swiper-slide-shadow-left {
+      background: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      );
+    }
+    .swiper-3d .swiper-slide-shadow-right {
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      );
+    }
+  }
+}
+
+.features {
+  position: relative;
+  padding: 0 0 60px;
+  .title {
+    color: $dark;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 48px;
+  }
+  .feature-card {
+    box-shadow: $shadow;
+    background: $white;
+    height: 100%;
+    padding: 24px 16px;
+    border-radius: 16px;
+    @include centerFlex();
+    flex-direction: column;
+    position: relative;
+    z-index: 9;
+    .icon {
+      @include centerFlex();
+      background: $main;
+      border-radius: 16px;
+      height: 78px;
+      width: 78px;
+      margin-bottom: 28px;
+      img {
+        max-height: 40px;
+      }
+    }
+    h4 {
+      color: $dark;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin: 0;
+      text-align: center;
+      color: $text;
+      line-height: 24px;
+      font-size: 12px;
+    }
+  }
+}
+
+.about_section {
+  padding: 40px 0;
+  @media (max-width: 576px) {
+    padding-top: 0;
+  }
+  .content {
+    padding-top: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (max-width: 576px) {
+      padding-top: 30px;
+    }
+    h2 {
+      color: $main;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+    p {
+      color: $dark;
+      font-size: 14px;
+      line-height: 26px;
+    }
+    .loginLink {
+      padding: 12px 32px;
+      background: $main;
+      border-radius: 8px;
+      color: $white;
+      font-size: 14px;
+      width: fit-content;
+    }
+  }
+  .circle {
+    width: 440px;
+    aspect-ratio: 1/1;
+    background: $main;
+    border-radius: 50%;
+    position: relative;
+    @media (max-width: 450px) {
+      width: 350px;
+    }
+    .img1 {
+      position: absolute;
+      max-height: 100%;
+      transform: rotate(22deg);
+      bottom: -48px;
+      right: -16px;
+      @media (max-width: 450px) {
+        max-height: 300px;
+      }
+    }
+    .img2 {
+      position: absolute;
+      max-height: 340px;
+      transform: rotate(-22deg);
+      top: -40px;
+      left: 40px;
+      @media (max-width: 450px) {
+        max-height: 220px;
+      }
+    }
+    .legend {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .about_card {
+    padding: 16px;
+    background: $white;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+    @include centerFlex();
+    flex-direction: column;
+    gap: 12px;
+    img {
+      height: 60px;
+    }
+    h4 {
+      font-size: 16px;
+      color: $main;
+    }
+  }
+}
+
+.contact {
+  padding: 60px 8px;
+  object-position: center;
+  position: relative;
+  isolation: isolate;
+  background-size: cover;
+  form {
+    padding: 36px 12px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    @media (max-width: 576px) {
+      padding: 32px 0;
+    }
+    .form-group {
+      display: flex;
+      width: 100%;
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 48px;
+      }
+      .inputfield {
+        width: 100%;
+        padding: 0 32px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        label {
+          position: absolute;
+          font-size: 14px;
+          color: $dark;
+          right: 32px;
+          transform: translateY(-50%);
+          top: 50%;
+          font-weight: 500;
+          transition: $transition;
+          cursor: auto;
+          &.message-label {
+            top: 20%;
+          }
+          &.h {
+            top: -4px;
+            color: $main;
+          }
+        }
+        input,
+        textarea {
+          width: 100%;
+          height: 45px;
+          @include clearInput();
+          &:focus + span::after {
+            width: calc(100% - 64px);
+          }
+        }
+        textarea {
+          padding: 16px 0;
+          height: 130px;
+        }
+        .highlight {
+          width: 100%;
+          height: 1px;
+          background: #eeeeee;
+          &::after {
+            content: "";
+            width: 0;
+            transition: $transition;
+            left: 50%;
+            height: 1px;
+            background: $main;
+            position: absolute;
+            transform: translate(-50%);
+          }
+        }
+      }
+    }
+    button {
+      @include clearInput();
+      align-self: flex-end;
+      margin-left: 32px;
+      isolation: isolate;
+      padding: 0 16px;
+      width: 140px;
+      height: 50px;
+      border: 1px solid $dark;
+      color: $dark;
+      border-radius: 12px;
+      @include centerFlex();
+      position: relative;
+      overflow: hidden;
+      transition: $transition;
+      &::after {
+        position: absolute;
+        content: "";
+        height: 150px;
+        width: 0;
+        right: 10px;
+        transition: $transition;
+        background: $main;
+        transform: rotate(-25deg);
+        z-index: -1;
+      }
+      &:hover {
+        color: $white;
+        border-color: $main;
+        &::after {
+          width: 110%;
+          right: -10px;
+        }
+      }
+    }
+  }
+  .img {
+    width: 100%;
+    @include centerFlex();
+  }
+}
+
+.download-app {
+  width: 100%;
+  padding: 30px 0 0;
+  background: #000;
+  background-size: contain;
+  overflow: hidden;
+  @media (max-width: 768px) {
+    height: 650px;
+    .app-imgs {
+      margin-top: 60px;
+    }
+  }
+  .container {
+    height: 100%;
+    .row {
+      height: 100%;
+      .img {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        img {
+          width: 52%;
+          @media (max-width: 576px) {
+            width: 62%;
+          }
+        }
+      }
+      h3 {
+        color: $white;
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 72px;
+        margin-bottom: 12px;
+        @media (max-width: 450px) {
+          font-size: 42px;
+          line-height: 62px;
+        }
+      }
+      p {
+        color: $white;
+      }
+      .btns {
+        margin-top: 16px;
+        display: flex;
+        gap: 24px;
+        img {
+          max-height: 48px;
+        }
+      }
+    }
+  }
+}

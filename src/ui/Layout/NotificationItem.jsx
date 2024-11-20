@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { calculateDate } from "../../utils/helper";
 
-function NotificationItem({ notification }) {
+function NotificationItem({ notification, setShowActionsDropdown }) {
   return (
-    <Link to="notifications">
+    <Link to="notifications" onClick={() => setShowActionsDropdown(false)}>
       <div className="text-wrap w-100">
         <div className="header">
           <h6 className="title mb-0">{notification?.title}</h6>
