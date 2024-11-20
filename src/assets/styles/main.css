@@ -1163,7 +1163,8 @@ body .login_section .login_form {
 }
 @media screen and (max-width: 768px) {
   body .login_section .login_form {
-    height: auto;
+    height: -moz-max-content;
+    height: max-content;
     overflow: unset;
   }
 }

@@ -61,7 +61,7 @@
     @include centerFlex();
     align-items: flex-start;
     @media screen and (max-width: 768px) {
-      height: auto;
+      height: max-content;
       overflow: unset;
     }
 
