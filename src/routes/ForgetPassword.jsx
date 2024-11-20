@@ -4,7 +4,7 @@ import ForgetPassStep2 from "../components/forget-password/ForgetPassStep2";
 import ForgetPassStep3 from "../components/forget-password/ForgetPassStep3";
 
 export default function ForgetPassword() {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     phone: "",
   });
