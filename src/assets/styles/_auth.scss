@@ -60,6 +60,10 @@
     overflow-y: scroll;
     @include centerFlex();
     align-items: flex-start;
+    @media screen and (max-width: 768px) {
+      height: auto;
+      overflow: unset;
+    }
 
     .form_container {
       display: flex;
@@ -152,7 +156,7 @@
   }
 }
 
-.backBtn{
+.backBtn {
   cursor: pointer;
   padding: 0 24px;
   border: 1px solid $dark;

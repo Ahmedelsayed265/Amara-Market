@@ -99,7 +99,7 @@ export default function LandingHeader() {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Dropdown
+          {/* <Dropdown
             ref={toggleRef}
             className="toggler"
             onClick={() => setShowMenu(!showMenu)}
@@ -109,7 +109,7 @@ export default function LandingHeader() {
                 <i className="fa-solid fa-bars"></i>
               </div>
             </Dropdown.Toggle>
-          </Dropdown>
+          </Dropdown> */}
         </div>
       </nav>
     </header>

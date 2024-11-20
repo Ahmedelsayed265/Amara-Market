@@ -3,7 +3,7 @@ import RegisterForm from "../components/register/RegisterForm";
 import ConfirmOtp from "../components/register/ConfirmOtp";
 
 export default function Register() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [otpData, setOtpData] = useState({
     hashed_code: "",
     code: "",
