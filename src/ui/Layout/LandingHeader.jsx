@@ -43,7 +43,7 @@ export default function LandingHeader() {
   };
 
   return (
-    <header>
+    <header className="landing_header">
       <div className={`layer ${showMenu ? "show" : ""}`}></div>
       <nav className="container">
         <div className="logo">

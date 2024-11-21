@@ -196,11 +196,11 @@ export default function LandingPage() {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-lg-6 col-12 d-flex justify-content-center flex-column">
-                <h3>
+                <h3 data-aos="fade-up">
                   {t("downloadApp")} <br /> {t("downloadApp2")}
                 </h3>
-                <p>{t("downloadAppSub")}</p>
-                <div className="btns">
+                <p data-aos="fade-up">{t("downloadAppSub")}</p>
+                <div className="btns" data-aos="fade-up">
                   <a href="#!">
                     <img src="images/app-store.svg" alt="google-play" />
                   </a>
@@ -210,7 +210,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="col-lg-6 col-12 app-imgs">
-                <div className="img">
+                <div className="img" data-aos="zoom-in-up">
                   <img src="images/downloadMoukup.svg" alt="mockup" />
                 </div>
               </div>

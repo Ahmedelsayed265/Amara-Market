@@ -23,10 +23,10 @@ export default function FooterLanding() {
                   <a href="#about"> {t("aboutUs")} </a>
                 </li>
                 <li>
-                  <a href="#!"> {t("termsConditions")} </a>
+                  <a href="/terms"> {t("termsConditions")} </a>
                 </li>
                 <li>
-                  <a href="#!"> {t("privacyPolicy")} </a>
+                  <a href="/privacy"> {t("privacyPolicy")} </a>
                 </li>
               </ul>
             </div>
