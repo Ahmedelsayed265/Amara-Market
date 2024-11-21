@@ -61,6 +61,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
         <section className="about_section sec" id="about">
           <div className="container">
             <div className="row">
@@ -79,6 +80,117 @@ export default function LandingPage() {
                 <div className="content">
                   <h2 data-aos="fade-up">{t("about.title1")}</h2>
                   <p data-aos="fade-up">{t("about.text1")}</p>
+                  <Link to="/login" className="loginLink">
+                    {t("joinUs")}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="how-it-works-section sec" id="how-it-works">
+          <h4 className="title" data-aos="fade-up">
+            {t("enjoy_experience")}{" "}
+          </h4>
+          <p className="subtitle" data-aos="fade-up">
+            {t("app_description")}{" "}
+          </p>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-4 col-12 d-flex align-items-center justify-content-center">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="h-card" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/add.svg" alt="icon" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("add_services")}</h5>
+                        <p>{t("add_services_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="h-card" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/order-track.svg" alt="icon" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("manage_orders")}</h5>
+                        <p>{t("manage_orders_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="h-card" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/rate.svg" alt="icon" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("rate_experience")}</h5>{" "}
+                        <p>{t("rate_experience_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-12">
+                <div className="mockup">
+                  <img src="/images/Home.svg" alt="mockup" data-aos="fade-up" />
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-12 d-flex align-items-center justify-content-center">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="h-card left" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/storee.svg" alt="users" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("add_store_products")}</h5>{" "}
+                        <p>{t("store_products_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="h-card left" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/order-track-2.svg" alt="icon" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("track_orders")}</h5> 
+                        <p>{t("track_orders_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="h-card left" data-aos="fade-up">
+                      <div className="icon">
+                        <img src="images/reports.svg" alt="icon" />
+                      </div>
+                      <div className="text">
+                        <h5>{t("view_reports")}</h5> 
+                        <p>{t("view_reports_description")}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="about_section sec" id="about">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-7 col-12 p-2">
+                <div className="content">
+                  <h2 data-aos="fade-up">{t("about.title2")}</h2>
+                  <p data-aos="fade-up">{t("about.text2")}</p>
+
                   <div className="download_btns" data-aos="fade-up">
                     <a href="https://apps.apple.com/eg/app/%D8%B9%D9%85%D8%A7%D8%B1%D8%A9-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/id6504286396?l=ar">
                       <img src="/images/Apple Store.png" alt="" />
@@ -87,18 +199,6 @@ export default function LandingPage() {
                       <img src="/images/Play Sotre.png" alt="" />
                     </a>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="row mt-5">
-              <div className="col-lg-7 col-12 p-2">
-                <div className="content">
-                  <h2 data-aos="fade-up">{t("about.title2")}</h2>
-                  <p data-aos="fade-up">{t("about.text2")}</p>
-
-                  <Link to="/login" className="loginLink">
-                    {t("joinUs")}
-                  </Link>
                 </div>
               </div>
 
@@ -116,6 +216,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
         <section className="gallery" id="gallery">
           <div className="container">
             <div className="row">
@@ -170,6 +271,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
         <section className="features sec" id="features">
           <h2 className="text-center title" data-aos="fade-up">
             {t("features.title")}
@@ -218,6 +320,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
+
         <section className="download-app sec" id="downloadApp">
           <div className="container">
             <div className="row justify-content-center">

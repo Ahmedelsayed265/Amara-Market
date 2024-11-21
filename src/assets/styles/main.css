@@ -1497,7 +1497,7 @@ body .features .feature-card p {
   font-size: 12px;
 }
 body .about_section {
-  padding: 40px 0;
+  padding: 60px 0;
 }
 @media (max-width: 576px) {
   body .about_section {
@@ -1824,6 +1824,72 @@ body .footerLanding .group ul li a {
 }
 body .footerLanding .group ul li a:hover {
   color: #fd6b22;
+}
+body .how-it-works-section {
+  padding: 80px 0;
+  background: rgba(253, 107, 34, 0.0588235294);
+}
+body .how-it-works-section h4 {
+  text-align: center;
+  color: #fd6b22;
+  margin-top: 16px !important;
+  font-weight: bold;
+  margin-bottom: 10px !important;
+}
+body .how-it-works-section .subtitle {
+  text-align: center;
+  color: #777777;
+  text-wrap: balance;
+  margin-bottom: 32px !important;
+}
+body .how-it-works-section .mockup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .how-it-works-section .mockup img {
+  max-width: 80%;
+}
+body .how-it-works-section .h-card {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: end;
+  gap: 20px;
+  padding: 24px 0;
+}
+@media screen and (max-width: 576px) {
+  body .how-it-works-section .h-card {
+    flex-direction: row;
+    text-align: start;
+  }
+}
+body .how-it-works-section .h-card .icon {
+  display: flex;
+  align-items: center;
+}
+body .how-it-works-section .h-card .icon img {
+  display: block;
+  min-width: 64px;
+  height: 64px;
+}
+body .how-it-works-section .h-card .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+body .how-it-works-section .h-card .text p {
+  color: #777777;
+  text-wrap: balance;
+  line-height: 24px;
+}
+body .how-it-works-section .h-card .text h5 {
+  color: #fd6b22;
+}
+body .how-it-works-section .h-card.left {
+  flex-direction: row;
+  text-align: start;
 }
 body main {
   min-height: calc(100vh - 200px);

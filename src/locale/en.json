@@ -160,12 +160,10 @@
     "exploreSubTitle": "A simple and seamless user interface that allows you to easily purchase car spare parts.",
     "joinUs": "Join Us",
     "about": {
-        "title": "Our Journey: A Story of Innovation and Excellence",
-        "mission": "Our Mission",
-        "vission": "Our Vision",
-        "missionText": "Providing innovative technological solutions that help stores grow and achieve success easily and quickly.",
-        "vissionText": "To become the first choice for e-commerce store owners in managing their businesses and achieving their commercial goals.",
-        "text": "We are a team focused on developing innovative solutions for managing e-commerce stores. Our goal is to simplify store, product, and order management, helping business owners improve performance and boost sales. With our app, you get a seamless, integrated experience to manage your store professionally, from inventory tracking to order management. We believe success depends on efficiency, which is why our app is designed to support your business growth and save you time."
+        "title1": "Manage Your Store Professionally, From Idea to Success",
+        "text1": "The Market app is the perfect tool for store owners to manage their e-commerce markets effectively. Store owners can add their markets, manage product categories, track inventory, and improve their sales performance. The app allows you to easily add new products, track customer orders, and provide exceptional service to enhance customer satisfaction. With comprehensive reports and detailed analytics, you can make well-informed decisions to grow your business. We provide you with all the tools you need to professionally manage your store, organize your orders and sales, helping you achieve success and growth in the market.",
+        "title2": "Control Your Services and Easily Meet Your Customers' Needs",
+        "text2": "The ideal solution for service providers to manage their business and meet customer requests efficiently. The app allows you to add services like property painting, carpentry, and other services you offer. You can manage your schedules, accept or reject orders, and easily track the status of each order. The app provides a user-friendly interface, allowing you to deliver exceptional service, with the ability to manage and follow up on all order details professionally. We are here to help you improve your performance and achieve customer satisfaction through fast and reliable service."
     },
     "features": {
         "title": "App Features",
@@ -184,5 +182,25 @@
     "downloadAppSub": "Everything for your store in one place. Easier management, greater success with Amara Market.",
     "importantLinks": "Important Links",
     "socialMedia": "Social Media",
-    "rights": "All rights reserved to"
+    "rights": "All rights reserved to",
+    "enjoy_experience": "Enjoy a seamless and fast shopping experience with our app",
+    "app_description": "Our app is designed to make shopping simple and convenient. Here’s how it works in a few easy steps",
+    "browse_products": "Browse Products",
+    "browse_description": "Browse a wide range of products available across different stores. Easily search for any product you want.",
+    "add_to_favorites": "Add to Favorites",
+    "favorites_description": "If you find a product you like, you can add it to your favorites list to return to it later.",
+    "add_to_cart": "Add to Cart",
+    "cart_description": "Once you find the products you wish to buy, easily add them to your shopping cart.",
+    "add_store_products": "Add your store and products",
+    "store_products_description": "Add your store and products to the app easily, and organize categories and inventory.",
+    "track_orders": "Track Orders",
+    "track_orders_description": "Track customer orders in real-time and manage inventory and sales efficiently.",
+    "view_reports": "View Reports",
+    "view_reports_description": "Review sales, inventory, and order reports to make strategic decisions for your business.",
+    "add_services": "Add Services",
+    "add_services_description": "Add your services like property painting or carpentry, and manage them professionally to meet your clients' needs.",
+    "manage_orders": "Manage Orders",
+    "manage_orders_description": "Accept or decline orders and keep track of their status to complete them efficiently.",
+    "rate_experience": "Rate Your Experience",
+    "rate_experience_description": "After completing the service, you can rate your experience and share feedback with your clients."
 }
