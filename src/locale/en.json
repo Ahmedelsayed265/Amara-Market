@@ -169,6 +169,7 @@
     },
     "features": {
         "title": "App Features",
+        "text": "Provides you with innovative and easy-to-use tools to grow your business",
         "f1Title": "Track Orders in Real-Time",
         "f1Text": "Track the status of each order from submission to delivery, with instant notifications for every update.",
         "f2Title": "Comprehensive Reports",

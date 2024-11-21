@@ -108,6 +108,7 @@ export default function LandingPage() {
                       grabCursor={true}
                       centeredSlides={true}
                       spaceBetween={60}
+                      loop={true}
                       speed={1000}
                       dir={lang === "ar" ? "rtl" : "ltr"}
                       rtl={lang === "ar"}
@@ -116,7 +117,6 @@ export default function LandingPage() {
                         delay: 2500,
                         disableOnInteraction: false,
                       }}
-                      loop={true}
                       slidesPerView="auto"
                       navigation={{
                         nextEl: ".appSliderNext",
@@ -151,6 +151,9 @@ export default function LandingPage() {
           <h2 className="text-center title" data-aos="fade-up">
             {t("features.title")}
           </h2>
+          <p className="text-center subtitle" data-aos="fade-up">
+            {t("features.text")}
+          </p>
           <div className="container">
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12 p-2">

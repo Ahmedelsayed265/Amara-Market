@@ -1365,7 +1365,8 @@ body .heroSection .text .download_btns img {
   height: 44px;
 }
 body .gallery {
-  padding: 40px 0;
+  padding: 40px 0 0;
+  background: rgba(253, 107, 34, 0.0588235294);
 }
 body .gallery .appImgs {
   padding: 40px 0;
@@ -1390,6 +1391,7 @@ body .gallery .appImgs .swiper {
   display: flex;
 }
 body .gallery .appImgs .swiper .swiper-slide {
+  overflow: hidden;
   background-position: center;
   background-size: cover;
   width: 234px;
@@ -1443,13 +1445,17 @@ body .gallery .appImgs .swiper-3d .swiper-slide-shadow-right {
 }
 body .features {
   position: relative;
-  padding: 0 0 60px;
+  padding: 60px 0;
 }
 body .features .title {
   color: #222020;
   font-size: 26px;
   font-weight: 600;
-  margin-bottom: 48px;
+}
+body .features .subtitle {
+  color: #666b88;
+  font-size: 12px;
+  margin-bottom: 32px;
 }
 body .features .feature-card {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1019607843);
@@ -1589,141 +1595,6 @@ body .about_section .about_card img {
 body .about_section .about_card h4 {
   font-size: 16px;
   color: #fd6b22;
-}
-body .contact {
-  padding: 60px 8px;
-  -o-object-position: center;
-     object-position: center;
-  position: relative;
-  isolation: isolate;
-  background-size: cover;
-}
-body .contact form {
-  padding: 36px 12px;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-@media (max-width: 576px) {
-  body .contact form {
-    padding: 32px 0;
-  }
-}
-body .contact form .form-group {
-  display: flex;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  body .contact form .form-group {
-    flex-direction: column;
-    gap: 48px;
-  }
-}
-body .contact form .form-group .inputfield {
-  width: 100%;
-  padding: 0 32px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-body .contact form .form-group .inputfield label {
-  position: absolute;
-  font-size: 14px;
-  color: #222020;
-  right: 32px;
-  transform: translateY(-50%);
-  top: 50%;
-  font-weight: 500;
-  transition: 0.3s ease-in-out;
-  cursor: auto;
-}
-body .contact form .form-group .inputfield label.message-label {
-  top: 20%;
-}
-body .contact form .form-group .inputfield label.h {
-  top: -4px;
-  color: #fd6b22;
-}
-body .contact form .form-group .inputfield input,
-body .contact form .form-group .inputfield textarea {
-  width: 100%;
-  height: 45px;
-  border: none;
-  background: none;
-  outline: none;
-}
-body .contact form .form-group .inputfield input:focus + span::after,
-body .contact form .form-group .inputfield textarea:focus + span::after {
-  width: calc(100% - 64px);
-}
-body .contact form .form-group .inputfield textarea {
-  padding: 16px 0;
-  height: 130px;
-}
-body .contact form .form-group .inputfield .highlight {
-  width: 100%;
-  height: 1px;
-  background: #eeeeee;
-}
-body .contact form .form-group .inputfield .highlight::after {
-  content: "";
-  width: 0;
-  transition: 0.3s ease-in-out;
-  left: 50%;
-  height: 1px;
-  background: #fd6b22;
-  position: absolute;
-  transform: translate(-50%);
-}
-body .contact form button {
-  border: none;
-  background: none;
-  outline: none;
-  align-self: flex-end;
-  margin-left: 32px;
-  isolation: isolate;
-  padding: 0 16px;
-  width: 140px;
-  height: 50px;
-  border: 1px solid #222020;
-  color: #222020;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  transition: 0.3s ease-in-out;
-}
-body .contact form button::after {
-  position: absolute;
-  content: "";
-  height: 150px;
-  width: 0;
-  right: 10px;
-  transition: 0.3s ease-in-out;
-  background: #fd6b22;
-  transform: rotate(-25deg);
-  z-index: -1;
-}
-body .contact form button:hover {
-  color: #fff;
-  border-color: #fd6b22;
-}
-body .contact form button:hover::after {
-  width: 110%;
-  right: -10px;
-}
-body .contact .img {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 body .download-app {
   width: 100%;
