@@ -1357,11 +1357,11 @@ body .heroSection .text p {
     line-height: 26px;
   }
 }
-body .heroSection .text .download_btns {
+body .download_btns {
   display: flex;
   gap: 16px;
 }
-body .heroSection .text .download_btns img {
+body .download_btns img {
   height: 44px;
 }
 body .gallery {

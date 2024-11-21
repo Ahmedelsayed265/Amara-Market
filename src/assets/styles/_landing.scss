@@ -67,13 +67,14 @@
         line-height: 26px;
       }
     }
-    .download_btns {
-      display: flex;
-      gap: 16px;
-      img {
-        height: 44px;
-      }
-    }
+  }
+}
+
+.download_btns {
+  display: flex;
+  gap: 16px;
+  img {
+    height: 44px;
   }
 }
 

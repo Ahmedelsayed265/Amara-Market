@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LandingHeader from "../ui/Layout/LandingHeader";
 import "swiper/swiper-bundle.css";
 import FooterLanding from "../ui/Layout/FooterLanding";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -40,10 +40,10 @@ export default function LandingPage() {
                   </h1>
                   <p data-aos="fade-up">{t("heroText")}</p>
                   <div className="download_btns" data-aos="fade-up">
-                    <a href="">
+                    <a href="https://apps.apple.com/us/app/amara-%D8%B9%D9%85%D8%A7%D8%B1%D8%A9/id6504358027">
                       <img src="/images/Apple Store.png" alt="" />
                     </a>
-                    <a href="">
+                    <a href="https://play.google.com/store/apps/details?id=com.itqan.serviceprovider">
                       <img src="/images/Play Sotre.png" alt="" />
                     </a>
                   </div>
@@ -77,17 +77,40 @@ export default function LandingPage() {
               </div>
               <div className="col-lg-7 col-12 p-2">
                 <div className="content">
-                  <h2 data-aos="fade-up">{t("about.title")}</h2>
-                  <p data-aos="fade-up">{t("about.text")}</p>
-                  <p data-aos="fade-up">
-                    <b>{t("about.mission")}</b> {t("about.missionText")}
-                  </p>
-                  <p data-aos="fade-up">
-                    <b>{t("about.vission")}</b> {t("about.vissionText")}
-                  </p>
-                  <Link to="/login" data-aos="fade-up" className="loginLink">
+                  <h2 data-aos="fade-up">{t("about.title1")}</h2>
+                  <p data-aos="fade-up">{t("about.text1")}</p>
+                  <div className="download_btns" data-aos="fade-up">
+                    <a href="https://apps.apple.com/eg/app/%D8%B9%D9%85%D8%A7%D8%B1%D8%A9-%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/id6504286396?l=ar">
+                      <img src="/images/Apple Store.png" alt="" />
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.itqan.serviceprovider">
+                      <img src="/images/Play Sotre.png" alt="" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row mt-5">
+              <div className="col-lg-7 col-12 p-2">
+                <div className="content">
+                  <h2 data-aos="fade-up">{t("about.title2")}</h2>
+                  <p data-aos="fade-up">{t("about.text2")}</p>
+
+                  <Link to="/login" className="loginLink">
                     {t("joinUs")}
                   </Link>
+                </div>
+              </div>
+
+              <div className="col-lg-5 col-12 p-2 d-flex align-items-center justify-content-center imgs-wrap">
+                <div
+                  className="circle"
+                  data-aos="fade-up"
+                  data-aos-duration="500"
+                >
+                  <img className="legend" src="images/legend.svg" alt="" />
+                  <img className="img1" src="images/mq4.svg" alt="mouckup4" />
+                  <img className="img2" src="images/mq3.svg" alt="mouckup5" />
                 </div>
               </div>
             </div>
@@ -204,10 +227,10 @@ export default function LandingPage() {
                 </h3>
                 <p data-aos="fade-up">{t("downloadAppSub")}</p>
                 <div className="btns" data-aos="fade-up">
-                  <a href="#!">
+                  <a href="https://apps.apple.com/us/app/amara-%D8%B9%D9%85%D8%A7%D8%B1%D8%A9/id6504358027">
                     <img src="images/app-store.svg" alt="google-play" />
                   </a>
-                  <a href="#!">
+                  <a href="https://play.google.com/store/apps/details?id=com.itqan.serviceprovider">
                     <img src="images/google-play.svg" alt="app-store" />
                   </a>
                 </div>
