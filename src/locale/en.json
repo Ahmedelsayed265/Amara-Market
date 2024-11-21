@@ -3,6 +3,7 @@
     "orders": "Orders",
     "products": "Products",
     "aboutUs": "About Us",
+    "gallery": "Explore App",
     "contactUs": "Contact Us",
     "showAllNotifications": "Show All Notifications",
     "balance": "Balance",
@@ -179,5 +180,8 @@
     },
     "downloadApp": "Download the App Now",
     "downloadApp2": "And Enjoy Shopping!",
-    "downloadAppSub": "Everything for your store in one place. Easier management, greater success with Amara Market."
+    "downloadAppSub": "Everything for your store in one place. Easier management, greater success with Amara Market.",
+    "importantLinks": "Important Links",
+    "socialMedia": "Social Media",
+    "rights": "All rights reserved to"
 }

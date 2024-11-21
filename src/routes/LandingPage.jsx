@@ -3,10 +3,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Footer from "../ui/Layout/Footer";
 import LandingHeader from "../ui/Layout/LandingHeader";
 import "swiper/swiper-bundle.css";
-import ContactForm from "../ui/Layout/ContactForm";
+import FooterLanding from "../ui/Layout/FooterLanding";
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -86,7 +85,7 @@ export default function LandingPage() {
                   <p data-aos="fade-up">
                     <b>{t("about.vission")}</b> {t("about.vissionText")}
                   </p>
-                  <Link to="/login" className="loginLink">
+                  <Link to="/login" data-aos="fade-up" className="loginLink">
                     {t("joinUs")}
                   </Link>
                 </div>
@@ -94,15 +93,16 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section className="gallery">
+        <section className="gallery" id="gallery">
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="appImgs">
-                  <h2>{t("exploreAmara")}</h2>
-                  <p>{t("exploreSubTitle")}</p>
+                  <h2 data-aos="fade-up">{t("exploreAmara")}</h2>
+                  <p data-aos="fade-up">{t("exploreSubTitle")}</p>
                   <div className="swiper phoneImgs">
                     <Swiper
+                      data-aos="fade-up"
                       modules={[EffectCoverflow, Navigation, Autoplay]}
                       effect="coverflow"
                       grabCursor={true}
@@ -148,7 +148,9 @@ export default function LandingPage() {
           </div>
         </section>
         <section className="features sec" id="features">
-          <h2 className="text-center title">{t("features.title")}</h2>
+          <h2 className="text-center title" data-aos="fade-up">
+            {t("features.title")}
+          </h2>
           <div className="container">
             <div className="row">
               <div className="col-lg-3 col-md-6 col-12 p-2">
@@ -215,23 +217,8 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <div className="contact sec" id="contactUs">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-5 col-12 p-2">
-                <h5 className="text-center mb-5">ابقى على تواصل معنا</h5>
-                <div className="img">
-                  <img src="/images/contact.svg" alt="contact" />
-                </div>
-              </div>
-              <div className="col-lg-7 col-12 p-2">
-                <ContactForm />
-              </div>
-            </div>
-          </div>
-        </div>
       </main>
-      <Footer />
+      <FooterLanding />
     </>
   );
 }

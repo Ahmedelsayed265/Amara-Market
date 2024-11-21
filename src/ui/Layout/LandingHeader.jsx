@@ -53,20 +53,41 @@ export default function LandingHeader() {
         </div>
 
         <div ref={menuRef} className={`nav_links ${showMenu ? "show" : ""}`}>
-          {/* <NavLink
+          <a
             className="nav_link"
-            to="/"
+            href="#home"
             onClick={() => setShowMenu(false)}
           >
             {t("home")}
-          </NavLink> */}
+          </a>
+          <a
+            className="nav_link"
+            href="#about"
+            onClick={() => setShowMenu(false)}
+          >
+            {t("aboutUs")}
+          </a>
+          <a
+            className="nav_link"
+            href="#gallery"
+            onClick={() => setShowMenu(false)}
+          >
+            {t("gallery")}
+          </a>
+          <a
+            className="nav_link"
+            href="#features"
+            onClick={() => setShowMenu(false)}
+          >
+            {t("features.title")}
+          </a>
         </div>
 
         <div className="more_actions">
           <Link to="/login" className="loginLink">
             {t("joinUs")}
           </Link>
-          
+
           <Dropdown
             show={showActionsDropdown}
             onToggle={(isOpen) => {
@@ -99,7 +120,7 @@ export default function LandingHeader() {
             </Dropdown.Menu>
           </Dropdown>
 
-          {/* <Dropdown
+          <Dropdown
             ref={toggleRef}
             className="toggler"
             onClick={() => setShowMenu(!showMenu)}
@@ -109,7 +130,7 @@ export default function LandingHeader() {
                 <i className="fa-solid fa-bars"></i>
               </div>
             </Dropdown.Toggle>
-          </Dropdown> */}
+          </Dropdown>
         </div>
       </nav>
     </header>

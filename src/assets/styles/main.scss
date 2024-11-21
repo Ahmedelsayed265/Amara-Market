@@ -666,5 +666,23 @@ body {
       align-self: flex-start;
       margin: 0 32px 0 auto;
     }
+    @media (max-width: 450px) {
+      .download-app .container .row h3 {
+        font-size: 28px;
+        line-height: 56px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      header nav .nav_links {
+        right: initial;
+        left: -50%;
+        &.show {
+          left: 0;
+        }
+      }
+    }
+    .footerLanding .logo {
+      object-position: left;
+    }
   }
 }

@@ -1277,12 +1277,15 @@ body .backBtn {
   justify-content: center;
   gap: 8px;
 }
+body :target {
+  scroll-margin-top: 120px;
+}
 body .heroSection {
   background-image: linear-gradient(#fff4ef, #fff);
 }
 @media (max-width: 576px) {
   body .heroSection {
-    padding-top: 24px;
+    padding: 24px 0 100px;
   }
 }
 body .heroSection .img {
@@ -1298,6 +1301,7 @@ body .heroSection .img img {
 @media (max-width: 576px) {
   body .heroSection .img {
     padding-top: 32px;
+    display: none;
   }
 }
 body .heroSection .text {
@@ -1753,7 +1757,7 @@ body .download-app .container .row .img img {
 }
 @media (max-width: 576px) {
   body .download-app .container .row .img img {
-    width: 62%;
+    width: 70%;
   }
 }
 body .download-app .container .row h3 {
@@ -1765,8 +1769,8 @@ body .download-app .container .row h3 {
 }
 @media (max-width: 450px) {
   body .download-app .container .row h3 {
-    font-size: 42px;
-    line-height: 62px;
+    font-size: 36px;
+    line-height: 56px;
   }
 }
 body .download-app .container .row p {
@@ -1779,6 +1783,176 @@ body .download-app .container .row .btns {
 }
 body .download-app .container .row .btns img {
   max-height: 48px;
+}
+body .footerLanding {
+  padding: 40px 0 40px;
+  position: relative;
+  background-color: #fff;
+  isolation: isolate;
+  overflow: hidden;
+}
+body .footerLanding::after {
+  content: "";
+  width: 0px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  box-shadow: 0px 0px 500px 150px #fd6b22;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  z-index: -1;
+  opacity: 0.4;
+}
+body .footerLanding::before {
+  content: "";
+  width: 0px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  box-shadow: 0px 0px 500px 150px #fd6b22;
+  position: absolute;
+  bottom: 0%;
+  right: 0;
+  z-index: -1;
+  opacity: 0.4;
+}
+body .footerLanding .logo {
+  max-height: 100px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: right;
+     object-position: right;
+  margin-bottom: 16px;
+}
+body .footerLanding .info {
+  font-size: 14px;
+  color: #222020;
+}
+body .footerLanding .copywriting {
+  display: flex;
+  margin-top: 24px;
+  padding-top: 24px;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  body .footerLanding .copywriting {
+    justify-content: space-around;
+  }
+}
+body .footerLanding .copywriting .hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #222020;
+}
+body .footerLanding .copywriting .hint a {
+  font-weight: bold;
+  color: #fd6b22;
+}
+body .footerLanding .copywriting .hint a:hover {
+  color: #fd6b22;
+}
+body .footerLanding .copywriting .hint a img {
+  height: 24px;
+  aspect-ratio: 1;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body .footerLanding .social {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body .footerLanding .social a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #222020;
+}
+body .footerLanding .social a:hover {
+  color: #fd6b22;
+}
+body .footerLanding .social a .icon {
+  transition: 0.3s ease-in-out;
+  padding: 6px;
+  border-radius: 100px;
+  width: 28px;
+  aspect-ratio: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body .footerLanding .social a .icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  transition: 0.3s ease-in-out;
+}
+body .footerLanding .social a:hover {
+  margin-right: 8px;
+}
+body .footerLanding .group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+body .footerLanding .group .title {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+body .footerLanding .group .title::after {
+  content: "";
+  height: 3px;
+  width: 32px;
+  border-radius: 4px;
+  background: #fd6b22;
+  background-size: 400%;
+  animation: animateBg 8s linear infinite;
+}
+body .footerLanding .group ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+body .footerLanding .group ul li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  position: relative;
+  min-width: 150px;
+}
+body .footerLanding .group ul li img {
+  width: 20px;
+  aspect-ratio: 1;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  transition: 0.3s ease-in-out;
+}
+body .footerLanding .group ul li::before {
+  content: "";
+  height: 2px;
+  width: 4px;
+  transition: 0.3s ease-in-out;
+  border-radius: 4px;
+  background: #fd6b22;
+}
+body .footerLanding .group ul li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #222020;
+}
+body .footerLanding .group ul li a:hover {
+  color: #fd6b22;
 }
 body main {
   min-height: calc(100vh - 200px);
@@ -2842,4 +3016,23 @@ body.en .contact form .form-group .inputfield label {
 body.en .contact form button {
   align-self: flex-start;
   margin: 0 32px 0 auto;
+}
+@media (max-width: 450px) {
+  body.en .download-app .container .row h3 {
+    font-size: 28px;
+    line-height: 56px;
+  }
+}
+@media screen and (max-width: 768px) {
+  body.en header nav .nav_links {
+    right: initial;
+    left: -50%;
+  }
+  body.en header nav .nav_links.show {
+    left: 0;
+  }
+}
+body.en .footerLanding .logo {
+  -o-object-position: left;
+     object-position: left;
 }/*# sourceMappingURL=main.css.map */
