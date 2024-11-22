@@ -194,6 +194,7 @@
       margin-bottom: 28px;
       img {
         max-height: 40px;
+        filter: brightness(0) invert(1);
       }
     }
     h4 {

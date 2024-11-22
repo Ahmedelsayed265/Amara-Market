@@ -1482,6 +1482,7 @@ body .features .feature-card .icon {
 }
 body .features .feature-card .icon img {
   max-height: 40px;
+  filter: brightness(0) invert(1);
 }
 body .features .feature-card h4 {
   color: #222020;
