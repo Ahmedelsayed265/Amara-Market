@@ -13,27 +13,39 @@ export default function FooterLanding() {
               className="logo"
               alt="logo"
             />
-            <p className="info">{t("downloadAppSub")}</p>
+            <p className="info">
+              {t("downloadAppSub")}
+            </p>
           </div>
           <div className="col col-lg-4 p-3 px-lg-4">
             <div className="group">
-              <h5 className="title">{t("importantLinks")} </h5>
+              <h5 className="title">
+                {t("importantLinks")}{" "}
+              </h5>
               <ul>
                 <li>
-                  <a href="#about"> {t("aboutUs")} </a>
+                  <a href="#about">
+                    {" "}{t("aboutUs")}{" "}
+                  </a>
                 </li>
                 <li>
-                  <a href="/terms"> {t("termsConditions")} </a>
+                  <a href="/terms">
+                    {" "}{t("termsConditions")}{" "}
+                  </a>
                 </li>
                 <li>
-                  <a href="/privacy"> {t("privacyPolicy")} </a>
+                  <a href="/privacy">
+                    {" "}{t("privacyPolicy")}{" "}
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="col-6 col-lg-4 p-3 px-lg-4">
             <div className="group">
-              <h5 className="title"> {t("socialMedia")} </h5>
+              <h5 className="title">
+                {" "}{t("socialMedia")}{" "}
+              </h5>
               <div className="social">
                 <a href="#!" target="_blank">
                   <span className="icon">

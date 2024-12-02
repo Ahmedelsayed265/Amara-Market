@@ -17,11 +17,12 @@ export default function LandingPage() {
     "images/3.png",
     "images/4.png",
     "images/5.png",
-    "images/6.png",
-    "images/7.png",
+    // "images/6.png",
+    // "images/7.png",
     "images/8.png",
     "images/9.png",
   ];
+
   return (
     <>
       <LandingHeader />
@@ -89,6 +90,8 @@ export default function LandingPage() {
           </div>
         </section>
 
+
+
         <section className="how-it-works-section sec" id="how-it-works">
           <h4 className="title" data-aos="fade-up">
             {t("enjoy_experience")}{" "}
@@ -103,6 +106,7 @@ export default function LandingPage() {
                   <div className="col-12">
                     <div className="h-card" data-aos="fade-up">
                       <div className="icon">
+
                         <img src="images/add.svg" alt="icon" />
                       </div>
                       <div className="text">
@@ -122,6 +126,7 @@ export default function LandingPage() {
                       </div>
                     </div>
                   </div>
+
                   <div className="col-12">
                     <div className="h-card" data-aos="fade-up">
                       <div className="icon">
@@ -135,6 +140,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+
 
               <div className="col-lg-4 col-12">
                 <div className="mockup">
@@ -179,6 +185,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -290,6 +297,8 @@ export default function LandingPage() {
                   <p>{t("features.f1Text")}</p>
                 </div>
               </div>
+
+
               <div className="col-lg-3 col-md-6 col-12 p-2">
                 <div className="feature-card" data-aos="fade-up">
                   <div className="icon">
@@ -348,6 +357,7 @@ export default function LandingPage() {
         </section>
       </main>
       <FooterLanding />
+
     </>
   );
 }
