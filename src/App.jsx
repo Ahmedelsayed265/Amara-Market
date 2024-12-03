@@ -5,7 +5,6 @@ import i18n from "./utils/i18n";
 import useAuth from "./hooks/useAuth";
 import Login from "./routes/Login";
 import Dashboard from "./Dashboard";
-import LandingPage from "./routes/LandingPage";
 import Register from "./routes/Register";
 import ForgetPassword from "./routes/ForgetPassword";
 import AOS from "aos";
@@ -51,8 +50,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forget-password" element={<ForgetPassword />} />
-      <Route path="/dashboard/*" element={<Dashboard loading={loading} />} />
-      <Route path="/*" element={<LandingPage />} />
+      <Route path="/*" element={<Dashboard loading={loading} />} />
     </Routes>
   );
 }
