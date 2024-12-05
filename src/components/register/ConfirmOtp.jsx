@@ -124,7 +124,7 @@ function ConfirmOtp({ formData, setOtpData, otpData, setStep }) {
           sameSite: "Strict",
         });
 
-        navigate("/dashboard");
+        navigate("/");
       } else {
         toast.error(loginResponse.data.message);
       }

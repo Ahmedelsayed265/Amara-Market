@@ -65,7 +65,7 @@ function Header() {
         delete axiosInstance.defaults.headers.common["Authorization"];
         dispatch(setUser({}));
         dispatch(setIsLogged(false));
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Error during logout:", error);

@@ -34,7 +34,7 @@ export default function Login() {
         toast.success(t("loginSuccess"));
         dispatch(setUser(res.data.data));
         dispatch(setIsLogged(true));
-        navigate("/dashboard");
+        navigate("/");
         setCookie("token", res.data.data.token, {
           path: "/",
           secure: true,
