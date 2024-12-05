@@ -14,7 +14,7 @@ const OtpContainer = ({ formData, setFormData }) => {
     const currentInput = event.target;
     const maxLength = parseInt(currentInput.getAttribute("maxlength"), 10);
 
-    if (otpValue.length >= 6) {
+    if (otpValue.length >= 4) {
       return;
     }
 
@@ -30,7 +30,7 @@ const OtpContainer = ({ formData, setFormData }) => {
       currentInput.value +
       otpValue.substring(index);
 
-    if (newOtpValue.length <= 6) {
+    if (newOtpValue.length <= 4) {
       setOtpValue(newOtpValue);
       setFormData({ ...formData, code: newOtpValue });
     }
@@ -59,7 +59,7 @@ const OtpContainer = ({ formData, setFormData }) => {
 
   return (
     <div className="otp-container">
-      {[1, 2, 3, 4, 5, 6].map((index) => (
+      {[1, 2, 3, 4].map((index) => (
         <input
           key={index}
           id={`input${index}`}
